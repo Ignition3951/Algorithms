@@ -6,3 +6,5 @@ THird commit for file one.
 Changeed after adding in staging area.
 
 Changed for merge conflict purposes.
+
+Another change to check.
