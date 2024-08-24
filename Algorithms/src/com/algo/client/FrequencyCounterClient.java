@@ -1,15 +1,19 @@
 package com.algo.client;
 
+import com.algo.model.BST;
 import com.algo.model.ST;
 import com.algo.service.SortingService;
 
 public class FrequencyCounterClient {
 
 	public static void main(String[] args) {
-		String[] array = SortingService.readFileWithLineSpace("tale.txt");
+		String[] array = SortingService.readFileWithLineSpace("leipzig1M.txt");
+		System.out.println("Read the file moving on!!!!!!!!!!!!!");
 		int minLength = Integer.parseInt(args[0]);
-		ST<String, Integer> st;
-		st = new ST<String, Integer>();
+//		ST<String, Integer> st;
+//		st = new ST<String, Integer>();
+		BST<String, Integer> st;
+		st = new BST<String, Integer>();
 		int distinct = 0, frequency = 0;
 		String maxWord="tale";
 
