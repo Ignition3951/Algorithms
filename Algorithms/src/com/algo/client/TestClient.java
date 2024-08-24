@@ -18,10 +18,11 @@ public class TestClient {
 		}
 		
 		for(String key: st.keys()) {
-			System.out.print(key + " " + st.get(key));
+			System.out.print("Key : " +key + "Value : " + st.get(key)+ " Size : "+st.size());
 			System.out.println();
 		}
 
+		System.out.println(st.ceiling("G"));
 	}
 
 }
