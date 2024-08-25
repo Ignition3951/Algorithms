@@ -47,7 +47,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 	}
 	
 	private Node put(Node x,Key key,Value value) {
-		if(x==null) return new Node(0, key, value);
+		if(x==null) return new Node(1, key, value);
 		int cmp = key.compareTo(x.key);
 		if(cmp<0) x.left=put(x.left,key,value);
 		else if(cmp>0) x.right=put(x.right,key,value);
