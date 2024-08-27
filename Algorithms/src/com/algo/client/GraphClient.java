@@ -8,11 +8,11 @@ import com.algo.service.GraphService;
 public class GraphClient {
 
 	public static void main(String[] args) {
-		List<Integer> array = GraphService.readFileWithLineSpace("tinyG.txt");
+		List<Integer> array = GraphService.readFileWithLineSpace("tinyCG.txt");
 		System.out.println("Graph has "+array.get(0)+" Vertices and "+array.get(1)+" Edges!!!!");
 		Graph graph = new Graph(array.get(0));
 		int counter = 2;
-		for (int i = 0; i < graph.V; i++) {
+		for (int i = 0; i < array.get(1); i++) {
 			if (counter < array.size()) {
 				int v = array.get(counter++);
 				int w = array.get(counter++);

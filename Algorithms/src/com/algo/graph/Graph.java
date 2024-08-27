@@ -26,12 +26,12 @@ public class Graph {
 		if(forV==null) {
 			forV=new ArrayList<Integer>();
 		}
-		forV.add(w);
+		forV.addFirst(w);
 		List<Integer> forW = adj.get(w);
 		if(forW==null) {
 			forW=new ArrayList<Integer>();
 		}
-		forW.add(v);
+		forW.addFirst(v);
 		adj.set(v, forV);
 		adj.set(w, forW);
 		E++;
