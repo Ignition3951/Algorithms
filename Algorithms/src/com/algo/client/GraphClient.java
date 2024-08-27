@@ -3,13 +3,14 @@ package com.algo.client;
 import java.util.List;
 
 import com.algo.graph.Graph;
+import com.algo.service.DepthFirstPathService;
 import com.algo.service.DepthFirstSearchService;
 import com.algo.service.GraphService;
 
 public class GraphClient {
 
 	public static void main(String[] args) {
-		List<Integer> array = GraphService.readFileWithLineSpace("tinyG.txt");
+		List<Integer> array = GraphService.readFileWithLineSpace("tinyCG.txt");
 		System.out.println("Graph has "+array.get(0)+" Vertices and "+array.get(1)+" Edges!!!!");
 		Graph graph = new Graph(array.get(0));
 		int source=0;
@@ -33,6 +34,17 @@ public class GraphClient {
 		
 		for (int i = 0; i < graph.V; i++) {
 			System.out.println("Vertex : "+i+" is connected directly to "+graph.adj.get(i)+" Vertices!!!");
+		}
+		
+		DepthFirstPathService pathService = new DepthFirstPathService(graph, source);
+		for(int j=0;j<graph.V;j++) {
+			System.out.print(source + " to " + j + ": ");
+			if(pathService.hasPathTo(j)) {
+				for(int x: pathService.pathTo(j)) {
+					System.out.print(" - "+x);
+				}
+			}
+			System.out.println();
 		}
 	}
 
