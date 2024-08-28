@@ -3,6 +3,7 @@ package com.algo.client;
 import java.util.List;
 
 import com.algo.graph.Graph;
+import com.algo.service.BreadthFirstPathService;
 import com.algo.service.DepthFirstPathService;
 import com.algo.service.DepthFirstSearchService;
 import com.algo.service.GraphService;
@@ -37,10 +38,23 @@ public class GraphClient {
 		}
 		
 		DepthFirstPathService pathService = new DepthFirstPathService(graph, source);
+		System.out.println("DepthFirstPathService!!!!!!!!!!!");
 		for(int j=0;j<graph.V;j++) {
 			System.out.print(source + " to " + j + ": ");
 			if(pathService.hasPathTo(j)) {
 				for(int x: pathService.pathTo(j)) {
+					System.out.print(" - "+x);
+				}
+			}
+			System.out.println();
+		}
+		
+		BreadthFirstPathService breadthpathService = new BreadthFirstPathService(graph, source);
+		System.out.println("BreadthFirstPathService!!!!!!!!!!!");
+		for(int j=0;j<graph.V;j++) {
+			System.out.print(source + " to " + j + ": ");
+			if(breadthpathService.hasPathTo(j)) {
+				for(int x: breadthpathService.pathTo(j)) {
 					System.out.print(" - "+x);
 				}
 			}
