@@ -11,7 +11,7 @@ import com.algo.service.GraphService;
 public class GraphClient {
 
 	public static void main(String[] args) {
-		List<Integer> array = GraphService.readFileWithLineSpace("tinyCG.txt");
+		List<Integer> array = GraphService.readFileWithLineSpace("tinyG.txt");
 		System.out.println("Graph has "+array.get(0)+" Vertices and "+array.get(1)+" Edges!!!!");
 		Graph graph = new Graph(array.get(0));
 		int source=0;

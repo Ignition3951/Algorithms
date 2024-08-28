@@ -4,15 +4,16 @@ import com.algo.graph.Graph;
 
 public class DepthFirstSearchService {
 	
-	private boolean[] marked;
-	private int count;
+	public boolean[] marked;
+	public int count=0;
 	
 	public DepthFirstSearchService(Graph g,int source) {
 		marked = new boolean[g.V];
 		dfs(g,source);
 	}
 
-	private void dfs(Graph g, int source) {
+	public void dfs(Graph g, int source) {
+		System.out.println("DepthFirstSearchService dfs called!!!!!!!!");
 		marked[source] = true;
 		count++;
 		for(int w: g.adj.get(source)) {
