@@ -53,7 +53,6 @@ public class BreadthFirstPathService {
 		}
 		path.push(source);
 		return path;
-
 	}
 
 }
