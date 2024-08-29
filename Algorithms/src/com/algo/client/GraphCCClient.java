@@ -1,8 +1,6 @@
 package com.algo.client;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import com.algo.graph.Graph;
@@ -31,7 +29,6 @@ public class GraphCCClient {
 			components.add(component);
 		}
 		System.out.println(graph.V);
-		int token=0;
 		for(int a=0;a<connectedService.count;a++) {
 			List<Integer> innerlist = new ArrayList<Integer>();
 			for(int i=0;i<graph.V;i++) {
