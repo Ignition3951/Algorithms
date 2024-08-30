@@ -7,6 +7,9 @@ public class DepthFirstSearchService {
 	public boolean[] marked;
 	public int count=0;
 	
+	public DepthFirstSearchService() {
+	}
+
 	public DepthFirstSearchService(Graph g,int source) {
 		marked = new boolean[g.V];
 		dfs(g,source);
