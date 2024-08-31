@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.algo.graph.DiGraph;
 import com.algo.service.DigraphDepthFisrtSearchService;
+import com.algo.service.DirectedCycle;
 import com.algo.service.GraphService;
 
 public class DiGraphClient {
@@ -30,6 +31,14 @@ public class DiGraphClient {
 				if(dfsService.marked[i]) {
 					System.out.println("Source "+source+" is connected to "+i);
 				}
+			}
+		}
+		
+		DirectedCycle directedCycle = new DirectedCycle(digraph);
+		if(directedCycle.hasCycle()) {
+			System.out.println("DiGraph has directed cycle");
+			for(int cycle: directedCycle.cycle()) {
+				System.out.print(" "+cycle);
 			}
 		}
 		
