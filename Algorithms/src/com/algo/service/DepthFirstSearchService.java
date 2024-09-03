@@ -16,7 +16,6 @@ public class DepthFirstSearchService {
 	}
 
 	public void dfs(Graph g, int source) {
-		System.out.println("DepthFirstSearchService dfs called!!!!!!!!");
 		marked[source] = true;
 		count++;
 		for(int w: g.adj.get(source)) {

@@ -23,6 +23,7 @@ public class GraphClient {
 				graph.addEdge(v, w);
 			}
 		}
+		System.out.println("Graph adjacency matrix : "+graph.adj.toString());
 		DepthFirstSearchService service = new DepthFirstSearchService(graph, source);
 		System.out.print("Source : "+source+" is connected (directly/indirectly) to vertices: ");
 		for(int j=0;j<graph.V;j++) {
