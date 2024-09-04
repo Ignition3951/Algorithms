@@ -1,9 +1,12 @@
 package com.algo.client;
 
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import com.algo.graph.EdgeWeightedGraph;
 import com.algo.graph.Graph;
+import com.algo.graph.LazyPrimMST;
 import com.algo.graph.MST;
 import com.algo.model.Edge;
 import com.algo.service.GraphService;
@@ -33,7 +36,13 @@ public class EdgeGraphClient {
 		for(Edge edge: mst.edges()) {
 			System.out.println(edge);
 		}
-		System.out.println("Weigth of matrix is : "+mst.weight());
+		System.out.println("Weigth of MST is : "+mst.weight());
+		
+		LazyPrimMST primMST = new LazyPrimMST(graph);
+		for(Edge edge: primMST.edges()) {
+			System.out.println(edge);
+		}
+		System.out.println("Weigth of LazyPrimMST is : "+primMST.weight());
 	}
 
 }
