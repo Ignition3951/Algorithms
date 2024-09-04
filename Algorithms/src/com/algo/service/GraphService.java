@@ -75,4 +75,17 @@ public interface GraphService {
 		}
 		return diGraph;
 	}
+	
+	static List<String> readEdgeWeightedFileWithLineSpace(String inputFilename) {
+		List<String> listOfStrings = new ArrayList<>();
+		try (Scanner sc = new Scanner(new File(inputFilename))) {
+			sc.useDelimiter("\\s+"); // Use space as delimiter
+			while (sc.hasNext()) {
+				listOfStrings.add(sc.next());
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return listOfStrings;
+	}
 }
