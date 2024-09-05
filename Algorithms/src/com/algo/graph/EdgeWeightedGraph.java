@@ -10,6 +10,9 @@ public class EdgeWeightedGraph {
 	private int V;
 	private int E;
 	private List<List<Edge>> adjacency;
+	
+	public EdgeWeightedGraph() {
+	}
 
 	public EdgeWeightedGraph(int V) {
 		this.V = V;

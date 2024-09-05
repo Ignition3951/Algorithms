@@ -3,7 +3,6 @@ package com.algo.client;
 import java.util.List;
 
 import com.algo.fundamentals.UnionFind;
-import com.algo.graph.Graph;
 import com.algo.service.GraphService;
 
 public class UnionFindClient {
