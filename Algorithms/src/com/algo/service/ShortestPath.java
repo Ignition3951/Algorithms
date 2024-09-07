@@ -1,6 +1,9 @@
 package com.algo.service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Stack;
 
 import com.algo.graph.EdgeWeightedGraph;
@@ -11,34 +14,43 @@ public class ShortestPath {
 	
 	private DirectedEdge[] edgeTo;
 	private double[] distTo;
-	private boolean[] marked;
+	private Queue<DirectedEdge> pq;
+	private double weight;
 	
 	public ShortestPath(EdgeWeightedDigraph edgeWeightedDigraph,int source) {
 		edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
 		distTo = new double[edgeWeightedDigraph.vertices()];
-		marked=new boolean[edgeWeightedDigraph.vertices()];
-		edgeTo[0]=null;
-		distTo[0]=Double.POSITIVE_INFINITY;
+		pq=new PriorityQueue<DirectedEdge>();
 		for(int i=0;i<edgeWeightedDigraph.vertices();i++) {
-			marked[i]=false;
+			distTo[i]=Double.POSITIVE_INFINITY;
 		}
-		shortestPath(edgeWeightedDigraph,source);
-	}
-
-	private void shortestPath(EdgeWeightedDigraph edgeWeightedDigraph, int source) {
-		marked[source] = true;
-		for(DirectedEdge directedEdge: edgeWeightedDigraph.edges().get(source)) {
-			if(!hasPathTo(directedEdge.to())) {
-				edgeTo[directedEdge.to()]=directedEdge;
-				shortestPath(edgeWeightedDigraph, directedEdge.to());
-			}
-			
+		distTo[source]=0.0;
+		for(DirectedEdge edge: edgeWeightedDigraph.edges().get(source)) {
+			pq.add(edge);
+		}
+		relax(edgeWeightedDigraph,source);
+		while(!pq.isEmpty()) {
+			DirectedEdge edge=pq.remove();
+			int destinationVertex=edge.to();
+			relax(edgeWeightedDigraph,destinationVertex);
 		}
 		
 	}
+
+	private void relax(EdgeWeightedDigraph edgeWeightedDigraph, int destinationVertex) {
+		for(DirectedEdge edge: edgeWeightedDigraph.edges().get(destinationVertex)) {
+			int w=edge.to();
+			if(distTo[w]>distTo[destinationVertex]+edge.weight()) {
+				distTo[w]=distTo[destinationVertex]+edge.weight();
+				edgeTo[w]=edge;
+				pq.add(edge);
+			}
+			
+		}
+	}
 	
 	public boolean hasPathTo(int v) {
-		return marked[v];
+		return edgeTo[v]!=null;
 	}
 	
 	public DirectedEdge[] edgeTo(){
@@ -46,16 +58,21 @@ public class ShortestPath {
 	}
 	
 	public Iterable<DirectedEdge> pathTo(int destination){
+		weight=0.0;
 		Stack<DirectedEdge> path = new Stack<DirectedEdge>();
 		if(edgeTo[destination]==null) return null;
 		if(hasPathTo(destination)) {
-			DirectedEdge edge=edgeTo[destination];
 			for(DirectedEdge x=edgeTo[destination];x!=null;x=edgeTo[x.from()]) {
 				path.push(x);
+				weight+=x.weight();
 			}
 		}
 		return path;
 	}
 	
-
+	public double weight() {
+		double roundedValue=Math.round(weight*100.0)/100.0;
+		return roundedValue;
+	}
+	
 }

@@ -1,6 +1,6 @@
 package com.algo.model;
 
-public class DirectedEdge {
+public class DirectedEdge implements Comparable<DirectedEdge>{
 
 	private int v;
 	private int w;
@@ -27,6 +27,16 @@ public class DirectedEdge {
 	@Override
 	public String toString() {
 		return "DirectedEdge [v=" + v + ", w=" + w + ", weight=" + weight + "]";
+	}
+
+	@Override
+	public int compareTo(DirectedEdge e) {
+		if (this.weight < e.weight)
+			return -1;
+		else if (this.weight > e.weight)
+			return 1;
+		else
+			return 0;
 	}
 
 }
