@@ -1,11 +1,13 @@
 package com.algo.graph;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
-import com.algo.service.DigraphDepthFisrtSearchService;
 import com.algo.service.DirectedCycle;
 import com.algo.service.GraphService;
+import com.algo.service.TopologicalDepthFirstSearchService;
 
 public class SymbolGraph {
 	
@@ -13,29 +15,29 @@ public class SymbolGraph {
 
 	public static void main(String[] args) {
 		Map<String, Integer> mapOfJobs = GraphService.convertFileToSymbolGraphMap("jobs.txt", "/");
-		for(int i=0;i<mapOfJobs.size();i++) {
-			for(String key: mapOfJobs.keySet()) {
-				if(mapOfJobs.get(key)==i) {
-					System.out.println("Key : "+key+" Value : "+i);
-				}
-			}
+		System.out.println(mapOfJobs.toString());
+		List<String> verticesValue=new ArrayList<String>();
+		for(int a=0;a<=mapOfJobs.size();a++) {
+			verticesValue.add(a,null);
+		}
+		for(String i: mapOfJobs.keySet()) {
+		verticesValue.set(mapOfJobs.get(i), i);
 		}
 		DiGraph diGraph = GraphService.convertFileToDiGraph("jobs.txt", "/", mapOfJobs);
 		System.out.println("Adjacency matrix is : "+diGraph.getAdjacencyList().toString());
 		DirectedCycle cyclefinder = new DirectedCycle(diGraph);
-		Iterable<Integer> order=null;
+		if (cyclefinder.hasCycle())
+		 {
+			for(int v: cyclefinder.cycle()) {
+				System.out.println("Cycle found : "+v);}
+		 }
 		if (!cyclefinder.hasCycle())
 		 {
-		 DigraphDepthFisrtSearchService dfs = new DigraphDepthFisrtSearchService(diGraph,0);
-		 order = dfs.reversePost();
+			TopologicalDepthFirstSearchService dfs = new TopologicalDepthFirstSearchService(diGraph,0);
+			Stack<Integer> reversePost= dfs.reversePost();
+			while(!reversePost.isEmpty()) {
+				System.out.println(verticesValue.get(reversePost.pop()));
+			}
 		 }
-		for(int v: order) {
-			System.out.println("Key : "+v);
-//			for(String key: mapOfJobs.keySet()) {
-//				if(mapOfJobs.get(key)==v) {
-//					System.out.println("Key : "+key+" Value : "+v);
-//				}
-//			}
-		}
 	}
 }
