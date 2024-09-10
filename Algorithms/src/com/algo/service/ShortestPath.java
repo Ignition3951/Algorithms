@@ -1,12 +1,9 @@
 package com.algo.service;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.algo.graph.EdgeWeightedGraph;
 import com.algo.model.DirectedEdge;
 import com.algo.model.EdgeWeightedDigraph;
 
@@ -58,9 +55,9 @@ public class ShortestPath {
 	}
 	
 	public Iterable<DirectedEdge> pathTo(int destination){
+		if(edgeTo[destination]==null) return null;
 		weight=0.0;
 		Stack<DirectedEdge> path = new Stack<DirectedEdge>();
-		if(edgeTo[destination]==null) return null;
 		if(hasPathTo(destination)) {
 			for(DirectedEdge x=edgeTo[destination];x!=null;x=edgeTo[x.from()]) {
 				path.push(x);
