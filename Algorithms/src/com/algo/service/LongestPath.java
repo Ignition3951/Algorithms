@@ -7,22 +7,19 @@ import java.util.Stack;
 import com.algo.model.DirectedEdge;
 import com.algo.model.EdgeWeightedDigraph;
 
-public class ShortestPath {
-	
+public class LongestPath{
+
 	private DirectedEdge[] edgeTo;
 	private double[] distTo;
 	private Queue<DirectedEdge> pq;
 	private double weight;
 	
-	public ShortestPath() {
-	}
-	
-	public ShortestPath(EdgeWeightedDigraph edgeWeightedDigraph,int source) {
+	public LongestPath(EdgeWeightedDigraph edgeWeightedDigraph,int source) {
 		edgeTo = new DirectedEdge[edgeWeightedDigraph.vertices()];
 		distTo = new double[edgeWeightedDigraph.vertices()];
 		pq=new PriorityQueue<DirectedEdge>();
 		for(int i=0;i<edgeWeightedDigraph.vertices();i++) {
-			distTo[i]=Double.POSITIVE_INFINITY;
+			distTo[i]=Double.NEGATIVE_INFINITY;
 		}
 		distTo[source]=0.0;
 		for(DirectedEdge edge: edgeWeightedDigraph.edges().get(source)) {
@@ -40,7 +37,7 @@ public class ShortestPath {
 	public void relax(EdgeWeightedDigraph edgeWeightedDigraph, int destinationVertex) {
 		for(DirectedEdge edge: edgeWeightedDigraph.edges().get(destinationVertex)) {
 			int w=edge.to();
-			if(distTo[w]>distTo[destinationVertex]+edge.weight()) {
+			if(distTo[w]<distTo[destinationVertex]+edge.weight()) {
 				distTo[w]=distTo[destinationVertex]+edge.weight();
 				edgeTo[w]=edge;
 				pq.add(edge);

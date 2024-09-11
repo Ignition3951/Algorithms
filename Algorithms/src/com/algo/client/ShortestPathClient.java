@@ -6,6 +6,7 @@ import java.util.Stack;
 import com.algo.model.DirectedEdge;
 import com.algo.model.EdgeWeightedDigraph;
 import com.algo.service.GraphService;
+import com.algo.service.LongestPath;
 import com.algo.service.ShortestPath;
 import com.algo.service.TopologicalEdgeWeightedDigraphDFSService;
 
@@ -40,6 +41,14 @@ public class ShortestPathClient {
 		for(int i=0;i<edgeWeightedDigraph.vertices();i++) {
 			System.out.print("Edge from "+source+" to "+i+" is ");
 			System.out.print(shortestPath.pathTo(i)+" Weight is : "+shortestPath.weight());
+			System.out.println();
+		}
+		
+		LongestPath longestPath = new LongestPath(edgeWeightedDigraph, source);
+		System.out.println("Longest path!!!!!!!!!!!!!!");
+		for(int i=0;i<edgeWeightedDigraph.vertices();i++) {
+			System.out.print("Edge from "+source+" to "+i+" is ");
+			System.out.print(longestPath.pathTo(i)+" Weight is : "+longestPath.weight());
 			System.out.println();
 		}
 
