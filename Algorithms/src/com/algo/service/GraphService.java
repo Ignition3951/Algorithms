@@ -88,4 +88,23 @@ public interface GraphService {
 		}
 		return listOfStrings;
 	}
+	
+	static List<List<String>> readCPMFile(String inputFilename) {
+		List<List<String>> outerList = new ArrayList<List<String>>();
+		try (Scanner sc = new Scanner(new File(inputFilename))) {
+			sc.useDelimiter(NEWLINE);
+			while (sc.hasNextLine()) {
+				List<String> innerList = new ArrayList<String>();
+				String line = sc.nextLine();
+				String[] nodes = line.split("\\s+");
+				for (int i = 0; i < nodes.length; i++) {
+					innerList.add(nodes[i]);
+				}
+				outerList.add(innerList);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return outerList;
+	}
 }
