@@ -51,4 +51,43 @@ public interface StringService {
 		}
 		return aux;
 	}
+	
+	static String[] convertFileToStringArray(String inputFilename, String delimiter) {
+		String[] arrayOfString=new String[256];
+		int counter=0;
+		try (Scanner sc = new Scanner(new File(inputFilename))) {
+			sc.useDelimiter(NEWLINE);
+			while (sc.hasNextLine()) {
+				String line = sc.nextLine();
+				String[] nodes = line.split(delimiter);
+				for(String node: nodes) {
+					arrayOfString[counter++]=node;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		String[] array=Arrays.copyOfRange(arrayOfString, 0, counter);
+		return array;
+	}
+	
+	static int[] computeFrequencyCountsInArray(String[] arrayOfStrings,int w) {
+		int[] count = new int[256];
+		Arrays.fill(count, 0);
+		for (String str : arrayOfStrings) {
+			count[str.charAt(w) + 1]++;
+		}
+		return count;
+	}
+	
+	static String[] distributeTheDataInArray(int[] convertedCount, String[] arrayOfString,
+			int w) {
+		String[] aux = new String[arrayOfString.length];
+		Arrays.fill(aux, null);
+		for (String key : arrayOfString) {
+			char value = key.charAt(w);
+			aux[convertedCount[value]++] = key;
+		}
+		return aux;
+	}
 }
