@@ -9,12 +9,12 @@ public class RecursiveBinarySearch {
 
     public static void main(String[] args) {
         int[] targetArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int searchElement = 20;
+        int searchElement =1;
         int low = 0;
         int high = targetArray.length - 1;
         int result = recursiveBinarySearch(targetArray,searchElement,low,high);
         if(result != -1) {
-            LOGGER.log(Level.INFO, "Key Element has been found on index: {}",result);
+            LOGGER.log(Level.INFO, "Key Element has been found on index: {0}",result);
         } else {
             LOGGER.log(Level.INFO, "Key Element not found in the array.");
         }
@@ -26,9 +26,9 @@ public class RecursiveBinarySearch {
              if(target[mid]==key)
                  return mid;
              if(target[mid]>key)
-                 recursiveBinarySearch(target,key,low,mid-1);
+                 return recursiveBinarySearch(target,key,low,mid-1);
              else
-                 recursiveBinarySearch(target,key,mid+1,high);
+                 return recursiveBinarySearch(target,key,mid+1,high);
          }
          return -1; // Element not found
     }
