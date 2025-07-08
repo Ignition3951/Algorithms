@@ -1,3 +1,9 @@
 *.log
 /dir/
 static/dir/
+/.idea/.gitignore
+/.idea/Algorithms.iml
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
