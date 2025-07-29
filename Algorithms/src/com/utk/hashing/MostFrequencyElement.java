@@ -10,7 +10,7 @@ public class MostFrequencyElement {
     private static final Logger LOGGER = Logger.getLogger(MostFrequencyElement.class.getName());
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 2, 3, 3, 3, 3};
+        int[] arr = {4, 4, 5, 5, 6};
         LOGGER.log(Level.INFO, "Most frequent element is: {0}", mostFrequency(arr));
     }
 
