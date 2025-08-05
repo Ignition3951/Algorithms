@@ -11,7 +11,7 @@ public class Utility {
         // Private constructor to prevent instantiation
     }
 
-    public static int findLargestElement(int[] arr, int n) {
+    public static int findFirstOrSecondLargestElement(int[] arr, int n) {
         LOGGER.log(Level.INFO, "Inside findLargestElement method to find {0} largest element in the array", n);
         int largest = Integer.MIN_VALUE;
         int secondLargest = Integer.MIN_VALUE;
@@ -28,5 +28,20 @@ public class Utility {
         } else {
             return secondLargest == Integer.MIN_VALUE ? -1 : secondLargest;
         }
+    }
+
+    public static boolean isSortedArray(int[] arr) {
+        int counter = 1;
+        int firstSortedElement = arr[0];
+        for (int i = 1; i < arr.length - 1; i++) {
+            if (arr[i] >= firstSortedElement) {
+                counter++;
+                firstSortedElement = arr[i];
+            }else{
+                break;
+            }
+        }
+        LOGGER.log(Level.INFO, "The value of counter is {0}", counter);
+        return (counter == arr.length-1);
     }
 }
