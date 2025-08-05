@@ -11,15 +11,22 @@ public class Utility {
         // Private constructor to prevent instantiation
     }
 
-    public static int findLargestElement(int[] arr) {
-        LOGGER.log(Level.INFO, "Inside findLargestElement method");
-        int lowest = -1;
-        for (int i = 0; i < arr.length - 1; i++) {
-            if (arr[i] < arr[i + 1]) {
-                lowest = arr[i + 1];
+    public static int findLargestElement(int[] arr, int n) {
+        LOGGER.log(Level.INFO, "Inside findLargestElement method to find {0} largest element in the array", n);
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length - 1; i++) {//8, 8, 7, 6, 5
+            if (arr[i] > largest) {
+                largest = arr[i];
+            }
+            if (arr[i] < largest && arr[i] > secondLargest) {
+                secondLargest = arr[i];
             }
         }
-        LOGGER.log(Level.INFO, "the largest number in the array is: {0}", lowest);
-        return lowest;
+        if (n == 1) {
+            return largest == Integer.MIN_VALUE ? -1 : largest;
+        } else {
+            return secondLargest == Integer.MIN_VALUE ? -1 : secondLargest;
+        }
     }
 }
