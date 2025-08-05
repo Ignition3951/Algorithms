@@ -17,6 +17,10 @@ public class ArrayUtilityImpl {
 
         int[] checkIfSortedArray = {1, 2, 1, 4, 5};
         boolean isSorted = Utility.isSortedArray(checkIfSortedArray);
-        LOGGER.log(Level.INFO,"Is the array sorted? {0}", isSorted);
+        LOGGER.log(Level.INFO, "Is the array sorted? {0}", isSorted);
+
+        int[] removeDuplicatesFromSortedArray = {0, 0, 3, 3, 5, 6};
+        int countOfUniqueElements = Utility.removeDuplicatesFromSortedArray(removeDuplicatesFromSortedArray);
+        LOGGER.log(Level.INFO, " The count of unique elements in the sorted array is: {0}", countOfUniqueElements);
     }
 }

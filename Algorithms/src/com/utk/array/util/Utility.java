@@ -1,5 +1,6 @@
 package com.utk.array.util;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,11 +38,22 @@ public class Utility {
             if (arr[i] >= firstSortedElement) {
                 counter++;
                 firstSortedElement = arr[i];
-            }else{
+            } else {
                 break;
             }
         }
         LOGGER.log(Level.INFO, "The value of counter is {0}", counter);
-        return (counter == arr.length-1);
+        return (counter == arr.length - 1);
+    }
+
+    public static int removeDuplicatesFromSortedArray(int[] nums) {
+        int uniqueIndex = 0;
+        for (int i = 1; i < nums.length; i++) {//0, 0, 3, 3, 5, 6
+            if (nums[i] != nums[uniqueIndex]) {
+                nums[++uniqueIndex] = nums[i];
+            }
+        }
+        LOGGER.log(Level.INFO, "The unique array is: {0}", Arrays.toString(nums));
+        return uniqueIndex+1;
     }
 }
