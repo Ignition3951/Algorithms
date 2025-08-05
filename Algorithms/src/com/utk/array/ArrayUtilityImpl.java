@@ -22,5 +22,9 @@ public class ArrayUtilityImpl {
         int[] removeDuplicatesFromSortedArray = {0, 0, 3, 3, 5, 6};
         int countOfUniqueElements = Utility.removeDuplicatesFromSortedArray(removeDuplicatesFromSortedArray);
         LOGGER.log(Level.INFO, " The count of unique elements in the sorted array is: {0}", countOfUniqueElements);
+
+        int[] rotateArray = {3, 4, 1, 5, 3, -5};
+        int d = 8;
+        Utility.rotateArrayLeftByDSpaces(rotateArray, d);
     }
 }

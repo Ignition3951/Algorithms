@@ -48,12 +48,27 @@ public class Utility {
 
     public static int removeDuplicatesFromSortedArray(int[] nums) {
         int uniqueIndex = 0;
-        for (int i = 1; i < nums.length; i++) {//0, 0, 3, 3, 5, 6
+        for (int i = 1; i < nums.length; i++) {
             if (nums[i] != nums[uniqueIndex]) {
                 nums[++uniqueIndex] = nums[i];
             }
         }
         LOGGER.log(Level.INFO, "The unique array is: {0}", Arrays.toString(nums));
-        return uniqueIndex+1;
+        return uniqueIndex + 1;
+    }
+
+    public static void rotateArrayLeftByDSpaces(int[] nums, int d) {
+        int[] rotatedArray = new int[nums.length];
+        if (d > nums.length) {
+            d = d % nums.length; // Handle cases where d is greater than the array length
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if ((i - d) >= 0) {
+                rotatedArray[i - d] = nums[i];
+            } else {
+                rotatedArray[nums.length - (d - i)] = nums[i];
+            }
+        }
+        LOGGER.log(Level.INFO, "Array after rotation: {0}", Arrays.toString(rotatedArray));
     }
 }
