@@ -26,5 +26,8 @@ public class ArrayUtilityImpl {
         int[] rotateArray = {3, 4, 1, 5, 3, -5};
         int d = 8;
         Utility.rotateArrayLeftByDSpaces(rotateArray, d);
+
+        int[] moveZeroesToLast = {0, 20, 0, -20, 0, 20};
+        Utility.moveZeroesToLast(moveZeroesToLast);
     }
 }

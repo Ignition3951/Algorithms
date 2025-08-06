@@ -69,6 +69,19 @@ public class Utility {
                 rotatedArray[nums.length - (d - i)] = nums[i];
             }
         }
-        LOGGER.log(Level.INFO, "Array after rotation: {0}", Arrays.toString(rotatedArray));
+        LOGGER.log(Level.INFO, "Array after rotation to the left : {0}", Arrays.toString(rotatedArray));
+    }
+
+    public static void moveZeroesToLast(int[] nums) {
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[j++] = nums[i];
+            }
+        }
+        while (j < nums.length) {
+            nums[j++] = 0;
+        }
+        LOGGER.log(Level.INFO, "Array after moving zeroes to the last: {0}", Arrays.toString(nums));
     }
 }
