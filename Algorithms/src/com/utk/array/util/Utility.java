@@ -84,4 +84,48 @@ public class Utility {
         }
         LOGGER.log(Level.INFO, "Array after moving zeroes to the last: {0}", Arrays.toString(nums));
     }
+
+    public static int[] unionOfSortedArrays(int[] arr1, int[] arr2) {
+        int size = arr1.length + arr2.length;
+        int[] unionArray = new int[size];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while (i < arr1.length && j < arr2.length) {// 3,  4,  6,  7,  9, 9       1,  5,  7,  8,  8
+            if (arr1[i] < arr2[j]) {
+                if (k == 0 || unionArray[k - 1] != arr1[i]) {
+                    unionArray[k++] = arr1[i];
+                }
+                i++;
+            } else if (arr1[i] == arr2[j]) {
+                if (k == 0 || unionArray[k - 1] != arr1[i]) {
+                    unionArray[k++] = arr1[i];
+                }
+                i++;
+                j++;
+            } else {
+                if (k == 0 || unionArray[k - 1] != arr2[j]) {
+                    unionArray[k++] = arr2[j];
+                }
+                j++;
+            }
+        }
+        while (i < arr1.length) {
+            if (unionArray[k - 1] != arr1[i]) {
+                unionArray[k++] = arr1[i];
+            }
+            i++;
+        }
+        while (j < arr2.length) {
+            if (unionArray[k - 1] != arr2[j]) {
+                unionArray[k++] = arr2[j];
+            }
+            j++;
+        }
+        int[] result = new int[k];
+        for (int a = 0; a < k; a++) {
+            result[a] = unionArray[a];
+        }
+        return result;
+    }
 }

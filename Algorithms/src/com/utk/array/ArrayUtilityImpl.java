@@ -2,6 +2,7 @@ package com.utk.array;
 
 import com.utk.array.util.Utility;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +20,7 @@ public class ArrayUtilityImpl {
         boolean isSorted = Utility.isSortedArray(checkIfSortedArray);
         LOGGER.log(Level.INFO, "Is the array sorted? {0}", isSorted);
 
-        int[] removeDuplicatesFromSortedArray = {0, 0, 3, 3, 5, 6};
+        int[] removeDuplicatesFromSortedArray = {3, 4, 6, 7, 9, 9};
         int countOfUniqueElements = Utility.removeDuplicatesFromSortedArray(removeDuplicatesFromSortedArray);
         LOGGER.log(Level.INFO, " The count of unique elements in the sorted array is: {0}", countOfUniqueElements);
 
@@ -29,5 +30,10 @@ public class ArrayUtilityImpl {
 
         int[] moveZeroesToLast = {0, 20, 0, -20, 0, 20};
         Utility.moveZeroesToLast(moveZeroesToLast);
+
+        int[] firstSortedArray = {3, 4, 6, 7, 9, 9};
+        int[] secondSortedArray = {1, 5, 7, 8, 8};
+        int[] unionSortedArray = Utility.unionOfSortedArrays(firstSortedArray, secondSortedArray);
+        LOGGER.log(Level.INFO, "The union of arrays is : {0}", Arrays.toString(unionSortedArray));
     }
 }
