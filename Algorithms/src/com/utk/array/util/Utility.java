@@ -1,5 +1,6 @@
 package com.utk.array.util;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -127,5 +128,19 @@ public class Utility {
             result[a] = unionArray[a];
         }
         return result;
+    }
+
+    public static int findMissingNumber(int[] nums) {
+        int size = nums.length+1;
+        boolean[] numbersFound = new boolean[size];
+        for (int num : nums) {
+            numbersFound[num] = true;
+        }
+        for (int i = 0; i < size; i++) {
+            if (!numbersFound[i]) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

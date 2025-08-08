@@ -35,5 +35,8 @@ public class ArrayUtilityImpl {
         int[] secondSortedArray = {1, 5, 7, 8, 8};
         int[] unionSortedArray = Utility.unionOfSortedArrays(firstSortedArray, secondSortedArray);
         LOGGER.log(Level.INFO, "The union of arrays is : {0}", Arrays.toString(unionSortedArray));
+
+        int[] findNumbers = {3, 0, 1};
+        LOGGER.log(Level.INFO, "The missing number is : {0}", Utility.findMissingNumber(findNumbers));
     }
 }
