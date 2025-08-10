@@ -142,4 +142,20 @@ public class Utility {
         }
         return -1;
     }
+
+    public static int maximumConsecutiveOnes(int[] nums){
+        int counter=0;
+        int lastCount=0;
+        for(int number: nums){//1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1
+            if(number==1){
+                ++counter;
+            }else{
+                if(lastCount<counter){
+                    lastCount=counter;
+                }
+                counter=0;
+            }
+        }
+        return lastCount>counter?lastCount:counter;
+    }
 }

@@ -38,5 +38,8 @@ public class ArrayUtilityImpl {
 
         int[] findNumbers = {3, 0, 1};
         LOGGER.log(Level.INFO, "The missing number is : {0}", Utility.findMissingNumber(findNumbers));
+
+        int[] maxConsOnes = {1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1};
+        LOGGER.log(Level.INFO, "The maximum consecutive ones are : {0}", Utility.maximumConsecutiveOnes(maxConsOnes));
     }
 }
