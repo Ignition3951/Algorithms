@@ -42,7 +42,11 @@ public class ArrayUtilityImpl {
         int[] maxConsOnes = {1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1};
         LOGGER.log(Level.INFO, "The maximum consecutive ones are : {0}", Utility.maximumConsecutiveOnes(maxConsOnes));
 
-        int[] nums = {2,2,1};
+        int[] nums = {2, 2, 1};
         LOGGER.log(Level.INFO, "The single element in the array is : {0}", Utility.singleNumber(nums));
+
+        int[] longestSubArray = {-3, 2, 1};
+        int k = 15;
+        LOGGER.log(Level.INFO, "The size of the longest sub-array is : {0}", Utility.longestSubArrayV2(longestSubArray, k));
     }
 }

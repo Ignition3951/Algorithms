@@ -1,6 +1,7 @@
 package com.utk.array.util;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -165,5 +166,38 @@ public class Utility {
             XOR = XOR ^ arr[i]; // zero xor any number is the number itself
         }
         return XOR;
+    }
+
+    public static int longestSubArrayV1(int[] nums, int k) {
+        int length = 0;
+        int result = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int total = k;
+            int j = i;
+            while (total > 0 && j < nums.length) {
+                total -= nums[j++];
+                length++;
+            }
+            if (total == 0 && length > result) {
+                result = length;
+                length = 0;
+            }
+        }
+        return result;
+    }
+
+    public static int longestSubArrayV2(int[] nums, int k) {
+        HashMap<Integer, Integer> sumMap = new HashMap<>();
+        int sum = 0;
+        int longestSubArrLength = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            sumMap.put(sum, i);
+            if ((sum - k) >= 0 && sumMap.containsKey((sum - k))) {
+                longestSubArrLength = Math.max(longestSubArrLength,
+                        sumMap.get(sum) - sumMap.get(sum-k));
+            }
+        }
+        return longestSubArrLength;
     }
 }
