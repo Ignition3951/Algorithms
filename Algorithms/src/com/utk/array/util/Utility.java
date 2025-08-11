@@ -130,7 +130,7 @@ public class Utility {
     }
 
     public static int findMissingNumber(int[] nums) {
-        int size = nums.length+1;
+        int size = nums.length + 1;
         boolean[] numbersFound = new boolean[size];
         for (int num : nums) {
             numbersFound[num] = true;
@@ -143,19 +143,27 @@ public class Utility {
         return -1;
     }
 
-    public static int maximumConsecutiveOnes(int[] nums){
-        int counter=0;
-        int lastCount=0;
-        for(int number: nums){//1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1
-            if(number==1){
+    public static int maximumConsecutiveOnes(int[] nums) {
+        int counter = 0;
+        int lastCount = 0;
+        for (int number : nums) {//1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1
+            if (number == 1) {
                 ++counter;
-            }else{
-                if(lastCount<counter){
-                    lastCount=counter;
+            } else {
+                if (lastCount < counter) {
+                    lastCount = counter;
                 }
-                counter=0;
+                counter = 0;
             }
         }
-        return lastCount>counter?lastCount:counter;
+        return lastCount > counter ? lastCount : counter;
+    }
+
+    public static int singleNumber(int[] arr) {
+        int XOR = 0;//same numbers when XOR return zero
+        for (int i = 0; i < arr.length; i++) {
+            XOR = XOR ^ arr[i]; // zero xor any number is the number itself
+        }
+        return XOR;
     }
 }
