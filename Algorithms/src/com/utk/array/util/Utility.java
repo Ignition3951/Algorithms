@@ -226,15 +226,42 @@ public class Utility {
         int[] result = new int[2];
         Map<Integer, Integer> map = new HashMap<>();//1, 3, 5, -7, 6, -3
         for (int num : nums) {
-            if (map.containsKey(target-num)) {
-                result[0] = map.get(target-num);
+            if (map.containsKey(target - num)) {
+                result[0] = map.get(target - num);
                 result[1] = counter;
                 break;
-            }else{
+            } else {
                 map.put(num, counter++);
             }
 
         }
         return result;
+    }
+
+    public static void sortZeroOneTwo(int[] arr) {
+        int zeroCounter = 0;
+        int oneCounter = 0;
+        int twoCounter = 0;
+        int counter = 0;
+        for (int num : arr) {
+            if (num == 0)
+                zeroCounter++;
+            else if (num == 1)
+                oneCounter++;
+            else if (num == 2)
+                twoCounter++;
+        }
+        while (zeroCounter > 0) {
+            arr[counter++] = 0;
+            --zeroCounter;
+        }
+        while (oneCounter > 0) {
+            arr[counter++] = 1;
+            --oneCounter;
+        }
+        while (twoCounter > 0) {
+            arr[counter++] = 2;
+            --twoCounter;
+        }
     }
 }

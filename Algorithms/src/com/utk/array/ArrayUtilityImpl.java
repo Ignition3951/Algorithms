@@ -52,5 +52,9 @@ public class ArrayUtilityImpl {
         int[] twoSum = {1, 3, 5, -7, 6, -3};
         int target = 0;
         LOGGER.log(Level.INFO, "The indices corresponding to sum are : {0}", Arrays.toString(Utility.twoSum(twoSum, target)));
+
+        int[] zeroOneTwo = {0, 0, 1, 1, 1};
+        Utility.sortZeroOneTwo(zeroOneTwo);
+        LOGGER.log(Level.INFO, "The sorted array is : {0}", Arrays.toString(zeroOneTwo));
     }
 }
