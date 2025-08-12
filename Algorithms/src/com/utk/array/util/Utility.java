@@ -239,29 +239,26 @@ public class Utility {
     }
 
     public static void sortZeroOneTwo(int[] arr) {
-        int zeroCounter = 0;
-        int oneCounter = 0;
-        int twoCounter = 0;
-        int counter = 0;
-        for (int num : arr) {
-            if (num == 0)
-                zeroCounter++;
-            else if (num == 1)
-                oneCounter++;
-            else if (num == 2)
-                twoCounter++;
+        int low=0;
+        int mid=0;
+        int high=arr.length-1;
+        while(mid<=high){
+            if(arr[mid]==0){
+                swap(arr,low,mid);
+                low++;
+                mid++;
+            }else if(arr[mid]==1){
+                mid++;
+            }else if(arr[mid]==2){
+                swap(arr,mid,high);
+                high--;
+            }
         }
-        while (zeroCounter > 0) {
-            arr[counter++] = 0;
-            --zeroCounter;
-        }
-        while (oneCounter > 0) {
-            arr[counter++] = 1;
-            --oneCounter;
-        }
-        while (twoCounter > 0) {
-            arr[counter++] = 2;
-            --twoCounter;
-        }
+    }
+
+    public static void swap(int[] arr,int initialLocation,int finalLocation){
+        int temp = arr[finalLocation];
+        arr[finalLocation] = arr[initialLocation];
+        arr[initialLocation]=temp;
     }
 }
