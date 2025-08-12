@@ -2,6 +2,7 @@ package com.utk.array.util;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -221,21 +222,18 @@ public class Utility {
     }
 
     public static int[] twoSum(int[] nums, int target) {
+        int counter = 0;
         int[] result = new int[2];
-        boolean stop=false;
-        for (int i = 0; i < nums.length; i++) {
-            int firstElement = nums[i];
-            if(stop){
+        Map<Integer, Integer> map = new HashMap<>();//1, 3, 5, -7, 6, -3
+        for (int num : nums) {
+            if (map.containsKey(target-num)) {
+                result[0] = map.get(target-num);
+                result[1] = counter;
                 break;
+            }else{
+                map.put(num, counter++);
             }
-            for (int j = i + 1; j < nums.length; j++) {
-                if ((firstElement + nums[j]) == target) {
-                    result[0] = Math.min(i, j);
-                    result[1] = Math.max(i, j);
-                    stop=true;
-                    break;
-                }
-            }
+
         }
         return result;
     }
