@@ -195,9 +195,28 @@ public class Utility {
             sumMap.put(sum, i);
             if ((sum - k) >= 0 && sumMap.containsKey((sum - k))) {
                 longestSubArrLength = Math.max(longestSubArrLength,
-                        sumMap.get(sum) - sumMap.get(sum-k));
+                        sumMap.get(sum) - sumMap.get(sum - k));
             }
         }
         return longestSubArrLength;
+    }
+
+    public static int longestSubArrayV3(int[] nums, int k) {
+        int i = 0;
+        int j = 0;
+        int sum = nums[0];
+        int length = 0;
+        while (i < nums.length && j < nums.length - 1) {
+            if (sum > k) {
+                sum -= nums[i++];
+            } else if (sum < k) {
+                sum += nums[++j];
+            } else {
+                length = Math.max(length, j - i + 1);
+                sum += nums[++j];
+            }
+
+        }
+        return length;
     }
 }

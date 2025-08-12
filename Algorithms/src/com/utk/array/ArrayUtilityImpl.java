@@ -46,7 +46,7 @@ public class ArrayUtilityImpl {
         LOGGER.log(Level.INFO, "The single element in the array is : {0}", Utility.singleNumber(nums));
 
         int[] longestSubArray = {-3, 2, 1};
-        int k = 15;
-        LOGGER.log(Level.INFO, "The size of the longest sub-array is : {0}", Utility.longestSubArrayV2(longestSubArray, k));
+        int k = 6;
+        LOGGER.log(Level.INFO, "The size of the longest sub-array is : {0}", Utility.longestSubArrayV3(longestSubArray, k));
     }
 }
