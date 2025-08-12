@@ -48,5 +48,9 @@ public class ArrayUtilityImpl {
         int[] longestSubArray = {-3, 2, 1};
         int k = 6;
         LOGGER.log(Level.INFO, "The size of the longest sub-array is : {0}", Utility.longestSubArrayV3(longestSubArray, k));
+
+        int[] twoSum = {1, 3, 5, -7, 6, -3};
+        int target = 0;
+        LOGGER.log(Level.INFO, "The indices corresponding to sum are : {0}", Arrays.toString(Utility.twoSum(twoSum, target)));
     }
 }

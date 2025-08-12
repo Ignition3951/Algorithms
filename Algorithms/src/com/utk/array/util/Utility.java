@@ -219,4 +219,24 @@ public class Utility {
         }
         return length;
     }
+
+    public static int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        boolean stop=false;
+        for (int i = 0; i < nums.length; i++) {
+            int firstElement = nums[i];
+            if(stop){
+                break;
+            }
+            for (int j = i + 1; j < nums.length; j++) {
+                if ((firstElement + nums[j]) == target) {
+                    result[0] = Math.min(i, j);
+                    result[1] = Math.max(i, j);
+                    stop=true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 }
