@@ -277,4 +277,25 @@ public class Utility {
         }
         return element;
     }
+
+    public static int maxSubArraySum(int[] nums) {
+        int sum = 0;
+        int maximum = Integer.MIN_VALUE;
+        int start = -1;
+        int end = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (sum == 0)
+                start = i;
+            sum += nums[i];
+            if (sum > maximum) {
+                maximum = sum;
+                end = i;
+            }
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+        LOGGER.log(Level.INFO, "The index of the largest sub array is from {0} to {1}", new Object[]{start, end});
+        return maximum;
+    }
 }

@@ -59,5 +59,8 @@ public class ArrayUtilityImpl {
 
         int[] maxElementArr = {7, 0, 0, 1, 7, 7, 2, 7, 7};
         LOGGER.log(Level.INFO, "The majority element in the array is : {0}", Utility.majorityElement(maxElementArr));
+
+        int[] maxSubArraySum = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        LOGGER.log(Level.INFO, "The sum of maximum sub array is : {0}", Utility.maxSubArraySum(maxSubArraySum));
     }
 }
