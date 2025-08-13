@@ -56,5 +56,8 @@ public class ArrayUtilityImpl {
         int[] zeroOneTwo = {1, 0, 2, 1, 0};
         Utility.sortZeroOneTwo(zeroOneTwo);
         LOGGER.log(Level.INFO, "The sorted array is : {0}", Arrays.toString(zeroOneTwo));
+
+        int[] maxElementArr = {7, 0, 0, 1, 7, 7, 2, 7, 7};
+        LOGGER.log(Level.INFO, "The majority element in the array is : {0}", Utility.majorityElement(maxElementArr));
     }
 }

@@ -261,4 +261,18 @@ public class Utility {
         arr[finalLocation] = arr[initialLocation];
         arr[initialLocation]=temp;
     }
+
+    public static int majorityElement(int[] nums){
+        Map<Integer,Integer> map = new HashMap<>();
+        int result=0;
+        for(int num: nums){
+            int value = map.containsKey(num)? map.get(num)+1:1;
+            if(value>nums.length/2){
+                result=num;
+                return result;
+            }
+            map.put(num,value);
+        }
+        return result;
+    }
 }
