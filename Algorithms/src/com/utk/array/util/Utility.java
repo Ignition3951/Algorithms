@@ -239,40 +239,42 @@ public class Utility {
     }
 
     public static void sortZeroOneTwo(int[] arr) {
-        int low=0;
-        int mid=0;
-        int high=arr.length-1;
-        while(mid<=high){
-            if(arr[mid]==0){
-                swap(arr,low,mid);
+        int low = 0;
+        int mid = 0;
+        int high = arr.length - 1;
+        while (mid <= high) {
+            if (arr[mid] == 0) {
+                swap(arr, low, mid);
                 low++;
                 mid++;
-            }else if(arr[mid]==1){
+            } else if (arr[mid] == 1) {
                 mid++;
-            }else if(arr[mid]==2){
-                swap(arr,mid,high);
+            } else if (arr[mid] == 2) {
+                swap(arr, mid, high);
                 high--;
             }
         }
     }
 
-    public static void swap(int[] arr,int initialLocation,int finalLocation){
+    public static void swap(int[] arr, int initialLocation, int finalLocation) {
         int temp = arr[finalLocation];
         arr[finalLocation] = arr[initialLocation];
-        arr[initialLocation]=temp;
+        arr[initialLocation] = temp;
     }
 
-    public static int majorityElement(int[] nums){
-        Map<Integer,Integer> map = new HashMap<>();
-        int result=0;
-        for(int num: nums){
-            int value = map.containsKey(num)? map.get(num)+1:1;
-            if(value>nums.length/2){
-                result=num;
-                return result;
+    public static int majorityElement(int[] nums) {
+        int counter = 0;
+        int element = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (element == nums[i]) {
+                counter++;
+            } else {
+                counter--;
             }
-            map.put(num,value);
+            if (counter == 0 && i < nums.length - 1) {
+                element = nums[i + 1];
+            }
         }
-        return result;
+        return element;
     }
 }
