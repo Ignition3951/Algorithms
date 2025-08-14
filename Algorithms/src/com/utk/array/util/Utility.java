@@ -298,4 +298,15 @@ public class Utility {
         LOGGER.log(Level.INFO, "The index of the largest sub array is from {0} to {1}", new Object[]{start, end});
         return maximum;
     }
+
+    public static int maxProfit(int[] prices) {
+        int minimum = prices[0];
+        int profit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            int cost = prices[i] - minimum;
+            profit = Math.max(profit, cost);
+            minimum = Math.min(minimum, prices[i]);
+        }
+        return profit;
+    }
 }

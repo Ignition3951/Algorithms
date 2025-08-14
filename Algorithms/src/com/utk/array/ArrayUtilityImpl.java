@@ -62,5 +62,8 @@ public class ArrayUtilityImpl {
 
         int[] maxSubArraySum = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         LOGGER.log(Level.INFO, "The sum of maximum sub array is : {0}", Utility.maxSubArraySum(maxSubArraySum));
+
+        int[] profit = {10, 7, 5, 8, 11, 9};
+        LOGGER.log(Level.INFO, "The maximum profit that can be earned is : {0}", Utility.maxProfit(profit));
     }
 }
