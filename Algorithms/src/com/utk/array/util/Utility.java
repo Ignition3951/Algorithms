@@ -309,4 +309,20 @@ public class Utility {
         }
         return profit;
     }
+
+    public static int[] rearrangeArray(int[] nums) {
+        int[] rearrangedArray = new int[nums.length];
+        int positiveCounter = 0;
+        int negativeCounter = 1;
+        for (int num : nums) {
+            if (num > 0) {
+                rearrangedArray[positiveCounter] = num;
+                positiveCounter += 2;
+            } else {
+                rearrangedArray[negativeCounter] = num;
+                negativeCounter += 2;
+            }
+        }
+        return rearrangedArray;
+    }
 }

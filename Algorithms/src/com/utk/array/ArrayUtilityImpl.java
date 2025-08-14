@@ -1,6 +1,7 @@
 package com.utk.array;
 
 import com.utk.array.util.Utility;
+import jdk.jshell.execution.Util;
 
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -65,5 +66,8 @@ public class ArrayUtilityImpl {
 
         int[] profit = {10, 7, 5, 8, 11, 9};
         LOGGER.log(Level.INFO, "The maximum profit that can be earned is : {0}", Utility.maxProfit(profit));
+
+        int[] rearrangeArray = {1, -1, -3, -4, 2, 3};
+        LOGGER.log(Level.INFO, "The rearranged array is : {0}", Arrays.toString(Utility.rearrangeArray(rearrangeArray)));
     }
 }
