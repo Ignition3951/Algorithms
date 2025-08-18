@@ -1,8 +1,6 @@
 package com.utk.array.util;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -330,8 +328,8 @@ public class Utility {
         int breakpoint = -1;
         int reverseSize = 0;
         int counter = 0;
-        int swapIndex=0;
-        int lowest=Integer.MAX_VALUE;
+        int swapIndex = 0;
+        int lowest = Integer.MAX_VALUE;
         for (int i = nums.length - 1; i > 0; i--) {
             if (nums[i] > nums[i - 1]) {
                 breakpoint = i - 1;
@@ -340,23 +338,23 @@ public class Utility {
             reverseSize++;
         }
         int[] reverseArray = new int[reverseSize + 1];
-        if(breakpoint==-1){
+        if (breakpoint == -1) {
             for (int k = nums.length - 1; k > breakpoint; k--) {
                 reverseArray[counter++] = nums[k];
             }
-            counter=0;
+            counter = 0;
             for (int l = breakpoint + 1; l < nums.length; l++) {
                 nums[l] = reverseArray[counter++];
             }
             return;
         }
-        for (int j = breakpoint+1; j < nums.length; j++) {
-            if (nums[breakpoint] < nums[j] && nums[j]<=lowest) {
-                lowest=nums[j];
-                swapIndex=j;
+        for (int j = breakpoint + 1; j < nums.length; j++) {
+            if (nums[breakpoint] < nums[j] && nums[j] <= lowest) {
+                lowest = nums[j];
+                swapIndex = j;
             }
         }
-        swap(nums,breakpoint,swapIndex);
+        swap(nums, breakpoint, swapIndex);
         for (int k = nums.length - 1; k > breakpoint; k--) {
             reverseArray[counter++] = nums[k];
         }
@@ -364,6 +362,18 @@ public class Utility {
         for (int l = breakpoint + 1; l < nums.length; l++) {
             nums[l] = reverseArray[counter++];
         }
+    }
 
+    public static List<Integer> leaders(int[] nums) {
+        ArrayList<Integer> leaders = new ArrayList<>();
+        int maxElement = nums[nums.length - 1];
+        leaders.addFirst(maxElement);
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] >= maxElement) {
+                leaders.addFirst(nums[i]);
+                maxElement = nums[i];
+            }
+        }
+        return leaders;
     }
 }

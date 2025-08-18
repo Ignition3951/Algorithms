@@ -70,8 +70,11 @@ public class ArrayUtilityImpl {
         int[] rearrangeArray = {1, -1, -3, -4, 2, 3};
         LOGGER.log(Level.INFO, "The rearranged array is : {0}", Arrays.toString(Utility.rearrangeArray(rearrangeArray)));
 
-        int[] nextPermutation = {2,3,1,3,3};
+        int[] nextPermutation = {2, 3, 1, 3, 3};
         Utility.nextPermutation(nextPermutation);
         LOGGER.log(Level.INFO, "The next permutation is : {0}", Arrays.toString(nextPermutation));
+
+        int[] leaders = {-3, 4, 5, 1, -4, -5};
+        LOGGER.log(Level.INFO, "The leaders array is : {0}", Utility.leaders(leaders));
     }
 }
