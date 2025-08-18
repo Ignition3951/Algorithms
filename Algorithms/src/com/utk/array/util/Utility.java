@@ -325,4 +325,45 @@ public class Utility {
         }
         return rearrangedArray;
     }
+
+    public static void nextPermutation(int[] nums) {
+        int breakpoint = -1;
+        int reverseSize = 0;
+        int counter = 0;
+        int swapIndex=0;
+        int lowest=Integer.MAX_VALUE;
+        for (int i = nums.length - 1; i > 0; i--) {
+            if (nums[i] > nums[i - 1]) {
+                breakpoint = i - 1;
+                break;
+            }
+            reverseSize++;
+        }
+        int[] reverseArray = new int[reverseSize + 1];
+        if(breakpoint==-1){
+            for (int k = nums.length - 1; k > breakpoint; k--) {
+                reverseArray[counter++] = nums[k];
+            }
+            counter=0;
+            for (int l = breakpoint + 1; l < nums.length; l++) {
+                nums[l] = reverseArray[counter++];
+            }
+            return;
+        }
+        for (int j = breakpoint+1; j < nums.length; j++) {
+            if (nums[breakpoint] < nums[j] && nums[j]<=lowest) {
+                lowest=nums[j];
+                swapIndex=j;
+            }
+        }
+        swap(nums,breakpoint,swapIndex);
+        for (int k = nums.length - 1; k > breakpoint; k--) {
+            reverseArray[counter++] = nums[k];
+        }
+        counter = 0;
+        for (int l = breakpoint + 1; l < nums.length; l++) {
+            nums[l] = reverseArray[counter++];
+        }
+
+    }
 }
