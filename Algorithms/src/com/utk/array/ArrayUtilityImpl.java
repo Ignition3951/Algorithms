@@ -76,5 +76,8 @@ public class ArrayUtilityImpl {
 
         int[] leaders = {-3, 4, 5, 1, -4, -5};
         LOGGER.log(Level.INFO, "The leaders array is : {0}", Utility.leaders(leaders));
+
+        int[] longestConsecutive = {9,1,4,7,3,-1,0,5,8,-1,6};
+        LOGGER.log(Level.INFO, "The longest consecutive sequence is : {0}", Utility.longestConsecutive(longestConsecutive));
     }
 }

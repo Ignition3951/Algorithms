@@ -376,4 +376,25 @@ public class Utility {
         }
         return leaders;
     }
+
+    public static int longestConsecutive(int[] nums) {
+        Set<Integer> numset = new HashSet<>();
+        int maximumLength = 0;
+        int counter = 1;
+        for (int num : nums) {
+            numset.add(num);
+        }
+        LOGGER.log(Level.INFO,"The hashset is : {0}",numset);
+        for (int num : numset) {
+            if(numset.contains(num-1)){
+                continue;
+            }
+            while (numset.contains(++num)) {
+                counter++;
+            }
+            maximumLength = Math.max(maximumLength, counter);
+            counter=1;
+        }
+        return maximumLength;
+    }
 }
