@@ -384,17 +384,42 @@ public class Utility {
         for (int num : nums) {
             numset.add(num);
         }
-        LOGGER.log(Level.INFO,"The hashset is : {0}",numset);
+        LOGGER.log(Level.INFO, "The hashset is : {0}", numset);
         for (int num : numset) {
-            if(numset.contains(num-1)){
+            if (numset.contains(num - 1)) {
                 continue;
             }
             while (numset.contains(++num)) {
                 counter++;
             }
             maximumLength = Math.max(maximumLength, counter);
-            counter=1;
+            counter = 1;
         }
         return maximumLength;
+    }
+
+    public static void setZeroes(int[][] matrix) {
+        int[] rows = new int[matrix.length];
+        int[] columns = new int[matrix[0].length];
+        LOGGER.log(Level.INFO, "Rows : {0} Columns : {1}", new Object[]{matrix.length, matrix[0].length});
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 0) {
+                    rows[i] = -1;
+                    columns[j] = -1;
+                }
+            }
+        }
+        LOGGER.log(Level.INFO, "The rows matrix is : {0} The column matrix is : {1}", new Object[]{Arrays.toString(rows), Arrays.toString(columns)});
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(rows[i]==-1){
+                    matrix[i][j]=0;
+                }
+                if(columns[j]==-1){
+                    matrix[i][j]=0;
+                }
+            }
+        }
     }
 }

@@ -77,7 +77,12 @@ public class ArrayUtilityImpl {
         int[] leaders = {-3, 4, 5, 1, -4, -5};
         LOGGER.log(Level.INFO, "The leaders array is : {0}", Utility.leaders(leaders));
 
-        int[] longestConsecutive = {9,1,4,7,3,-1,0,5,8,-1,6};
+        int[] longestConsecutive = {9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6};
         LOGGER.log(Level.INFO, "The longest consecutive sequence is : {0}", Utility.longestConsecutive(longestConsecutive));
+
+        int[][] matrix2d = {{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+        LOGGER.log(Level.INFO, "The before zeroes array is : {0}", Arrays.deepToString(matrix2d));
+        Utility.setZeroes(matrix2d);
+        LOGGER.log(Level.INFO, "The zeroes array is : {0}", Arrays.deepToString(matrix2d));
     }
 }
