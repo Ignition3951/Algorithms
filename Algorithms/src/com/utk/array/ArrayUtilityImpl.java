@@ -84,5 +84,9 @@ public class ArrayUtilityImpl {
         LOGGER.log(Level.INFO, "The before zeroes array is : {0}", Arrays.deepToString(matrix2d));
         Utility.setZeroes(matrix2d);
         LOGGER.log(Level.INFO, "The zeroes array is : {0}", Arrays.deepToString(matrix2d));
+
+        int[][] rotate = {{1,2},{3,4}};
+        Utility.rotate(rotate);
+        LOGGER.log(Level.INFO, "The 90 degree rotated array is : {0}", Arrays.deepToString(rotate));
     }
 }

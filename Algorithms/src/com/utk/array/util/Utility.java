@@ -411,15 +411,36 @@ public class Utility {
             }
         }
         LOGGER.log(Level.INFO, "The rows matrix is : {0} The column matrix is : {1}", new Object[]{Arrays.toString(rows), Arrays.toString(columns)});
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[0].length;j++){
-                if(rows[i]==-1){
-                    matrix[i][j]=0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (rows[i] == -1) {
+                    matrix[i][j] = 0;
                 }
-                if(columns[j]==-1){
-                    matrix[i][j]=0;
+                if (columns[j] == -1) {
+                    matrix[i][j] = 0;
                 }
             }
+        }
+    }
+
+    public static void rotate(int[][] matrix) {
+        int outerCounter = matrix.length - 1;
+        int[] temp = new int[4];
+        int loopCounter = 0;
+        for (int i = 0; i < matrix.length / 2; i++) {
+            for (int j = i; j < outerCounter; j++) {
+                temp[0] = matrix[i][j];
+                temp[1] = matrix[j][outerCounter];
+                temp[2] = matrix[outerCounter][outerCounter - loopCounter];
+                temp[3] = matrix[outerCounter - loopCounter][i];
+                matrix[i][j] = temp[3];
+                matrix[j][outerCounter] = temp[0];
+                matrix[outerCounter][outerCounter - loopCounter] = temp[1];
+                matrix[outerCounter - loopCounter][i] = temp[2];
+                loopCounter++;
+            }
+            --outerCounter;
+            loopCounter = 0;
         }
     }
 }
