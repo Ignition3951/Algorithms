@@ -443,4 +443,40 @@ public class Utility {
             loopCounter = 0;
         }
     }
+
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> spiralList = new ArrayList<>();
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int top = 0;
+        int left = 0;
+        int right = columns - 1;
+        int bottom = rows - 1;
+
+        while (left <= right && top <= bottom) {
+
+            for (int i = top; i <= right; i++) {
+                spiralList.addLast(matrix[top][i]);
+            }
+            top++;
+            for (int j = top; j <= bottom; j++) {
+                spiralList.addLast(matrix[j][right]);
+            }
+            right--;
+            if (top <= bottom) {
+                for (int k = right; k >= left; k--) {
+                    spiralList.addLast(matrix[bottom][k]);
+                }
+            }
+            bottom--;
+            if (left <= right) {
+                for (int l = bottom; l >= top; l--) {
+                    spiralList.addLast(matrix[l][left]);
+                }
+            }
+            left++;
+        }
+
+        return spiralList;
+    }
 }
