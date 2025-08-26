@@ -479,4 +479,20 @@ public class Utility {
 
         return spiralList;
     }
+
+    public static int subArraySum(int[] nums, int k) {
+        Map<Integer, Integer> prefixSums = new HashMap<>();
+        int count = 0;
+        int sum = 0;
+        prefixSums.put(0, 1);
+        for (int num : nums) {
+            sum += num;
+            if (prefixSums.containsKey(sum - k)) {
+                count += prefixSums.get(sum - k);
+            }
+            int value = prefixSums.containsKey(sum) ? prefixSums.get(sum) + 1 : 1;
+            prefixSums.put(sum, value);
+        }
+        return count;
+    }
 }

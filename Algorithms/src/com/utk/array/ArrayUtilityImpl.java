@@ -89,9 +89,11 @@ public class ArrayUtilityImpl {
         Utility.rotate(rotate);
         LOGGER.log(Level.INFO, "The 90 degree rotated array is : {0}", Arrays.deepToString(rotate));
 
-//        int[][] spiral = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
-//        int[][] spiral = {{6,9,7}};
-        int[][] spiral = {{7},{9},{6}};
+        int[][] spiral = {{7}, {9}, {6}};
         LOGGER.log(Level.INFO, "The spiral list is : {0}", Utility.spiralOrder(spiral));
+
+        int[] masterArray = {-1,-1,1};
+        int sum = 0;
+        LOGGER.log(Level.INFO, "The number of sub arrays having sum as {0} are {1}", new Object[]{sum, Utility.subArraySum(masterArray, sum)});
     }
 }
