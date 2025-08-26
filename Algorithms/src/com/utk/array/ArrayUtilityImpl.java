@@ -98,5 +98,8 @@ public class ArrayUtilityImpl {
 
         int rows = 5;
         Utility.generatePascalTriangle(rows);
+
+        int[] majorityElementTwo = {1, 2, 1, 1, 3, 2};
+        LOGGER.log(Level.INFO, "The majority element two list is: {0}", Utility.majorityElementTwo(majorityElementTwo));
     }
 }

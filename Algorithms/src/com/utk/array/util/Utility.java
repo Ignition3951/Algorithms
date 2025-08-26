@@ -516,4 +516,25 @@ public class Utility {
         LOGGER.log(Level.INFO, "The returned triangle is : {0}", outerList.toString());
         return outerList;
     }
+
+    public static List<Integer> majorityElementTwo(int[] nums){
+        int thresholdValue = nums.length/3;
+        List<Integer> majorityElementList = new ArrayList<>();
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int num: nums){
+            if(map.containsKey(num)){
+                int value=map.get(num)+1;
+                if(value>thresholdValue && !majorityElementList.contains(num)){
+                    majorityElementList.add(num);
+                }
+                map.put(num,value);
+            }else{
+                if(thresholdValue==0 && !majorityElementList.contains(num)){
+                    majorityElementList.add(num);
+                }
+                map.put(num,1);
+            }
+        }
+        return majorityElementList;
+    }
 }
