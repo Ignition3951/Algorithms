@@ -495,4 +495,25 @@ public class Utility {
         }
         return count;
     }
+
+    public static List<List<Integer>> generatePascalTriangle(int rows) {
+        List<List<Integer>> outerList = new ArrayList<>();
+        List<Integer> innerList;
+        int sum = 0;
+        for (int i = 0; i < rows; i++) {
+            innerList = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                sum = 0;
+                if (j == 0 || j == i) {
+                    innerList.addLast(1);
+                    continue;
+                }
+                sum = outerList.get(i - 1).get(j) + outerList.get(i - 1).get(j - 1);
+                innerList.addLast(sum);
+            }
+            outerList.add(innerList);
+        }
+        LOGGER.log(Level.INFO, "The returned triangle is : {0}", outerList.toString());
+        return outerList;
+    }
 }

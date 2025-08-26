@@ -92,8 +92,11 @@ public class ArrayUtilityImpl {
         int[][] spiral = {{7}, {9}, {6}};
         LOGGER.log(Level.INFO, "The spiral list is : {0}", Utility.spiralOrder(spiral));
 
-        int[] masterArray = {-1,-1,1};
+        int[] masterArray = {-1, -1, 1};
         int sum = 0;
         LOGGER.log(Level.INFO, "The number of sub arrays having sum as {0} are {1}", new Object[]{sum, Utility.subArraySum(masterArray, sum)});
+
+        int rows = 5;
+        Utility.generatePascalTriangle(rows);
     }
 }
