@@ -517,24 +517,41 @@ public class Utility {
         return outerList;
     }
 
-    public static List<Integer> majorityElementTwo(int[] nums){
-        int thresholdValue = nums.length/3;
+    public static List<Integer> majorityElementTwo(int[] nums) {
+        int thresholdValue = nums.length / 3;
+        int counter1 = 0;
+        int element1 = Integer.MIN_VALUE;
+        int counter2 = 0;
+        int element2 = Integer.MIN_VALUE;
         List<Integer> majorityElementList = new ArrayList<>();
-        Map<Integer,Integer> map = new HashMap<>();
-        for(int num: nums){
-            if(map.containsKey(num)){
-                int value=map.get(num)+1;
-                if(value>thresholdValue && !majorityElementList.contains(num)){
-                    majorityElementList.add(num);
-                }
-                map.put(num,value);
-            }else{
-                if(thresholdValue==0 && !majorityElementList.contains(num)){
-                    majorityElementList.add(num);
-                }
-                map.put(num,1);
+        for (int num : nums) {//2,1,1,3,1,4,5,6
+            if (counter1 == 0 && num != element2) {
+                ++counter1;
+                element1 = num;//2
+            } else if (counter2 == 0 && num != element1) {
+                ++counter2;
+                element2 = num;//1
+            } else if (num == element1) {
+                ++counter1;
+            } else if (num == element2) {
+                ++counter2;
+            } else {
+                --counter2;
+                --counter1;
             }
         }
+        counter1 = 0;
+        counter2 = 0;
+        for (int num : nums) {
+            if (element1 == num)
+                counter1++;
+            if (element2 == num)
+                counter2++;
+        }
+        if (counter1 > thresholdValue)
+            majorityElementList.add(element1);
+        if (counter2 > thresholdValue)
+            majorityElementList.add(element2);
         return majorityElementList;
     }
 }
