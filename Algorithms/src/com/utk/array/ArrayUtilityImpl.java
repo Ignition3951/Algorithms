@@ -101,5 +101,8 @@ public class ArrayUtilityImpl {
 
         int[] majorityElementTwo = {2, 1, 1, 3, 1, 4, 5, 6};
         LOGGER.log(Level.INFO, "The majority element two list is: {0}", Utility.majorityElementTwo(majorityElementTwo));
+
+        int[] threeSumArray = {-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2};
+        LOGGER.log(Level.INFO, "The list of triplets is : {0}", Utility.threeSum(threeSumArray).toString());
     }
 }

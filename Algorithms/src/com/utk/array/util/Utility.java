@@ -3,6 +3,8 @@ package com.utk.array.util;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Utility {
 
@@ -553,5 +555,48 @@ public class Utility {
         if (counter2 > thresholdValue)
             majorityElementList.add(element2);
         return majorityElementList;
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> outerList = new ArrayList<>();
+        List<Integer> innerList;
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        Arrays.sort(nums);
+        LOGGER.log(Level.INFO, "The sorted list is : {0}", Arrays.toString(nums));
+        for (i = 0; i < nums.length; i++) {
+            while (i > 0 && i < nums.length) {
+                if (nums[i] == nums[i - 1]) {
+                    ++i;
+                } else {
+                    break;
+                }
+            }
+            j = i + 1;
+            k = nums.length - 1;
+            while (j < k) {
+                innerList = new ArrayList<>();
+                if ((nums[i] + nums[j] + nums[k]) == 0) {
+                    innerList.add(nums[i]);
+                    innerList.add(nums[j]);
+                    innerList.add(nums[k]);
+                    outerList.add(innerList);
+                    k--;
+                    j++;
+                    while (j < k && nums[j] == nums[j - 1]) {
+                        j++;
+                    }
+                    while (j < k && nums[k] == nums[k + 1]) {
+                        k--;
+                    }
+                } else if ((nums[i] + nums[j] + nums[k]) < 0) {
+                    j++;
+                } else if ((nums[i] + nums[j] + nums[k]) > 0) {
+                    k--;
+                }
+            }
+        }
+        return outerList;
     }
 }
