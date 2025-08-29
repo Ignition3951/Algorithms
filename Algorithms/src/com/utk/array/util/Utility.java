@@ -3,8 +3,6 @@ package com.utk.array.util;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Utility {
 
@@ -564,15 +562,8 @@ public class Utility {
         int j = 0;
         int k = 0;
         Arrays.sort(nums);
-        LOGGER.log(Level.INFO, "The sorted list is : {0}", Arrays.toString(nums));
         for (i = 0; i < nums.length; i++) {
-            while (i > 0 && i < nums.length) {
-                if (nums[i] == nums[i - 1]) {
-                    ++i;
-                } else {
-                    break;
-                }
-            }
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
             j = i + 1;
             k = nums.length - 1;
             while (j < k) {
