@@ -630,4 +630,66 @@ public class Utility {
 
         return outerList;
     }
+
+    public static int maxLenSubArray(int[] arr) {
+        int maxLength = 0;
+        int sum = arr[0];
+        int element = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            sum += arr[i];
+            if (sum == element) {
+                maxLength = i;
+            }
+        }
+        return maxLength;
+    }
+
+    public static int[][] mergeOverlap(int[][] intervals) {
+        Arrays.sort(intervals,Comparator.comparingInt(arr->arr[0]));
+        int[][] outerList = new int[intervals.length][2];
+        int startingIndex = 0;
+        int endingIndex = 0;
+        int minimum = 0;
+        int maximum = 0;
+        int mergedRows=0;
+        int start = intervals[0][0];
+        int end = intervals[0][1];
+        outerList[0][0]=intervals[0][0];
+        outerList[0][1]=intervals[0][1];
+        LOGGER.log(Level.INFO,"LOG VAlUE : {0}",Arrays.deepToString(intervals));
+        for (int i = 1; i < intervals.length; i++) {
+            startingIndex = intervals[i][0];
+            endingIndex = intervals[i][1];
+            if ((startingIndex >= start && startingIndex <= end) || (endingIndex >= start && endingIndex <= end)
+             || (start>= startingIndex && start<=endingIndex) || (end>=startingIndex && end<=endingIndex)) {
+                minimum = Math.min(startingIndex, outerList[i-1][0]);
+                maximum = Math.max(endingIndex, outerList[i-1][1]);
+                outerList[i-1][0]=0;
+                outerList[i-1][1]=0;
+                outerList[i][0]=minimum;
+                outerList[i][1]=maximum;
+                start = minimum;
+                end = maximum;
+                mergedRows++;
+            }else{
+                outerList[i][0]=startingIndex;
+                outerList[i][1]=endingIndex;
+                start=startingIndex;
+                end=endingIndex;
+            }
+        }
+        int newArrayIndex=0;
+        if(mergedRows>0){
+            int[][] resultList=new int[intervals.length-mergedRows][2];
+            for(int i=0;i<intervals.length;i++){
+                if(outerList[i][0]==0 && outerList[i][1]==0){
+                    continue;
+                }
+                resultList[newArrayIndex]=outerList[i];
+                newArrayIndex++;
+            }
+            return resultList;
+        }
+        return outerList;
+    }
 }

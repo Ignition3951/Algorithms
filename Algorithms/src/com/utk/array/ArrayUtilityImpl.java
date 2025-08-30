@@ -3,6 +3,7 @@ package com.utk.array;
 import com.utk.array.util.Utility;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -104,8 +105,14 @@ public class ArrayUtilityImpl {
         int[] threeSumArray = {-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2};
         LOGGER.log(Level.INFO, "The list of triplets is : {0}", Utility.threeSum(threeSumArray).toString());
 
-        int[] fourSumArray = {1000000000,1000000000,1000000000,1000000000};
+        int[] fourSumArray = {1000000000, 1000000000, 1000000000, 1000000000};
         int fourTarget = -294967296;
         LOGGER.log(Level.INFO, "The list of quadruplets is : {0}", Utility.fourSum(fourSumArray, fourTarget).toString());
+
+        int[] maxSubArraySumZero = {2, 10, 4};
+        LOGGER.log(Level.INFO, "The longest sub array with sum zero is : {0}", Utility.maxLenSubArray(maxSubArraySumZero));
+
+        int[][] overlappingIntervals = {{2,3},{2,2},{3,3},{1,3},{5,7},{2,2},{4,6}};//{{1, 5}, {3, 6}, {8, 10}, {15, 18}};//[4,5],[1,4],[0,1]
+        LOGGER.log(Level.INFO, "The overlapping array is : {0}", Arrays.deepToString(Utility.mergeOverlap(overlappingIntervals)));
     }
 }
