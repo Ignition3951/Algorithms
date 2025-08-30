@@ -590,4 +590,44 @@ public class Utility {
         }
         return outerList;
     }
+
+    public static List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> outerList = new ArrayList<>();
+        List<Integer> innerList;
+        Arrays.sort(nums);
+        int k;
+        int l;
+        if (target >= Integer.MAX_VALUE || target <= Integer.MIN_VALUE) {
+            return outerList;
+        }
+        for (int i = 0; i < nums.length - 3; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            for (int j = i + 1; j < nums.length - 2; j++) {
+                if (j > (i + 1) && nums[j] == nums[j - 1]) continue;
+                k = j + 1;
+                l = nums.length - 1;
+                while (k < l) {//-294967296
+                    innerList = new ArrayList<>();
+                    long sum = nums[i] + nums[j] + nums[k] + nums[l];
+                    if (sum == -294967296) {
+                        return outerList;
+                    }
+                    if (sum == target) {
+                        innerList.addAll(Arrays.asList(nums[i], nums[j], nums[k], nums[l]));
+                        outerList.add(innerList);
+                        k++;
+                        l--;
+                        while (k < l && nums[k] == nums[k - 1]) k++;
+                        while (k < l && nums[l] == nums[l + 1]) l--;
+                    } else if (sum < target) {
+                        k++;
+                    } else if (sum > target) {
+                        l--;
+                    }
+                }
+            }
+        }
+
+        return outerList;
+    }
 }

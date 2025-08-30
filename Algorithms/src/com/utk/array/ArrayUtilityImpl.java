@@ -1,7 +1,6 @@
 package com.utk.array;
 
 import com.utk.array.util.Utility;
-import jdk.jshell.execution.Util;
 
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -104,5 +103,9 @@ public class ArrayUtilityImpl {
 
         int[] threeSumArray = {-2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2};
         LOGGER.log(Level.INFO, "The list of triplets is : {0}", Utility.threeSum(threeSumArray).toString());
+
+        int[] fourSumArray = {1000000000,1000000000,1000000000,1000000000};
+        int fourTarget = -294967296;
+        LOGGER.log(Level.INFO, "The list of quadruplets is : {0}", Utility.fourSum(fourSumArray, fourTarget).toString());
     }
 }
