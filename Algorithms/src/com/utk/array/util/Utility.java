@@ -694,32 +694,23 @@ public class Utility {
     }
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
-        int counter = 0;
-        for (int i = m; i < m + n; i++) {
-            nums1[i] = nums2[counter++];
-        }
-        if (m != 0 && n != 0) {
-            int gap = (int) ((double) nums1.length / 2);
-            int pointerOne = 0;
-            int pointerTwo = pointerOne + gap;
-            while (gap >= 1) {
-                if (pointerTwo < nums1.length) {
-                    if (nums1[pointerOne] > nums1[pointerTwo]) {
-                        swap(nums1, pointerOne, pointerTwo);
-                        pointerTwo++;
-                        pointerOne++;
-                    } else {
-                        pointerOne++;
-                        pointerTwo++;
-                    }
-                } else {
-                    if(gap==1) break;
-                    gap = (int) Math.ceil((double) gap / 2);
-                    pointerOne = 0;
-                    pointerTwo = pointerOne + gap;
-                }
-
+        int pointer1 = m - 1;
+        int pointer2 = n - 1;
+        int counter = m + n - 1;
+        while (pointer1 >= 0 && pointer2 >= 0) {
+            if (nums2[pointer2] > nums1[pointer1]) {
+                nums1[counter--] = nums2[pointer2--];
+            } else if (nums2[pointer2] < nums1[pointer1]) {
+                nums1[counter--] = nums1[pointer1--];
+            } else {
+                nums1[counter--] = nums1[pointer1--];
             }
+        }
+        while (pointer1 >= 0) {
+            nums1[counter--] = nums1[pointer1--];
+        }
+        while (pointer2 >= 0) {
+            nums1[counter--] = nums2[pointer2--];
         }
         LOGGER.log(Level.INFO, "The merge sorted in place array is : {0}", Arrays.toString(nums1));
     }
