@@ -115,10 +115,14 @@ public class ArrayUtilityImpl {
         int[][] overlappingIntervals = {{2, 3}, {2, 2}, {3, 3}, {1, 3}, {5, 7}, {2, 2}, {4, 6}};//{{1, 5}, {3, 6}, {8, 10}, {15, 18}};//[4,5],[1,4],[0,1]
         LOGGER.log(Level.INFO, "The overlapping array is : {0}", Arrays.deepToString(Utility.mergeOverlap(overlappingIntervals)));
 
-        int[] sorted1 = {0};//{1, 2, 3, 0, 0, 0};
+        int[] sorted1 = {0};
         int m = 0;
-        int[] sorted2 = {1};//{2, 5, 6};
+        int[] sorted2 = {1};
         int o = 1;
         Utility.merge(sorted1, m, sorted2, o);
+
+        int[] missingRepaetingNumbers = {1, 2, 3, 6, 7, 5, 7};
+        LOGGER.log(Level.INFO, "The repeating and missing numbers are : {0}", Arrays.toString(Utility.findMissingRepeatingNumbers(missingRepaetingNumbers)));
+
     }
 }

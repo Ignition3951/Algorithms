@@ -714,4 +714,24 @@ public class Utility {
         }
         LOGGER.log(Level.INFO, "The merge sorted in place array is : {0}", Arrays.toString(nums1));
     }
+
+    public static int[] findMissingRepeatingNumbers(int[] nums) {
+        int[] result = new int[2];
+        int n = nums.length;
+        int sumOfn = n * (n + 1) / 2;
+        int sumOfN2 = n * (n + 1) * (2 * n + 1) / 6;
+        int sumOfValue = 0;
+        int sumOfValue2 = 0;
+        for (int num : nums) {
+            sumOfValue += num;
+            sumOfValue2 += num * num;
+        }
+        int value1 = sumOfn - sumOfValue;
+        int value2 = (sumOfN2 - sumOfValue2) / value1;
+        int result1 = (value1 + value2) / 2;
+        int result2 = result1 - value1;
+        result[0] = result2;
+        result[1] = result1;
+        return result;
+    }
 }
