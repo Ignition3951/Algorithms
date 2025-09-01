@@ -124,5 +124,8 @@ public class ArrayUtilityImpl {
         int[] missingRepaetingNumbers = {1, 2, 3, 6, 7, 5, 7};
         LOGGER.log(Level.INFO, "The repeating and missing numbers are : {0}", Arrays.toString(Utility.findMissingRepeatingNumbers(missingRepaetingNumbers)));
 
+        int[] numberOfInversions = {-10, -5, 6, 11, 15, 17};
+        LOGGER.log(Level.INFO, "The number of inversions are : {0}", Utility.numberOfInversions(numberOfInversions));
+
     }
 }
