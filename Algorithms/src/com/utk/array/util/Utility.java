@@ -754,16 +754,19 @@ public class Utility {
         int low = 0;
         int high = nums.length - 1;
         count += mergeSort(nums, low, high);
+        LOGGER.log(Level.INFO, "The merge sorted array is : {0}", Arrays.toString(nums));
         return count;
     }
 
     public static int mergeSort(int[] nums, int low, int high) {
+        LOGGER.log(Level.INFO, "MergeSort low: {0} high: {1}", new Object[]{low, high});
         int count = 0;
         if (low >= high) return count;
         int mid = (low + high) / 2;
-        mergeSort(nums, low, mid);
-        mergeSort(nums, mid + 1, high);
-        count += mergeArray(nums, low, mid, high);
+        count = mergeSort(nums, low, mid);
+        count = mergeSort(nums, mid + 1, high);
+        count += countReversePairs(nums, low, mid, high);
+        mergeArray(nums, low, mid, high);
         return count;
     }
 
@@ -781,14 +784,11 @@ public class Utility {
         }
         int i = 0;
         int j = 0;
-        int k = 0;
+        int k = low;
         while (i < left && j < right) {
             if (leftArray[i] <= rightArray[j]) {
                 nums[k++] = leftArray[i++];
             } else {
-                if (leftArray[i] > 2 * rightArray[j]) {
-                    count += (mid - low + 1);
-                }
                 nums[k++] = rightArray[j++];
             }
         }
@@ -797,6 +797,22 @@ public class Utility {
         }
         while (j < right) {
             nums[k++] = rightArray[j++];
+        }
+        LOGGER.log(Level.INFO, "Return Count for mergeArray : {0}", count);
+        return count;
+    }
+
+    public static int countReversePairs(int[] nums, int low, int mid, int high) {
+        int count = 0;
+        int right = mid + 1;
+        for (int i = low; i <= mid; i++) {
+            while (right <= high && nums[i] > 2 * nums[right]){
+                if(nums[i]>=Integer.MAX_VALUE || nums[i]<= Integer.MIN_VALUE || (2*nums[right])>=Integer.MAX_VALUE || (2*nums[right])<=Integer.MIN_VALUE){
+                    return 0;
+                }
+                right++;
+            }
+            count += right - (mid + 1);
         }
         return count;
     }
