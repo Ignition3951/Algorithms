@@ -748,4 +748,56 @@ public class Utility {
 
         return numberOfInversions;
     }
+
+    public static int reversePairs(int[] nums) {
+        int count = 0;
+        int low = 0;
+        int high = nums.length - 1;
+        count += mergeSort(nums, low, high);
+        return count;
+    }
+
+    public static int mergeSort(int[] nums, int low, int high) {
+        int count = 0;
+        if (low >= high) return count;
+        int mid = (low + high) / 2;
+        mergeSort(nums, low, mid);
+        mergeSort(nums, mid + 1, high);
+        count += mergeArray(nums, low, mid, high);
+        return count;
+    }
+
+    public static int mergeArray(int[] nums, int low, int mid, int high) {
+        int count = 0;
+        int left = mid - low + 1;
+        int right = high - mid;
+        int[] leftArray = new int[left];
+        int[] rightArray = new int[right];
+        for (int i = 0; i < left; i++) {
+            leftArray[i] = nums[low + i];
+        }
+        for (int j = 0; j < right; j++) {
+            rightArray[j] = nums[mid + 1 + j];
+        }
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while (i < left && j < right) {
+            if (leftArray[i] <= rightArray[j]) {
+                nums[k++] = leftArray[i++];
+            } else {
+                if (leftArray[i] > 2 * rightArray[j]) {
+                    count += (mid - low + 1);
+                }
+                nums[k++] = rightArray[j++];
+            }
+        }
+        while (i < left) {
+            nums[k++] = leftArray[i++];
+        }
+        while (j < right) {
+            nums[k++] = rightArray[j++];
+        }
+        return count;
+    }
 }

@@ -127,5 +127,8 @@ public class ArrayUtilityImpl {
         int[] numberOfInversions = {-10, -5, 6, 11, 15, 17};
         LOGGER.log(Level.INFO, "The number of inversions are : {0}", Utility.numberOfInversions(numberOfInversions));
 
+        int[] reversePairs = {5, 4, 4, 3, 3};
+        LOGGER.log(Level.INFO, "The number of reverse pairs are : {0}", Utility.reversePairs(reversePairs));
+
     }
 }
