@@ -806,8 +806,8 @@ public class Utility {
         int count = 0;
         int right = mid + 1;
         for (int i = low; i <= mid; i++) {
-            while (right <= high && nums[i] > 2 * nums[right]){
-                if(nums[i]>=Integer.MAX_VALUE || nums[i]<= Integer.MIN_VALUE || (2*nums[right])>=Integer.MAX_VALUE || (2*nums[right])<=Integer.MIN_VALUE){
+            while (right <= high && nums[i] > 2 * nums[right]) {
+                if (nums[i] >= Integer.MAX_VALUE || nums[i] <= Integer.MIN_VALUE || (2 * nums[right]) >= Integer.MAX_VALUE || (2 * nums[right]) <= Integer.MIN_VALUE) {
                     return 0;
                 }
                 right++;
@@ -815,5 +815,22 @@ public class Utility {
             count += right - (mid + 1);
         }
         return count;
+    }
+
+    public static int maxProduct(int[] nums) {
+        int currentProduct = 1;
+        int maxProduct = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < 0) {
+                currentProduct = 1;
+                continue;
+            } else {
+                currentProduct *= nums[i];
+            }
+            if (maxProduct < currentProduct) {
+                maxProduct = currentProduct;
+            }
+        }
+        return maxProduct;
     }
 }

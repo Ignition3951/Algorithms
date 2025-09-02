@@ -127,8 +127,11 @@ public class ArrayUtilityImpl {
         int[] numberOfInversions = {-10, -5, 6, 11, 15, 17};
         LOGGER.log(Level.INFO, "The number of inversions are : {0}", Utility.numberOfInversions(numberOfInversions));
 
-        int[] reversePairs = {2147483647,2147483647,-2147483647,-2147483647,-2147483647,2147483647};
+        int[] reversePairs = {2147483647, 2147483647, -2147483647, -2147483647, -2147483647, 2147483647};
         LOGGER.log(Level.INFO, "The number of reverse pairs are : {0}", Utility.reversePairs(reversePairs));
+
+        int[] maxProductSubArray = {-2};
+        LOGGER.log(Level.INFO, "The max product sub-array is : {0}", Utility.maxProduct(maxProductSubArray));
 
     }
 }
