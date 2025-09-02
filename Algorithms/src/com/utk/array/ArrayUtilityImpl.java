@@ -130,7 +130,7 @@ public class ArrayUtilityImpl {
         int[] reversePairs = {2147483647, 2147483647, -2147483647, -2147483647, -2147483647, 2147483647};
         LOGGER.log(Level.INFO, "The number of reverse pairs are : {0}", Utility.reversePairs(reversePairs));
 
-        int[] maxProductSubArray = {-2};
+        int[] maxProductSubArray = {-2,0,-1};
         LOGGER.log(Level.INFO, "The max product sub-array is : {0}", Utility.maxProduct(maxProductSubArray));
 
     }

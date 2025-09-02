@@ -818,18 +818,15 @@ public class Utility {
     }
 
     public static int maxProduct(int[] nums) {
-        int currentProduct = 1;
-        int maxProduct = nums[0];
+        int prefix = 1;
+        int suffix = 1;
+        int maxProduct = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] < 0) {
-                currentProduct = 1;
-                continue;
-            } else {
-                currentProduct *= nums[i];
-            }
-            if (maxProduct < currentProduct) {
-                maxProduct = currentProduct;
-            }
+            if(prefix==0) prefix=1;
+            if(suffix==0) suffix=1;
+            prefix*=nums[i];
+            suffix*=nums[nums.length-1-i];
+            maxProduct=Math.max(maxProduct,Math.max(prefix,suffix));
         }
         return maxProduct;
     }
