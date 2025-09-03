@@ -12,5 +12,9 @@ public class BinarySearch704 {
         int target = 2;
         int binarySearchResult = Utility.binarySearch(binarySearchArray, target);
         LOGGER.log(Level.INFO, "The result of the binary search operation is : {0}", binarySearchResult);
+
+        int[] lowerBound = {3,5,8,15,19};
+        int lowerBoundTarget = 9;
+        LOGGER.log(Level.INFO, "The lower bound for the array is :{0}", Utility.lowerBound(lowerBound, lowerBoundTarget));
     }
 }

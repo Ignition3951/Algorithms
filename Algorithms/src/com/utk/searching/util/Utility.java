@@ -22,4 +22,21 @@ public class Utility {
         }
         return -1;
     }
+
+    public static int lowerBound(int[] arr, int x) {
+        int lowerBound = -1;
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[mid] >= x) {
+                lowerBound = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return lowerBound;
+    }
 }
