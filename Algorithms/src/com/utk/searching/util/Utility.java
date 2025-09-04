@@ -56,4 +56,26 @@ public class Utility {
         }
         return result;
     }
+
+    public static int[] getFloorAndCeil(int[] arr,int x){
+        int[] floorCeil = new int[2];
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+        while (low <= high) { // 3, 4, 4, 7, 8, 10              5
+            mid = (low + high) / 2;
+            if (arr[mid] == x) {
+                floorCeil[0]=arr[mid];
+                floorCeil[1]=arr[mid];
+                return floorCeil;
+            } else if(arr[mid]>x){
+                floorCeil[0]=arr[high-1];
+                floorCeil[1]=arr[high];
+                high = mid - 1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return floorCeil;
+    }
 }

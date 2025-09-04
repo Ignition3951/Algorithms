@@ -1,5 +1,6 @@
 package com.utk.searching.util;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,5 +21,9 @@ public class BinarySearch704 {
         int[] searchInsert = {1, 3};
         int searchInsertTarget = 2;
         LOGGER.log(Level.INFO, "The search insert index is : {0}", Utility.searchInsert(searchInsert, searchInsertTarget));
+
+        int[] floorCeil = {3, 4, 4, 7, 8, 10};
+        int floorCeilTarget = 8;
+        LOGGER.log(Level.INFO, "The florr and ceil of the array is : {0}", Arrays.toString(Utility.getFloorAndCeil(floorCeil, floorCeilTarget)));
     }
 }
