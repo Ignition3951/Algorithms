@@ -57,7 +57,7 @@ public class Utility {
         return result;
     }
 
-    public static int[] getFloorAndCeil(int[] arr,int x){
+    public static int[] getFloorAndCeil(int[] arr, int x) {
         int[] floorCeil = new int[2];
         int low = 0;
         int high = arr.length - 1;
@@ -65,17 +65,68 @@ public class Utility {
         while (low <= high) { // 3, 4, 4, 7, 8, 10              5
             mid = (low + high) / 2;
             if (arr[mid] == x) {
-                floorCeil[0]=arr[mid];
-                floorCeil[1]=arr[mid];
+                floorCeil[0] = arr[mid];
+                floorCeil[1] = arr[mid];
                 return floorCeil;
-            } else if(arr[mid]>x){
-                floorCeil[0]=arr[high-1];
-                floorCeil[1]=arr[high];
+            } else if (arr[mid] > x) {
+                floorCeil[0] = arr[high - 1];
+                floorCeil[1] = arr[high];
                 high = mid - 1;
-            }else{
-                low=mid+1;
+            } else {
+                low = mid + 1;
             }
         }
         return floorCeil;
+    }
+
+    public static int[] searchRange(int[] arr, int target) {
+        int[] range = new int[2];
+        int lowerBound;
+        int upperBound = -1;
+        lowerBound = firstOccurence(arr, target);
+        if (lowerBound != -1) {
+            upperBound = lastOccurence(arr, target);
+        }
+        range[0] = lowerBound;
+        range[1] = upperBound;
+        return range;
+    }
+
+    private static int lastOccurence(int[] arr, int target) {
+        int upperBound = -1;
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[mid] == target) {
+                upperBound = mid;
+                low = mid + 1;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return upperBound;
+    }
+
+    private static int firstOccurence(int[] arr, int target) {
+        int lowerBound = -1;
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[mid] == target) {
+                lowerBound = mid;
+                high = mid - 1;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return lowerBound;
     }
 }
