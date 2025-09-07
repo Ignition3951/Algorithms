@@ -34,9 +34,12 @@ public class BinarySearch704 {
         int countTarget = 3;
         LOGGER.log(Level.INFO, "The number of occurrences in the array : {0}", Utility.countOccurrences(countOccurrences, countTarget));
 
-        int[] searchOccurrence = {1,3,5};
+        int[] searchOccurrence = {1, 3, 5};
         int searchOccTarget = 1;
         LOGGER.log(Level.INFO, "The number occurs on the index : {0}", Utility.searchRotatedArray(searchOccurrence, searchOccTarget));
+
+        int[] findMin = {3,4,5,1,2};
+        LOGGER.log(Level.INFO, "The minimum element is : {0}", Utility.findMin(findMin));
 
     }
 }

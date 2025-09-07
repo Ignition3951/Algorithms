@@ -166,4 +166,23 @@ public class Utility {
         }
         return index;
     }
+
+    public static int findMin(int[] arr) {
+        int low = 0;
+        int high = arr.length - 1;
+        int mid = 0;
+        if (arr.length == 1) return arr[0];
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[low] <= arr[high] && arr[low]<arr[mid]) {
+                high = mid - 1;
+            } else if(arr[low] > arr[high] && arr[high]<arr[mid]){
+                low = mid + 1;
+            }else{
+                low++;
+                high--;
+            }
+        }
+        return arr[mid];
+    }
 }
