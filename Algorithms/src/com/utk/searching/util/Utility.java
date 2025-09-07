@@ -129,4 +129,15 @@ public class Utility {
         }
         return lowerBound;
     }
+
+    public static int countOccurences(int[] arr, int target) {
+        int occurences = -1;
+        int firstOccurence = firstOccurence(arr, target);
+        int lastOccurence;
+        if (firstOccurence != -1) {
+            lastOccurence = lastOccurence(arr, target);
+            occurences = lastOccurence - firstOccurence + 1;
+        }
+        return occurences;
+    }
 }

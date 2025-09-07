@@ -24,11 +24,15 @@ public class BinarySearch704 {
 
         int[] floorCeil = {3, 4, 4, 7, 8, 10};
         int floorCeilTarget = 8;
-        LOGGER.log(Level.INFO, "The florr and ceil of the array is : {0}", Arrays.toString(Utility.getFloorAndCeil(floorCeil, floorCeilTarget)));
+        LOGGER.log(Level.INFO, "The floor and ceil of the array is : {0}", Arrays.toString(Utility.getFloorAndCeil(floorCeil, floorCeilTarget)));
 
-        int[] searchRange = {2,2};
+        int[] searchRange = {2, 2};
         int searchTarget = 2;
         LOGGER.log(Level.INFO, "The starting and ending position are : {0}", Arrays.toString(Utility.searchRange(searchRange, searchTarget)));
+
+        int[] countOccurrences = {2, 4, 6, 8, 10};
+        int countTarget = 3;
+        LOGGER.log(Level.INFO, "The number of occurrences in the array : {0}", Utility.countOccurences(countOccurrences, countTarget));
 
     }
 }
