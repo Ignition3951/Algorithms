@@ -83,16 +83,16 @@ public class Utility {
         int[] range = new int[2];
         int lowerBound;
         int upperBound = -1;
-        lowerBound = firstOccurence(arr, target);
+        lowerBound = firstOccurrence(arr, target);
         if (lowerBound != -1) {
-            upperBound = lastOccurence(arr, target);
+            upperBound = lastOccurrence(arr, target);
         }
         range[0] = lowerBound;
         range[1] = upperBound;
         return range;
     }
 
-    private static int lastOccurence(int[] arr, int target) {
+    private static int lastOccurrence(int[] arr, int target) {
         int upperBound = -1;
         int low = 0;
         int high = arr.length - 1;
@@ -111,7 +111,7 @@ public class Utility {
         return upperBound;
     }
 
-    private static int firstOccurence(int[] arr, int target) {
+    private static int firstOccurrence(int[] arr, int target) {
         int lowerBound = -1;
         int low = 0;
         int high = arr.length - 1;
@@ -130,14 +130,40 @@ public class Utility {
         return lowerBound;
     }
 
-    public static int countOccurences(int[] arr, int target) {
-        int occurences = -1;
-        int firstOccurence = firstOccurence(arr, target);
-        int lastOccurence;
-        if (firstOccurence != -1) {
-            lastOccurence = lastOccurence(arr, target);
-            occurences = lastOccurence - firstOccurence + 1;
+    public static int countOccurrences(int[] arr, int target) {
+        int occurrences = -1;
+        int firstOccurrence = firstOccurrence(arr, target);
+        int lastOccurrence;
+        if (firstOccurrence != -1) {
+            lastOccurrence = lastOccurrence(arr, target);
+            occurrences = lastOccurrence - firstOccurrence + 1;
         }
-        return occurences;
+        return occurrences;
+    }
+
+    public static int searchRotatedArray(int[] arr, int target) {
+        int index = -1;
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[mid] == target) return mid;
+            //check if left array is sorted
+            if (arr[low] <= arr[mid]) {
+                if (arr[low] <= target && target <= arr[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                if (arr[mid] <= target && target <= arr[high]) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return index;
     }
 }

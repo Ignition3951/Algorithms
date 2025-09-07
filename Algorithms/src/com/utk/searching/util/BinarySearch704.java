@@ -32,7 +32,11 @@ public class BinarySearch704 {
 
         int[] countOccurrences = {2, 4, 6, 8, 10};
         int countTarget = 3;
-        LOGGER.log(Level.INFO, "The number of occurrences in the array : {0}", Utility.countOccurences(countOccurrences, countTarget));
+        LOGGER.log(Level.INFO, "The number of occurrences in the array : {0}", Utility.countOccurrences(countOccurrences, countTarget));
+
+        int[] searchOccurrence = {1,3,5};
+        int searchOccTarget = 1;
+        LOGGER.log(Level.INFO, "The number occurs on the index : {0}", Utility.searchRotatedArray(searchOccurrence, searchOccTarget));
 
     }
 }
