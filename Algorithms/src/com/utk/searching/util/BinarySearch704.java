@@ -45,8 +45,11 @@ public class BinarySearch704 {
         List<Integer> findKRotation = Arrays.asList(4, 5, 1, 2);
         LOGGER.log(Level.INFO, "The list has been rotated {0} times.", Utility.findKRotation(findKRotation));
 
-        int[] singleNonDuplicate = {3,3,7,7,10,11,11};
+        int[] singleNonDuplicate = {3, 3, 7, 7, 10, 11, 11};
         LOGGER.log(Level.INFO, "The single element in the array is : {0}", Utility.singleNonDuplicate(singleNonDuplicate));
+
+        int[] peakElement = {1,2,1,3,5,6,4};
+        LOGGER.log(Level.INFO, "The peak element is at the index : {0}", Utility.findPeakElement(peakElement));
 
     }
 }
