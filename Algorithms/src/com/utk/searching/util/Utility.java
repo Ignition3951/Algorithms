@@ -176,11 +176,11 @@ public class Utility {
         if (arr.length == 1) return arr[0];
         while (low <= high) {
             mid = (low + high) / 2;
-            if (arr[low] <= arr[high] && arr[low]<arr[mid]) {
+            if (arr[low] <= arr[high] && arr[low] < arr[mid]) {
                 high = mid - 1;
-            } else if(arr[low] > arr[high] && arr[high]<arr[mid]){
+            } else if (arr[low] > arr[high] && arr[high] < arr[mid]) {
                 low = mid + 1;
-            }else{
+            } else {
                 low++;
                 high--;
             }
@@ -188,19 +188,36 @@ public class Utility {
         return arr[mid];
     }
 
-    public static int findKRotation(List<Integer> arr){
-        int rotations=0;
-        int first=0;
-        int last=arr.size()-1;
-        while(first<=last){
-            if(arr.get(first)>=arr.get(last)){
+    public static int findKRotation(List<Integer> arr) {
+        int rotations = 0;
+        int first = 0;
+        int last = arr.size() - 1;
+        while (first <= last) {
+            if (arr.get(first) >= arr.get(last)) {
                 rotations++;
                 first++;
                 last--;
-            }else{
+            } else {
                 break;
             }
         }
         return rotations;
+    }
+
+    public static int singleNonDuplicate(int[] arr) {
+        int difference;
+        int counter = arr.length / 2;
+        int forwardSum = arr[0];
+        int reverseSum = 0;
+        int forwardPointer = 2;
+        int reversePointer = arr.length - 2;
+        for (int i = 0; i < counter; i++) {
+            forwardSum += arr[forwardPointer];
+            reverseSum += arr[reversePointer];
+            forwardPointer = forwardPointer + 2;
+            reversePointer = reversePointer - 2;
+        }
+        difference = Math.abs(forwardSum - reverseSum);
+        return difference;
     }
 }
