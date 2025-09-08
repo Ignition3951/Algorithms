@@ -237,4 +237,19 @@ public class Utility {
         }
         return -1;
     }
+
+    public static long floorSqrt(long n) {
+        long low = 1;
+        long high = n;
+        long mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if ((mid * mid) <= n) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return high;
+    }
 }
