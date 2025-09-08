@@ -205,19 +205,18 @@ public class Utility {
     }
 
     public static int singleNonDuplicate(int[] arr) {
-        int difference;
-        int counter = arr.length / 2;
-        int forwardSum = arr[0];
-        int reverseSum = 0;
-        int forwardPointer = 2;
-        int reversePointer = arr.length - 2;
-        for (int i = 0; i < counter; i++) {
-            forwardSum += arr[forwardPointer];
-            reverseSum += arr[reversePointer];
-            forwardPointer = forwardPointer + 2;
-            reversePointer = reversePointer - 2;
+        if (arr.length == 1) return arr[0];
+        if (arr[0] != arr[1]) return arr[0];
+        if (arr[arr.length - 2] != arr[arr.length - 1]) return arr[arr.length - 1];
+        int low = 1;
+        int high = arr.length - 2;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[mid] != arr[mid + 1] && arr[mid] != arr[mid - 1]) return arr[mid];
+            if ((mid % 2 == 1 && arr[mid - 1] == arr[mid]) || (mid % 2 == 0 && arr[mid + 1] == arr[mid])) low = mid + 1;
+            else high = mid - 1;
         }
-        difference = Math.abs(forwardSum - reverseSum);
-        return difference;
+        return -1;
     }
 }
