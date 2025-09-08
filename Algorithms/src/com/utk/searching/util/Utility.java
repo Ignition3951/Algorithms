@@ -1,6 +1,8 @@
 package com.utk.searching.util;
 
 
+import java.util.List;
+
 public class Utility {
 
     private Utility() {
@@ -184,5 +186,21 @@ public class Utility {
             }
         }
         return arr[mid];
+    }
+
+    public static int findKRotation(List<Integer> arr){
+        int rotations=0;
+        int first=0;
+        int last=arr.size()-1;
+        while(first<=last){
+            if(arr.get(first)>=arr.get(last)){
+                rotations++;
+                first++;
+                last--;
+            }else{
+                break;
+            }
+        }
+        return rotations;
     }
 }

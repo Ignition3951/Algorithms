@@ -1,6 +1,7 @@
 package com.utk.searching.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,8 +39,11 @@ public class BinarySearch704 {
         int searchOccTarget = 1;
         LOGGER.log(Level.INFO, "The number occurs on the index : {0}", Utility.searchRotatedArray(searchOccurrence, searchOccTarget));
 
-        int[] findMin = {3,4,5,1,2};
+        int[] findMin = {3, 4, 5, 1, 2};
         LOGGER.log(Level.INFO, "The minimum element is : {0}", Utility.findMin(findMin));
+
+        List<Integer> findKRotation = Arrays.asList(4, 5, 1, 2);
+        LOGGER.log(Level.INFO, "The list has been rotated {0} times.", Utility.findKRotation(findKRotation));
 
     }
 }
