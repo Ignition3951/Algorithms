@@ -252,4 +252,17 @@ public class Utility {
         }
         return high;
     }
+
+    public static int findNthRoot(int N, int M) {//N=3 M=27
+        int low = 1;
+        int high = M;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (Math.pow(mid, N) == M) return mid;
+            if (Math.pow(mid, N) > M) high = mid - 1;
+            else low = mid + 1;
+        }
+        return -1;
+    }
 }

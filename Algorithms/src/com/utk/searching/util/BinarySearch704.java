@@ -54,5 +54,9 @@ public class BinarySearch704 {
         long floorSqrt = 28;
         LOGGER.log(Level.INFO, "The floor value of sqrt of {0} is {1}", new Object[]{floorSqrt, Utility.floorSqrt(floorSqrt)});
 
+        int N = 4;
+        int M = 69;
+        LOGGER.log(Level.INFO, "The value of Nth root is : {0}", Utility.findNthRoot(N, M));
+
     }
 }
