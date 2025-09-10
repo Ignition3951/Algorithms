@@ -58,5 +58,8 @@ public class BinarySearch704 {
         int M = 69;
         LOGGER.log(Level.INFO, "The value of Nth root is : {0}", Utility.findNthRoot(N, M));
 
+        int[] bananaPile = {805306368,805306368,805306368};
+        int hours = 1000000000;
+        LOGGER.log(Level.INFO, "The minimum number of bananas koko needs to eat are : {0}", Utility.minEatingSpeed(bananaPile, hours));
     }
 }

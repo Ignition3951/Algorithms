@@ -2,8 +2,12 @@ package com.utk.searching.util;
 
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Utility {
+
+    private static final Logger LOGGER = Logger.getLogger(Utility.class.getName());
 
     private Utility() {
 
@@ -264,5 +268,43 @@ public class Utility {
             else low = mid + 1;
         }
         return -1;
+    }
+
+    public static int minEatingSpeed(int[] arr, int h) {
+        int minHours;
+        int high = findMaxElement(arr);
+        int low = 1;
+        int mid;
+        int result = 0;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            minHours = calculateHours(arr, mid);
+            if (minHours < 0) return result;
+            if (minHours <= h) {
+                result = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
+
+    public static int findMaxElement(int[] arr) {
+        int maxElement = 0;
+        for (int num : arr) {
+            maxElement = Math.max(maxElement, num);
+        }
+        LOGGER.log(Level.INFO, "The max amount of bananas in the pile are : {0}", maxElement);
+        return maxElement;
+    }
+
+    public static int calculateHours(int[] arr, int numberOfBananas) {
+        int hoursRequired = 0;
+        for (int num : arr) {
+            hoursRequired += Math.ceilDiv(num, numberOfBananas);
+        }
+        LOGGER.log(Level.INFO, "The hours required to finish the piles by eating {0} bananas are : {1}", new Object[]{numberOfBananas, hoursRequired});
+        return hoursRequired;
     }
 }
