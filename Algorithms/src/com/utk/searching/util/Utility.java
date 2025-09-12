@@ -189,6 +189,7 @@ public class Utility {
                 high--;
             }
         }
+        LOGGER.log(Level.INFO, "The minimum is : {0}", arr[mid]);
         return arr[mid];
     }
 
@@ -295,7 +296,6 @@ public class Utility {
         for (int num : arr) {
             maxElement = Math.max(maxElement, num);
         }
-        LOGGER.log(Level.INFO, "The max amount of bananas in the pile are : {0}", maxElement);
         return maxElement;
     }
 
@@ -304,7 +304,40 @@ public class Utility {
         for (int num : arr) {
             hoursRequired += Math.ceilDiv(num, numberOfBananas);
         }
-        LOGGER.log(Level.INFO, "The hours required to finish the piles by eating {0} bananas are : {1}", new Object[]{numberOfBananas, hoursRequired});
         return hoursRequired;
+    }
+
+    public static int roseGarden(int[] arr, int m, int k) {
+        boolean isBouquetPossible;//m=bouquet(2) k=flowers(3)
+        int result = Integer.MAX_VALUE;
+        int high = findMaxElement(arr);
+        int low = findMin(arr);
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            isBouquetPossible = countAdjacentFlowers(arr, mid, k, m);
+            if (isBouquetPossible) {
+                result = Math.min(result, mid);
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+
+    public static boolean countAdjacentFlowers(int[] arr, int mid, int k, int m) {
+        int result = 0;
+        int bouquets = 0;
+        for (int flower: arr) {
+            if (mid >= flower) {
+                result++;
+                if (result % k == 0) ++bouquets;
+            } else {
+                result = 0;
+            }
+        }
+        LOGGER.log(Level.INFO, "The bouquets that can be made on day {0} are {1}", new Object[]{mid, bouquets});
+        return bouquets >= m;
     }
 }
