@@ -62,9 +62,13 @@ public class BinarySearch704 {
         int hours = 1000000000;
         LOGGER.log(Level.INFO, "The minimum number of bananas koko needs to eat are : {0}", Utility.minEatingSpeed(bananaPile, hours));
 
-        int[] bloomDay = {7,7,7,7,1,7,7};
+        int[] bloomDay = {7, 7, 7, 7, 1, 7, 7};
         int bouquets = 1;
         int flowers = 1;
         LOGGER.log(Level.INFO, "The minimum number of days to create the bouquets required are : {0}", Utility.roseGarden(bloomDay, bouquets, flowers));
+
+        int[] smallestDivisor = {21212, 10101, 12121};
+        int threshold = 1000000;
+        LOGGER.log(Level.INFO, "The smallesr divisor which satisfies the condition is : {0}", Utility.smallestDivisor(smallestDivisor, threshold));
     }
 }

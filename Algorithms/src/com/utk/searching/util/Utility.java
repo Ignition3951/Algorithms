@@ -329,7 +329,7 @@ public class Utility {
     public static boolean countAdjacentFlowers(int[] arr, int mid, int k, int m) {
         int result = 0;
         int bouquets = 0;
-        for (int flower: arr) {
+        for (int flower : arr) {
             if (mid >= flower) {
                 result++;
                 if (result % k == 0) ++bouquets;
@@ -339,5 +339,50 @@ public class Utility {
         }
         LOGGER.log(Level.INFO, "The bouquets that can be made on day {0} are {1}", new Object[]{mid, bouquets});
         return bouquets >= m;
+    }
+
+    public static int smallestDivisor(int[] arr, int threshold) {
+        int result = Integer.MAX_VALUE;
+        int[] minAndMax = findMinAndMaxInArray(arr);
+        int low = 1;
+        int high = Math.max(minAndMax[1], threshold);
+        int mid;
+        boolean isLessThanThreshold;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            isLessThanThreshold = compareSumFromThreshold(arr, mid, threshold);
+            if (isLessThanThreshold) {
+                result = Math.min(result, mid);
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return result;
+    }
+
+    public static int[] findMinAndMaxInArray(int[] arr) {
+        int[] minAndMax = new int[2];
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (int number : arr) {
+            min = Math.min(min, number);
+            max = Math.max(max, number);
+        }
+        minAndMax[0] = min;
+        minAndMax[1] = max;
+        return minAndMax;
+    }
+
+    public static boolean compareSumFromThreshold(int[] arr, int divisor, int threshold) {
+        boolean result = false;
+        int sum = 0;
+        for (int number : arr) {
+            sum += (int) Math.ceil((double) number / (double) divisor);
+        }
+        if (sum <= threshold) {
+            result = true;
+        }
+        return result;
     }
 }
