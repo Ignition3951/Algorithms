@@ -385,4 +385,43 @@ public class Utility {
         }
         return result;
     }
+
+    public static int shipWithinDays(int[] weights, int days) {
+        int minimumCapacity = Integer.MAX_VALUE;
+        int low = findMaxElement(weights);
+        int high = findSumOfArray(weights);
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (hasMinimumCapacity(weights, mid, days)) {
+                minimumCapacity = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+
+        }
+        return minimumCapacity;
+    }
+
+    public static int findSumOfArray(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return sum;
+    }
+
+    public static boolean hasMinimumCapacity(int[] weights, int capacity, int days) {
+        int counter = 1;
+        int sum = 0;
+        for (int i=0;i<weights.length-1;i++) {
+            sum += weights[i];
+            if (sum+weights[i+1] > capacity) {
+                sum = 0;
+                counter++;
+            }
+        }
+        return counter <= days;
+    }
 }

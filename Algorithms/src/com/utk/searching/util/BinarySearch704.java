@@ -70,5 +70,9 @@ public class BinarySearch704 {
         int[] smallestDivisor = {21212, 10101, 12121};
         int threshold = 1000000;
         LOGGER.log(Level.INFO, "The smallesr divisor which satisfies the condition is : {0}", Utility.smallestDivisor(smallestDivisor, threshold));
+
+        int[] weights = {1,2,3,1,1};
+        int days = 4;
+        LOGGER.log(Level.INFO, "The minimum capacity that the ship must have to transfer the weights in {0} days is : {1}", new Object[]{days, Utility.shipWithinDays(weights, days)});
     }
 }
