@@ -235,10 +235,8 @@ public class Utility {
         while (low <= high) {
             mid = (low + high) / 2;
             if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) return mid;
-            if (arr[mid] > arr[mid - 1])
-                low = mid + 1;
-            else
-                high = mid - 1;
+            if (arr[mid] > arr[mid - 1]) low = mid + 1;
+            else high = mid - 1;
         }
         return -1;
     }
@@ -415,13 +413,29 @@ public class Utility {
     public static boolean hasMinimumCapacity(int[] weights, int capacity, int days) {
         int counter = 1;
         int sum = 0;
-        for (int i=0;i<weights.length-1;i++) {
+        for (int i = 0; i < weights.length - 1; i++) {
             sum += weights[i];
-            if (sum+weights[i+1] > capacity) {
+            if (sum + weights[i + 1] > capacity) {
                 sum = 0;
                 counter++;
             }
         }
         return counter <= days;
+    }
+
+    public static int findKthPositive(int[] arr, int k) {
+        int value = 1;
+        int counter = 0;
+        int i = 0;
+        while (counter < k) {//2, 3, 4, 7, 11
+            if (i >= arr.length || value != arr[i]) {
+                ++value;
+                ++counter;
+            } else if (value == arr[i]) {
+                ++i;
+                ++value;
+            }
+        }
+        return value - 1;
     }
 }

@@ -71,8 +71,12 @@ public class BinarySearch704 {
         int threshold = 1000000;
         LOGGER.log(Level.INFO, "The smallesr divisor which satisfies the condition is : {0}", Utility.smallestDivisor(smallestDivisor, threshold));
 
-        int[] weights = {1,2,3,1,1};
+        int[] weights = {1, 2, 3, 1, 1};
         int days = 4;
         LOGGER.log(Level.INFO, "The minimum capacity that the ship must have to transfer the weights in {0} days is : {1}", new Object[]{days, Utility.shipWithinDays(weights, days)});
+
+        int[] kthPositive = {2, 3, 4, 7, 11};
+        int k = 5;
+        LOGGER.log(Level.INFO, "The missing {0}th positive number is : {1}", new Object[]{k, Utility.findKthPositive(kthPositive, k)});
     }
 }
