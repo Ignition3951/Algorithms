@@ -424,18 +424,16 @@ public class Utility {
     }
 
     public static int findKthPositive(int[] arr, int k) {
-        int value = 1;
-        int counter = 0;
-        int i = 0;
-        while (counter < k) {//2, 3, 4, 7, 11
-            if (i >= arr.length || value != arr[i]) {
-                ++value;
-                ++counter;
-            } else if (value == arr[i]) {
-                ++i;
-                ++value;
-            }
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+        int missingNumbers = 0;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            missingNumbers = arr[mid] - (mid + 1);
+            if (missingNumbers < k) low = mid + 1;
+            else high = mid - 1;
         }
-        return value - 1;
+        return high + 1 + k;
     }
 }
