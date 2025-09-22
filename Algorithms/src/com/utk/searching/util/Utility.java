@@ -462,4 +462,38 @@ public class Utility {
         }
         return counter >= cows;
     }
+
+    public static int findPages(int[] arr, int m) {
+        int low = findMinInArray(arr);
+        int high = findSumOfArray(arr);
+        int countStudents;
+        for (int i = low; i <= high; i++) {
+            countStudents = countStudents(arr, i);
+            if (countStudents == m) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int findMinInArray(int[] arr) {
+        int minimum = Integer.MAX_VALUE;
+        for (int num : arr) {
+            minimum = Math.min(minimum, num);
+        }
+        return minimum;
+    }
+
+    public static int countStudents(int[] arr, int pages) {
+        int sum = 0;
+        int students = 1;
+        for (int num : arr) {
+            sum += num;
+            if (sum > pages) {
+                sum = num;
+                students++;
+            }
+        }
+        return students;
+    }
 }
