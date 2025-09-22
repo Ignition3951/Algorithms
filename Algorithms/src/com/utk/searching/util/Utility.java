@@ -464,32 +464,26 @@ public class Utility {
     }
 
     public static int findPages(int[] arr, int m) {
-        int low = findMinInArray(arr);
+        int low = findMaxElement(arr);
         int high = findSumOfArray(arr);
         int countStudents;
-        for (int i = low; i <= high; i++) {
-            countStudents = countStudents(arr, i);
-            if (countStudents == m) {
-                return i;
-            }
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            countStudents = countStudents(arr, mid);
+            if (countStudents > m) low = mid + 1;
+            else high = mid - 1;
         }
-        return -1;
-    }
-
-    public static int findMinInArray(int[] arr) {
-        int minimum = Integer.MAX_VALUE;
-        for (int num : arr) {
-            minimum = Math.min(minimum, num);
-        }
-        return minimum;
+        return low;
     }
 
     public static int countStudents(int[] arr, int pages) {
         int sum = 0;
         int students = 1;
         for (int num : arr) {
-            sum += num;
-            if (sum > pages) {
+            if (sum + num <= pages) {
+                sum += num;
+            } else {
                 sum = num;
                 students++;
             }

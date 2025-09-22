@@ -83,8 +83,8 @@ public class BinarySearch704 {
         int aggressiveCows = 2;
         LOGGER.log(Level.INFO, "The minimum distance to place the cows in stalls is : {0}", Utility.aggressiveCows(stalls, aggressiveCows));
 
-        int[] pages = {25, 46, 28, 49, 24};
-        int students = 4;
+        int[] pages = {7,2,5,10,8};
+        int students = 2;
         LOGGER.log(Level.INFO, "The minimum number of pages that can be distributed among the students are: {0}", Utility.findPages(pages, students));
 
     }
