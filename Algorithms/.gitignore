@@ -33,7 +33,6 @@ replay_pid*
 .springBeans
 .sts4-cache
 /bin/
-.idea/
-*.log
-/dir/
-static/dir/
+
+###TEXT FILES###
+*.txt
