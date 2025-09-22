@@ -78,5 +78,10 @@ public class BinarySearch704 {
         int[] kthPositive = {2, 3, 4, 7, 11};
         int k = 5;
         LOGGER.log(Level.INFO, "The missing {0}th positive number is : {1}", new Object[]{k, Utility.findKthPositive(kthPositive, k)});
+
+        int[] stalls = {4, 2, 1, 3, 6};
+        int aggressiveCows = 2;
+        LOGGER.log(Level.INFO, "The minimum distance to place the cows in stalls is : {0}", Utility.aggressiveCows(stalls, aggressiveCows));
+
     }
 }
