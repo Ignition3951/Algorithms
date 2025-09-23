@@ -490,4 +490,38 @@ public class Utility {
         }
         return students;
     }
+
+    public static double minMaxDistance(int[] arr, int k) {
+        double[] distanceArray = calculateDistance(arr);
+        int counter = 1;
+        while (counter <= k) {
+            minimizeDistance(distanceArray);
+            counter++;
+        }
+        double minimumDistance = Double.MIN_VALUE;
+        for (double distance : distanceArray) {
+            minimumDistance = Double.max(minimumDistance, distance);
+        }
+        return minimumDistance;
+    }
+
+    public static double[] calculateDistance(int[] arr) {
+        double[] distanceArray = new double[arr.length - 1];
+        for (int i = 0; i < arr.length - 1; i++) {
+            distanceArray[i] = (double) arr[i + 1] - (double) arr[i];
+        }
+        return distanceArray;
+    }
+
+    public static void minimizeDistance(double[] distanceArray) {
+        int maximumDistanceIndex = 0;
+        double maximum = Integer.MIN_VALUE;
+        for (int i = 0; i < distanceArray.length; i++) {
+            if (distanceArray[i] >= maximum) {
+                maximum = distanceArray[i];
+                maximumDistanceIndex = i;
+            }
+        }
+        distanceArray[maximumDistanceIndex] = distanceArray[maximumDistanceIndex] / 2;
+    }
 }
