@@ -492,36 +492,29 @@ public class Utility {
     }
 
     public static double minMaxDistance(int[] arr, int k) {
-        double[] distanceArray = calculateDistance(arr);
-        int counter = 1;
-        while (counter <= k) {
-            minimizeDistance(distanceArray);
-            counter++;
-        }
-        double minimumDistance = Double.MIN_VALUE;
-        for (double distance : distanceArray) {
-            minimumDistance = Double.max(minimumDistance, distance);
-        }
-        return minimumDistance;
-    }
-
-    public static double[] calculateDistance(int[] arr) {
-        double[] distanceArray = new double[arr.length - 1];
-        for (int i = 0; i < arr.length - 1; i++) {
-            distanceArray[i] = (double) arr[i + 1] - (double) arr[i];
-        }
-        return distanceArray;
-    }
-
-    public static void minimizeDistance(double[] distanceArray) {
-        int maximumDistanceIndex = 0;
-        double maximum = Integer.MIN_VALUE;
-        for (int i = 0; i < distanceArray.length; i++) {
-            if (distanceArray[i] >= maximum) {
-                maximum = distanceArray[i];
-                maximumDistanceIndex = i;
+        int[] gasStations = new int[arr.length - 1];
+        int distance;
+        double improvedLength;
+        double length = -1;
+        int index = 0;
+        double maximumDistance = Double.MIN_VALUE;
+        double gasStationsDistance;
+        for (int i = 1; i <= k; i++) {
+            for (int j = 0; j < arr.length - 1; j++) {
+                distance = arr[j + 1] - arr[j];
+                improvedLength = (double) distance / (gasStations[j] + 1);
+                if (improvedLength >= length) {
+                    length = improvedLength;
+                    index = j;
+                }
             }
+            gasStations[index]++;
         }
-        distanceArray[maximumDistanceIndex] = distanceArray[maximumDistanceIndex] / 2;
+        for (int i = 0; i < arr.length - 1; i++) {
+            distance = arr[i + 1] - arr[i];
+            gasStationsDistance = (double) distance / (gasStations[i] + 1);
+            maximumDistance = Double.max(maximumDistance, gasStationsDistance);
+        }
+        return maximumDistance;
     }
 }
