@@ -517,4 +517,33 @@ public class Utility {
         }
         return maximumDistance;
     }
+
+    public static double findMedianSortedArrays(int[] num1, int[] num2) {
+        int[] sortedArray = new int[num1.length + num2.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        double median;
+        while (i < num1.length && j < num2.length) {
+            if (num1[i] <= num2[j]) {
+                sortedArray[k++] = num1[i++];
+            } else {
+                sortedArray[k++] = num2[j++];
+
+            }
+        }
+        while (i < num1.length) {
+            sortedArray[k++] = num1[i++];
+        }
+        while (j < num2.length) {
+            sortedArray[k++] = num2[j++];
+        }
+        if (sortedArray.length % 2 == 0) {
+            int medianIndex= sortedArray.length/2;
+            median = (double) (sortedArray[medianIndex] + sortedArray[medianIndex - 1]) / 2;
+        } else {
+            median = sortedArray[sortedArray.length / 2];
+        }
+        return median;
+    }
 }

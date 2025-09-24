@@ -87,8 +87,12 @@ public class BinarySearch704 {
         int students = 2;
         LOGGER.log(Level.INFO, "The minimum number of pages that can be distributed among the students are: {0}", Utility.findPages(pages, students));
 
-        int[] gasArray = {1,7};
+        int[] gasArray = {1, 7};
         int gasStations = 2;
         LOGGER.log(Level.INFO, "The minimized gas station distance is : {0}", Utility.minMaxDistance(gasArray, gasStations));
+
+        int[] num1 = {1,2};
+        int[] num2 = {3,4};
+        LOGGER.log(Level.INFO, "The median of the sorted array is : {0}", Utility.findMedianSortedArrays(num1, num2));
     }
 }
