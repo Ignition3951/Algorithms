@@ -91,8 +91,11 @@ public class BinarySearch704 {
         int gasStations = 2;
         LOGGER.log(Level.INFO, "The minimized gas station distance is : {0}", Utility.minMaxDistance(gasArray, gasStations));
 
-        int[] num1 = {1,2};
-        int[] num2 = {3,4};
+        int[] num1 = {1, 2};
+        int[] num2 = {3, 4};
         LOGGER.log(Level.INFO, "The median of the sorted array is : {0}", Utility.findMedianSortedArrays(num1, num2));
+
+        int[][] max1s = {{0,0,1}, {0, 1, 1}, {0, 1, 1}};
+        LOGGER.log(Level.INFO, "The maximum number of 1s in one row are : {0}", Utility.rowWithMax1s(max1s));
     }
 }

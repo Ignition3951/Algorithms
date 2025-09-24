@@ -539,11 +539,33 @@ public class Utility {
             sortedArray[k++] = num2[j++];
         }
         if (sortedArray.length % 2 == 0) {
-            int medianIndex= sortedArray.length/2;
+            int medianIndex = sortedArray.length / 2;
             median = (double) (sortedArray[medianIndex] + sortedArray[medianIndex - 1]) / 2;
         } else {
             median = sortedArray[sortedArray.length / 2];
         }
         return median;
+    }
+
+    public static int rowWithMax1s(int[][] mat) {
+        int max1s = Integer.MIN_VALUE;
+        int rows = mat.length;
+        int columns = mat[0].length;
+        int counter = -1;
+        int row=-1;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (mat[i][j] == 1) {
+                    counter=columns-j;
+                    break;
+                }
+            }
+            if(counter>0 && counter>max1s){
+                row=i;
+                max1s=counter;
+                counter=0;
+            }
+        }
+        return row;
     }
 }
