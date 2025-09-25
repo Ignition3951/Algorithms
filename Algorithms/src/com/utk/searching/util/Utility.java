@@ -570,16 +570,20 @@ public class Utility {
     }
 
     public static boolean searchMatrix(int[][] matrix, int target) {
-        boolean result = false;
         int rows = matrix.length;
         int columns = matrix[0].length;
-        for (int i = 0; i < rows; i++) {
-            if (target > matrix[i][columns - 1]) continue;
-            for (int j = 0; j < columns; j++) {
-                if (matrix[i][j] == target)
-                    return true;
-            }
+        int size = rows * columns;
+        int low = 0;
+        int high = size - 1;
+        int mid;
+        int element;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            element = matrix[mid / columns][mid % columns];
+            if (element == target) return true;
+            if (element < target) low = mid + 1;
+            else high = mid - 1;
         }
-        return result;
+        return false;
     }
 }
