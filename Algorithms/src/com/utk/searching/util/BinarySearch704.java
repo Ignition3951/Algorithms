@@ -95,7 +95,11 @@ public class BinarySearch704 {
         int[] num2 = {3, 4};
         LOGGER.log(Level.INFO, "The median of the sorted array is : {0}", Utility.findMedianSortedArrays(num1, num2));
 
-        int[][] max1s = {{0,0,1}, {0, 1, 1}, {0, 1, 1}};
+        int[][] max1s = {{0, 0, 1}, {0, 1, 1}, {0, 1, 1}};
         LOGGER.log(Level.INFO, "The maximum number of 1s in one row are : {0}", Utility.rowWithMax1s(max1s));
+
+        int[][] searchMatrix = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
+        int searchTargetInMatrix = 13;
+        LOGGER.log(Level.INFO, "Is the target found in the matrix : {0}", Utility.searchMatrix(searchMatrix, searchTargetInMatrix));
     }
 }

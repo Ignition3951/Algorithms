@@ -552,20 +552,34 @@ public class Utility {
         int rows = mat.length;
         int columns = mat[0].length;
         int counter = -1;
-        int row=-1;
+        int row = -1;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (mat[i][j] == 1) {
-                    counter=columns-j;
+                    counter = columns - j;
                     break;
                 }
             }
-            if(counter>0 && counter>max1s){
-                row=i;
-                max1s=counter;
-                counter=0;
+            if (counter > 0 && counter > max1s) {
+                row = i;
+                max1s = counter;
+                counter = 0;
             }
         }
         return row;
+    }
+
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        boolean result = false;
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        for (int i = 0; i < rows; i++) {
+            if (target > matrix[i][columns - 1]) continue;
+            for (int j = 0; j < columns; j++) {
+                if (matrix[i][j] == target)
+                    return true;
+            }
+        }
+        return result;
     }
 }
