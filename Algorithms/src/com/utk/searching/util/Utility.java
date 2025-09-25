@@ -27,11 +27,15 @@ public class Utility {
         return result;
     }
 
-    public static boolean searchMatrix240(int[][] matrix,int target){
-        int result;
-        for (int[] ints : matrix) {
-            result = binarySearch(ints, target);
-            if (result != -1) return true;
+    public static boolean searchMatrix240(int[][] matrix, int target) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int row = 0;
+        int column = columns - 1;
+        while (row < rows && column >= 0) {
+            if (matrix[row][column] == target) return true;
+            if (matrix[row][column] < target) row++;
+            else column--;
         }
         return false;
     }
