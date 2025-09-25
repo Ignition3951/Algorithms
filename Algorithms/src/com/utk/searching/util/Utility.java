@@ -26,4 +26,13 @@ public class Utility {
         }
         return result;
     }
+
+    public static boolean searchMatrix240(int[][] matrix,int target){
+        int result;
+        for (int[] ints : matrix) {
+            result = binarySearch(ints, target);
+            if (result != -1) return true;
+        }
+        return false;
+    }
 }

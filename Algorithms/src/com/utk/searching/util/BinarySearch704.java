@@ -12,5 +12,9 @@ public class BinarySearch704 {
         int target = 2;
         int binarySearchResult = Utility.binarySearch(binarySearchArray, target);
         LOGGER.log(Level.INFO, "The result of the binary search operation is : {0}", binarySearchResult);
+
+        int[][] searchmatrix240 = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
+        int searchTarget240 = 5;
+        LOGGER.log(Level.INFO, "Is the element found in the 2D array : {0}", Utility.searchMatrix240(searchmatrix240, searchTarget240));
     }
 }
