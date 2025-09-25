@@ -101,5 +101,9 @@ public class BinarySearch704 {
         int[][] searchMatrix = {{1, 3}};
         int searchTargetInMatrix = 3;
         LOGGER.log(Level.INFO, "Is the target found in the matrix : {0}", Utility.searchMatrix(searchMatrix, searchTargetInMatrix));
+
+        int[][] searchMatrix240 = {{-5}};
+        int searchTarget240 = -10;
+        LOGGER.log(Level.INFO, "Is the element found in the 2D array : {0}", Utility.searchMatrix240(searchMatrix240, searchTarget240));
     }
 }

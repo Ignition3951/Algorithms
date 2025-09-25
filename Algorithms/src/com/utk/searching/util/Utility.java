@@ -586,4 +586,22 @@ public class Utility {
         }
         return false;
     }
+
+    public static boolean searchMatrix240(int[][] matrix, int target) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int size = rows * columns;
+        int low = 0;
+        int high = size - 1;
+        int mid;
+        int element;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            element = matrix[mid / columns][mid % columns];
+            if (element == target) return true;
+            if (element < target) low = mid + 1;
+            else high = mid - 1;
+        }
+        return false;
+    }
 }
