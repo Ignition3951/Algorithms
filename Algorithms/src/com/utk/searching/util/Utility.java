@@ -570,21 +570,16 @@ public class Utility {
     }
 
     public static boolean searchMatrix(int[][] matrix, int target) {
-        int rows = matrix.length;
+        boolean result = false;
         int columns = matrix[0].length;
-        int size = rows * columns;
-        int low = 0;
-        int high = size - 1;
-        int mid;
-        int element;
-        while (low <= high) {
-            mid = (low + high) / 2;
-            element = matrix[mid / columns][mid % columns];
-            if (element == target) return true;
-            if (element < target) low = mid + 1;
-            else high = mid - 1;
+        for (int[] ints : matrix) {
+            if (target > ints[columns - 1]) continue;
+            for (int j = 0; j < columns; j++) {
+                if (ints[j] == target)
+                    return true;
+            }
         }
-        return false;
+        return result;
     }
 
     public static boolean searchMatrix240(int[][] matrix, int target) {
@@ -608,16 +603,33 @@ public class Utility {
     public static int[] findPeakGrid(int[][] mat) {
         int rows = mat.length;
         int columns = mat[0].length;
-        int size = rows * columns;
-        int[] peakElementLocation = new int[2];
-        int peakElement = Integer.MIN_VALUE;
-        for (int i = 0; i < size; i++) {
-            if (mat[i / columns][i % columns] > peakElement) {
-                peakElement = mat[i / columns][i % columns];
-                peakElementLocation[0] = i / columns;
-                peakElementLocation[1] = i % columns;
+        int low = 0;
+        int high = columns - 1;
+        int mid;
+        int maxRow;
+        int left;
+        int right;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            maxRow = fetchMaxRow(mat, mid, rows);
+            left = mid - 1 >= 0 ? mat[maxRow][mid - 1] : -1;
+            right = mid + 1 < columns ? mat[maxRow][mid + 1] : -1;
+            if (mat[maxRow][mid] > right && mat[maxRow][mid] > left) return new int[]{maxRow, mid};
+            if (mat[maxRow][mid] > right && mat[maxRow][mid] < left) high = mid - 1;
+            else low = mid + 1;
+        }
+        return new int[]{-1, -1};
+    }
+
+    public static int fetchMaxRow(int[][] mat, int column, int rows) {
+        int maxElementRow = Integer.MIN_VALUE;
+        int row = 0;
+        for (int i = 0; i < rows; i++) {
+            if (mat[i][column] > maxElementRow) {
+                maxElementRow = mat[i][column];
+                row = i;
             }
         }
-        return peakElementLocation;
+        return row;
     }
 }
