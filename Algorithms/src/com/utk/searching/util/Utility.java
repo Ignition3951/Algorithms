@@ -604,4 +604,20 @@ public class Utility {
         }
         return false;
     }
+
+    public static int[] findPeakGrid(int[][] mat) {
+        int rows = mat.length;
+        int columns = mat[0].length;
+        int size = rows * columns;
+        int[] peakElementLocation = new int[2];
+        int peakElement = Integer.MIN_VALUE;
+        for (int i = 0; i < size; i++) {
+            if (mat[i / columns][i % columns] > peakElement) {
+                peakElement = mat[i / columns][i % columns];
+                peakElementLocation[0] = i / columns;
+                peakElementLocation[1] = i % columns;
+            }
+        }
+        return peakElementLocation;
+    }
 }

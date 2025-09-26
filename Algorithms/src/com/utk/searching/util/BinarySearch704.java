@@ -105,5 +105,8 @@ public class BinarySearch704 {
         int[][] searchMatrix240 = {{-5}};
         int searchTarget240 = -10;
         LOGGER.log(Level.INFO, "Is the element found in the 2D array : {0}", Utility.searchMatrix240(searchMatrix240, searchTarget240));
+
+        int[][] searchGridForPeak = {{10,20,15}, {21,30,14},{7,16,32}};
+        LOGGER.log(Level.INFO, "The peak element location is : {0}", Arrays.toString(Utility.findPeakGrid(searchGridForPeak)));
     }
 }
