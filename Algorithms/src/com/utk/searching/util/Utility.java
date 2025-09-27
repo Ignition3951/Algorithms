@@ -632,4 +632,58 @@ public class Utility {
         }
         return row;
     }
+
+    public static int findMedian(int[][] matrix) {
+        int low = findLowestInTheColumn(matrix);
+        int high = findMaxInTheColumn(matrix);
+        int mid;
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int req = (rows * columns) / 2;
+        int numbers;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            numbers = getNumberOfElementsLessThanTarget(matrix, mid);
+            if (numbers <= req) low = mid + 1;
+            else high = mid - 1;
+        }
+        return low;
+    }
+
+    private static int findMaxInTheColumn(int[][] matrix) {
+        int column = matrix[0].length - 1;
+        int highest = Integer.MIN_VALUE;
+        for (int[] ints : matrix) {
+            highest = Math.max(highest, ints[column]);
+        }
+        return highest;
+    }
+
+    private static int findLowestInTheColumn(int[][] matrix) {
+        int lowest = Integer.MAX_VALUE;
+        for (int[] ints : matrix) {
+            lowest = Math.min(lowest, ints[0]);
+        }
+        return lowest;
+    }
+
+    private static int getNumberOfElementsLessThanTarget(int[][] matrix, int target) {
+        int count = 0;
+        for (int[] row : matrix) {
+            count += upperBound(row, target);
+        }
+        return count;
+    }
+
+    private static int upperBound(int[] matrix, int target) {
+        int low = 0;
+        int high = matrix.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (matrix[mid] > target) high = mid - 1;
+            else low = mid + 1;
+        }
+        return low;
+    }
 }

@@ -108,5 +108,8 @@ public class BinarySearch704 {
 
         int[][] searchGridForPeak = {{1, 4}, {3, 2}};
         LOGGER.log(Level.INFO, "The peak element location is : {0}", Arrays.toString(Utility.findPeakGrid(searchGridForPeak)));
+
+        int[][] findMedian = {{1, 3, 8}, {2, 3, 4}, {1, 2, 5}};
+        LOGGER.log(Level.INFO, "The median of the 2D array is : {0}", Utility.findMedian(findMedian));
     }
 }
