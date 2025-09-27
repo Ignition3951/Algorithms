@@ -1,7 +1,5 @@
 package com.utk.strings;
 
-import java.util.Stack;
-
 public class StringUtility {
 
     private StringUtility() {
@@ -9,25 +7,21 @@ public class StringUtility {
     }
 
     public static String removeOuterParenthesis(String s) {
-        Stack<Character> parenthesis = new Stack<>();
-        StringBuilder output = new StringBuilder();
-        char ch;
-        for (int i = 0; i < s.length(); i++) {
-            ch = s.charAt(i);
-            if (ch == '(') {
-                if (!parenthesis.isEmpty()) {
-                    output.append(ch);
-                    parenthesis.push(ch);
-                } else {
-                    parenthesis.push(ch);
+        StringBuilder result = new StringBuilder();
+        int opened = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                if (opened > 0) {
+                    result.append(c);
                 }
+                opened++;
             } else {
-                parenthesis.pop();
-                if (!parenthesis.isEmpty()) {
-                    output.append(ch);
+                opened--;
+                if (opened > 0) {
+                    result.append(c);
                 }
             }
         }
-        return new String(output);
+        return result.toString();
     }
 }
