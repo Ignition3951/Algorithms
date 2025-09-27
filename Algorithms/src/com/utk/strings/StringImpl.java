@@ -8,7 +8,7 @@ public class StringImpl {
     private static final Logger LOGGER = Logger.getLogger(StringImpl.class.getName());
 
     public static void main(String[] args) {
-        String s = "(()())(())(()(()))";
+        String s = "()()";
         LOGGER.log(Level.INFO, "The char array is : {0}", StringUtility.removeOuterParenthesis(s));
     }
 }

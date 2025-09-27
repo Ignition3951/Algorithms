@@ -1,5 +1,7 @@
 package com.utk.strings;
 
+import java.util.Stack;
+
 public class StringUtility {
 
     private StringUtility() {
@@ -7,20 +9,25 @@ public class StringUtility {
     }
 
     public static String removeOuterParenthesis(String s) {
-        char[] arr = s.toCharArray();
-        arr[0] = ' ';
-        int i = 0;
-        int j = 1;
-        for (int k = 0; k < arr.length; k++) {
-            if (arr[k] == '(') j++;
-            if (arr[k] == ')') j--;
-            if (j == 0) {
-                arr[i] = ' ';
-                arr[k] = ' ';
-                i = k + 1;
+        Stack<Character> parenthesis = new Stack<>();
+        StringBuilder output = new StringBuilder();
+        char ch;
+        for (int i = 0; i < s.length(); i++) {
+            ch = s.charAt(i);
+            if (ch == '(') {
+                if (!parenthesis.isEmpty()) {
+                    output.append(ch);
+                    parenthesis.push(ch);
+                } else {
+                    parenthesis.push(ch);
+                }
+            } else {
+                parenthesis.pop();
+                if (!parenthesis.isEmpty()) {
+                    output.append(ch);
+                }
             }
         }
-        String str = new String(arr);
-        return str.replaceAll("\\s+", "");
+        return new String(output);
     }
 }
