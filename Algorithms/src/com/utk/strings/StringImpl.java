@@ -10,5 +10,8 @@ public class StringImpl {
     public static void main(String[] args) {
         String s = "()()";
         LOGGER.log(Level.INFO, "The char array is : {0}", StringUtility.removeOuterParenthesis(s));
+
+        String reverseString = "the sky is blue";
+        LOGGER.log(Level.INFO, "The reverse of the string is : {0}", StringUtility.reverseWords(reverseString));
     }
 }
