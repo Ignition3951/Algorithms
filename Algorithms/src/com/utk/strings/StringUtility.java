@@ -26,12 +26,36 @@ public class StringUtility {
     }
 
     public static String reverseWords(String s) {
-        String[] arrayOfWords = s.split("\\s+");
-        StringBuilder reverseString = new StringBuilder();
-        for (int i=arrayOfWords.length-1;i>=0;i--) {
-            reverseString.append(arrayOfWords[i]);
-            reverseString.append(" ");
+        int left = 0;
+        int right = s.length() - 1;
+        char ch;
+        StringBuilder output = new StringBuilder();
+        StringBuilder temp = new StringBuilder();
+        while (left <= right) {
+            ch = s.charAt(left);
+            if (ch != ' ') {
+                temp.append(ch);
+            } else {
+                if (!output.isEmpty() && !temp.isEmpty()) {
+                    temp.append(" ");
+                    output.insert(0, temp);
+                } else {
+                    output.append(temp);
+                }
+                temp.setLength(0);
+            }
+            left++;
         }
-        return reverseString.toString().trim();
+
+        if (!temp.isEmpty()) {
+            if (!output.isEmpty()) {
+                temp.append(" ");
+                output.insert(0, temp);
+            } else {
+                output.append(temp);
+            }
+        }
+
+        return output.toString();
     }
 }

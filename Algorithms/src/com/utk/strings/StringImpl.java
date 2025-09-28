@@ -11,7 +11,7 @@ public class StringImpl {
         String s = "()()";
         LOGGER.log(Level.INFO, "The char array is : {0}", StringUtility.removeOuterParenthesis(s));
 
-        String reverseString = "the sky is blue";
+        String reverseString = "  hello world  ";
         LOGGER.log(Level.INFO, "The reverse of the string is : {0}", StringUtility.reverseWords(reverseString));
     }
 }
