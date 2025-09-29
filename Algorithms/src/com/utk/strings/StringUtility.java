@@ -28,34 +28,36 @@ public class StringUtility {
     public static String reverseWords(String s) {
         int left = 0;
         int right = s.length() - 1;
-        char ch;
-        StringBuilder output = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
+
+        String temp = "";
+        String ans = "";
+
+        //Iterate the string and keep on adding to form a word
+        //If empty space is encountered then add the current word to the result
         while (left <= right) {
-            ch = s.charAt(left);
+            char ch = s.charAt(left);
             if (ch != ' ') {
-                temp.append(ch);
-            } else {
-                if (!output.isEmpty() && !temp.isEmpty()) {
-                    temp.append(" ");
-                    output.insert(0, temp);
+                temp += ch;
+            } else if (ch == ' ') {
+                if (!ans.equals("") && !temp.isEmpty()) {
+                    ans = temp + " " + ans;
                 } else {
-                    output.append(temp);
+                    ans += temp;
                 }
-                temp.setLength(0);
+                temp = "";
             }
             left++;
         }
 
-        if (!temp.isEmpty()) {
-            if (!output.isEmpty()) {
-                temp.append(" ");
-                output.insert(0, temp);
+        //If not empty string then add to the result(Last word is added)
+        if (!temp.equals("")) {
+            if (!ans.equals("")) {
+                ans = temp + " " + ans;
             } else {
-                output.append(temp);
+                ans += temp;
             }
         }
 
-        return output.toString();
+        return ans;
     }
 }
