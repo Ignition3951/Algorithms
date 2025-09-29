@@ -13,5 +13,8 @@ public class StringImpl {
 
         String reverseString = "  hello world  ";
         LOGGER.log(Level.INFO, "The reverse of the string is : {0}", StringUtility.reverseWords(reverseString));
+
+        String largestOddNumber = "7542351161";
+        LOGGER.log(Level.INFO, "The largest odd number in the string is : {0}", StringUtility.largestOddNumber(largestOddNumber));
     }
 }

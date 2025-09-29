@@ -26,38 +26,25 @@ public class StringUtility {
     }
 
     public static String reverseWords(String s) {
-        int left = 0;
-        int right = s.length() - 1;
-
-        String temp = "";
-        String ans = "";
-
-        //Iterate the string and keep on adding to form a word
-        //If empty space is encountered then add the current word to the result
-        while (left <= right) {
-            char ch = s.charAt(left);
-            if (ch != ' ') {
-                temp += ch;
-            } else if (ch == ' ') {
-                if (!ans.equals("") && !temp.isEmpty()) {
-                    ans = temp + " " + ans;
-                } else {
-                    ans += temp;
-                }
-                temp = "";
-            }
-            left++;
+        String[] arrayOfWords = s.split("\\s+");
+        StringBuilder reverseString = new StringBuilder();
+        for (int i = arrayOfWords.length - 1; i >= 0; i--) {
+            reverseString.append(arrayOfWords[i]);
+            reverseString.append(" ");
         }
+        return reverseString.toString().trim();
+    }
 
-        //If not empty string then add to the result(Last word is added)
-        if (!temp.equals("")) {
-            if (!ans.equals("")) {
-                ans = temp + " " + ans;
-            } else {
-                ans += temp;
+    public static String largestOddNumber(String num) {
+        String result="";
+        int value;
+        for (int j=num.length()-1;j>=0;j--) {
+            value=num.charAt(j)-'0';
+            if (value % 2 != 0) {
+                result = num.substring(0,j+1);
+                break;
             }
         }
-
-        return ans;
+        return result;
     }
 }
