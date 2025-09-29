@@ -1,5 +1,7 @@
 package com.utk.strings;
 
+import java.util.Arrays;
+
 public class StringUtility {
 
     private StringUtility() {
@@ -36,15 +38,29 @@ public class StringUtility {
     }
 
     public static String largestOddNumber(String num) {
-        String result="";
+        String result = "";
         int value;
-        for (int j=num.length()-1;j>=0;j--) {
-            value=num.charAt(j)-'0';
+        for (int j = num.length() - 1; j >= 0; j--) {
+            value = num.charAt(j) - '0';
             if (value % 2 != 0) {
-                result = num.substring(0,j+1);
+                result = num.substring(0, j + 1);
                 break;
             }
         }
         return result;
+    }
+
+    public static String longestCommonPrefix(String[] strings) {
+        Arrays.sort(strings);
+        String first = strings[0];
+        String last = strings[strings.length - 1];
+        StringBuilder ans = new StringBuilder();
+        for (int i = 0; i < Math.min(first.length(), last.length()); i++) {
+            if (first.charAt(i) != last.charAt(i)) {
+                return ans.toString();
+            }
+            ans.append(first.charAt(i));
+        }
+        return ans.toString();
     }
 }
