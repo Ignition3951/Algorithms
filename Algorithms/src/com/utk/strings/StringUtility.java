@@ -83,4 +83,23 @@ public class StringUtility {
         // Return true if all character mappings are consistent
         return true;
     }
+
+    public static boolean rotateString(String s, String goal) {
+        String compare = s + s;
+        int counter = 0;
+        if (s.length() != goal.length()) {
+            return false;
+        }
+        for (int i = 0; i < compare.length(); i++) {
+            while (counter < s.length() && (i + counter) < compare.length() && compare.charAt(i + counter) == goal.charAt(counter)) {
+                counter++;
+            }
+            if (counter >= s.length()) {
+                return true;
+            } else {
+                counter = 0;
+            }
+        }
+        return false;
+    }
 }

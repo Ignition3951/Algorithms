@@ -23,5 +23,9 @@ public class StringImpl {
         String s1 = "egg";
         String s2 = "add";
         LOGGER.log(Level.INFO, "Are the strings isoMorphic : {0}", StringUtility.isIsomorphic(s1, s2));
+
+        String source = "abcde";
+        String goal = "debac";
+        LOGGER.log(Level.INFO, "Are the strings just rotated versions of each other : {0}", StringUtility.rotateString(source, goal));
     }
 }
