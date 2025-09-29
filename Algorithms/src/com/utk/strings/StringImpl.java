@@ -17,7 +17,11 @@ public class StringImpl {
         String largestOddNumber = "7542351161";
         LOGGER.log(Level.INFO, "The largest odd number in the string is : {0}", StringUtility.largestOddNumber(largestOddNumber));
 
-        String[] longestPrefix = {"ab","a"};
+        String[] longestPrefix = {"ab", "a"};
         LOGGER.log(Level.INFO, "The longest string prefix is : {0}", StringUtility.longestCommonPrefix(longestPrefix));
+
+        String s1 = "egg";
+        String s2 = "add";
+        LOGGER.log(Level.INFO, "Are the strings isoMorphic : {0}", StringUtility.isIsomorphic(s1, s2));
     }
 }
