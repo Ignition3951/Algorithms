@@ -1,8 +1,6 @@
 package com.utk.strings;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class StringUtility {
 
@@ -67,22 +65,22 @@ public class StringUtility {
     }
 
     public static boolean isIsomorphic(String s, String t) {
-        if (s.length() != t.length()) {
-            return false;
-        }
-        Map<Character, Character> values = new HashMap<>();
-        char a;
-        char b;
-        boolean result = true;
-        for (int k = 0; k < s.length(); k++) {
-            a = s.charAt(k);
-            b = t.charAt(k);
-            if ((values.containsKey(a) && b != values.get(a)) || (!values.containsKey(a) && values.containsValue(b))) {
-                result = false;
-            }
+        int[] m1 = new int[256];
+        int[] m2 = new int[256];
 
-            values.put(a, b);
+        // Get length of the strings
+        int n = s.length();
+        // Loop through all characters in the strings
+        for (int i = 0; i < n; ++i) {
+            // Return false if mapping is inconsistent
+            if (m1[s.charAt(i)] != m2[t.charAt(i)]) return false;
+
+            // Update last seen index for both characters
+            m1[s.charAt(i)] = i + 1;
+            m2[t.charAt(i)] = i + 1;
         }
-        return result;
+
+        // Return true if all character mappings are consistent
+        return true;
     }
 }
