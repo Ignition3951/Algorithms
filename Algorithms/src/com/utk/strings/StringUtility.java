@@ -102,4 +102,17 @@ public class StringUtility {
         }
         return false;
     }
+
+    public static boolean isAnagram(String s, String t) {
+        String sortedStrings1 = sortString(s);
+        String sortedStrings2 = sortString(t);
+
+        return sortedStrings1.equals(sortedStrings2);
+    }
+
+    public static String sortString(String s) {
+        char[] sortedArray = s.toCharArray();
+        Arrays.sort(sortedArray);
+        return new String(sortedArray);
+    }
 }

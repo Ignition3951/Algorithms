@@ -27,5 +27,9 @@ public class StringImpl {
         String source = "abcde";
         String goal = "debac";
         LOGGER.log(Level.INFO, "Are the strings just rotated versions of each other : {0}", StringUtility.rotateString(source, goal));
+
+        String s3 = "anagram";
+        String s4 = "nagaram";
+        LOGGER.log(Level.INFO, "Are the strings anagram : {0}", StringUtility.isAnagram(s3, s4));
     }
 }
