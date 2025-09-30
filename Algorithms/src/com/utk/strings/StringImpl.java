@@ -35,6 +35,7 @@ public class StringImpl {
         String s5 = "Aabb";
         LOGGER.log(Level.INFO, "The sorted string according to frequency of characters is :{0}", StringUtility.frequencySort(s5));
 
-        LOGGER.log(Level.INFO,"The value of a A z Z is : {0} {1} {2} {3}",new Object[]{(int)('a'),(int)('A'),(int)('z'),(int)('Z')});
+        String s6 = "()(())((()()))";
+        LOGGER.log(Level.INFO, "The maximum depth of the parenthesis is : {0}", StringUtility.maxDepthOfParenthesis(s6));
     }
 }

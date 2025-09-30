@@ -144,4 +144,18 @@ public class StringUtility {
 
         return resultBuilder.toString();
     }
+
+    public static int maxDepthOfParenthesis(String s) {
+        int counter = 0;
+        int result = Integer.MIN_VALUE;
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                counter++;
+                result = Math.max(result, counter);
+            } else if (ch == ')') {
+                counter--;
+            }
+        }
+        return result;
+    }
 }
