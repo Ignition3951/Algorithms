@@ -31,5 +31,10 @@ public class StringImpl {
         String s3 = "anagram";
         String s4 = "nagaram";
         LOGGER.log(Level.INFO, "Are the strings anagram : {0}", StringUtility.isAnagram(s3, s4));
+
+        String s5 = "Aabb";
+        LOGGER.log(Level.INFO, "The sorted string according to frequency of characters is :{0}", StringUtility.frequencySort(s5));
+
+        LOGGER.log(Level.INFO,"The value of a A z Z is : {0} {1} {2} {3}",new Object[]{(int)('a'),(int)('A'),(int)('z'),(int)('Z')});
     }
 }

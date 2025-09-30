@@ -1,6 +1,6 @@
 package com.utk.strings;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class StringUtility {
 
@@ -114,5 +114,34 @@ public class StringUtility {
         char[] sortedArray = s.toCharArray();
         Arrays.sort(sortedArray);
         return new String(sortedArray);
+    }
+
+    public static String frequencySort(String s) {
+        HashMap<Character, Integer> frequencyMap = new HashMap<>();
+
+        //Create a frequency map of string
+        for (char ch : s.toCharArray()) {
+            frequencyMap.put(ch, frequencyMap.getOrDefault(ch, 0) + 1);
+        }
+
+        List<Map.Entry<Character, Integer>> sortedList = new ArrayList<>(frequencyMap.entrySet());
+
+        sortedList.sort((entry1, entry2) -> {
+            // Sort by frequency in descending order
+            int frequencyComparison = entry2.getValue().compareTo(entry1.getValue());
+            if (frequencyComparison != 0) {
+                return frequencyComparison;
+            }
+            // If frequencies are equal, sort by character in ascending order
+            return entry2.getKey().compareTo(entry1.getKey());
+        });
+
+        StringBuilder resultBuilder = new StringBuilder();
+
+        for (Map.Entry<Character, Integer> entry : sortedList) {
+            resultBuilder.append(String.valueOf(entry.getKey()).repeat(Math.max(0, entry.getValue())));
+        }
+
+        return resultBuilder.toString();
     }
 }
