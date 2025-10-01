@@ -37,5 +37,8 @@ public class StringImpl {
 
         String s6 = "()(())((()()))";
         LOGGER.log(Level.INFO, "The maximum depth of the parenthesis is : {0}", StringUtility.maxDepthOfParenthesis(s6));
+
+        String s7 = "III";
+        LOGGER.log(Level.INFO, "The conversion of roman numeral {0} to int is : {1}", new Object[]{s7, StringUtility.romanToInt(s7)});
     }
 }
