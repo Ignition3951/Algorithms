@@ -40,5 +40,8 @@ public class StringImpl {
 
         String s7 = "III";
         LOGGER.log(Level.INFO, "The conversion of roman numeral {0} to int is : {1}", new Object[]{s7, StringUtility.romanToInt(s7)});
+
+        String s8 = "+-12";
+        LOGGER.log(Level.INFO, "The string to integer conversion is : {0}", StringUtility.myAtoi(s8));
     }
 }
