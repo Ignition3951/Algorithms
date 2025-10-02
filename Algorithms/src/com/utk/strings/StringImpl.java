@@ -43,5 +43,9 @@ public class StringImpl {
 
         String s8 = "+-12";
         LOGGER.log(Level.INFO, "The string to integer conversion is : {0}", StringUtility.myAtoi(s8));
+
+        String s9 = "abcbaa";
+        int distinctCharacters = 3;
+        LOGGER.log(Level.INFO, "The number of distinct character substrings are : {0}", StringUtility.countSubstrings(s9, distinctCharacters));
     }
 }
