@@ -278,4 +278,28 @@ public class StringUtility {
         }
         return right - left - 1;
     }
+
+    public static int beautySum(String s) {
+        int n = s.length();
+        int sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            Map<Character, Integer> frequency = new HashMap<>();
+
+            for (int j = i; j < n; j++) {
+                frequency.put(s.charAt(j), frequency.getOrDefault(s.charAt(j), 0) + 1);
+
+                int max = Integer.MIN_VALUE;
+                int min = Integer.MAX_VALUE;
+
+                for (int value : frequency.values()) {
+                    max = Math.max(max, value);
+                    min = Math.min(min, value);
+                }
+
+                sum += (max - min);
+            }
+        }
+        return sum;
+    }
 }

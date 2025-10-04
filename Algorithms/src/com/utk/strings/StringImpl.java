@@ -50,5 +50,8 @@ public class StringImpl {
 
         String s10 = "babad";
         LOGGER.log(Level.INFO, "The longest palindromic sub string is : {0}", StringUtility.longestPalindrome(s10));
+
+        String s11 = "aabcbaa";
+        LOGGER.log(Level.INFO, "The sum of beauties of all sub strings is : {0}", StringUtility.beautySum(s11));
     }
 }
