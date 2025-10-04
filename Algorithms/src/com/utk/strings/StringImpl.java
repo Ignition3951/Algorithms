@@ -47,5 +47,8 @@ public class StringImpl {
         String s9 = "abcbaa";
         int distinctCharacters = 3;
         LOGGER.log(Level.INFO, "The number of distinct character substrings are : {0}", StringUtility.countSubstrings(s9, distinctCharacters));
+
+        String s10 = "babad";
+        LOGGER.log(Level.INFO, "The longest palindromic sub string is : {0}", StringUtility.longestPalindrome(s10));
     }
 }

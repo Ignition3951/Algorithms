@@ -248,4 +248,34 @@ public class StringUtility {
         }
         return res;
     }
+
+    public static String longestPalindrome(String s) {
+        int start = 0;
+        int end = 0;
+        int maxLength;
+
+        //Start from the center and expand till characters are same
+        for (int center = 0; center < s.length(); center++) {
+            int lengthOdd = expandFromCentre(s, center, center);
+            int lengthEven = expandFromCentre(s, center, center + 1);
+
+            maxLength = Math.max(lengthEven, lengthOdd);
+
+            //Calculate the starting and ending point of the sub string
+            if (maxLength > (end - start)) {
+                start = center - (maxLength - 1) / 2;
+                end = center + maxLength / 2;
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    public static int expandFromCentre(String s, int left, int right) {
+
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
 }
