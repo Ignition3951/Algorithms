@@ -20,5 +20,12 @@ public class LinkedListImpl {
         Node deleteNode= new Node(45);
         head.deleteNode(deleteNode);
         LOGGER.log(Level.INFO, "HEAD is : {0}", head.toString());
+
+        int[] middleTarget = {1,2,3,4,5,6};
+        Node middleNode=new Node();
+        middleNode=middleNode.convertArrayToLL(middleTarget);
+        middleNode=middleNode.middleNode(middleNode);
+        LOGGER.log(Level.INFO, "Middle of the Node is : {0}", middleNode.toString());
+
     }
 }

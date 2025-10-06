@@ -30,36 +30,47 @@ public class Node {
         return head;
     }
 
-    public Node insertAtHead(Node head,int x){
-        return new Node(x,head);
+    public Node insertAtHead(Node head, int x) {
+        return new Node(x, head);
     }
 
-    public int searchAnElement(Node head,int target){
-        while(head.next!=null){
-            if(head.data==target) return 1;
-            head=head.next;
+    public int searchAnElement(Node head, int target) {
+        while (head.next != null) {
+            if (head.data == target) return 1;
+            head = head.next;
         }
         return 0;
     }
 
-    public int lengthOfLinkedList(Node head){
-        int counter=1;
-        while(head.next!=null){
-            head=head.next;
+    public int lengthOfLinkedList(Node head) {
+        int counter = 1;
+        while (head.next != null) {
+            head = head.next;
             ++counter;
         }
         return counter;
     }
 
-    public void deleteNode(Node node){
-        while(node.next!=null){
-            if(node.next.data==node.data){
-                node.next=node.next.next;
-                node.next.next=null;
+    public void deleteNode(Node node) {
+        while (node.next != null) {
+            if (node.next.data == node.data) {
+                node.next = node.next.next;
+                node.next.next = null;
                 return;
             }
-            node=node.next;
+            node = node.next;
         }
+    }
+
+    public Node middleNode(Node head) {
+        int length = lengthOfLinkedList(head);
+        int middle = length / 2;
+        int counter = 1;
+        while (counter <= middle) {
+            ++counter;
+            head = head.next;
+        }
+        return head;
     }
 
     @Override
