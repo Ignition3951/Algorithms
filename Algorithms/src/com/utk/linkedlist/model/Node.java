@@ -63,14 +63,13 @@ public class Node {
     }
 
     public Node middleNode(Node head) {
-        int length = lengthOfLinkedList(head);
-        int middle = length / 2;
-        int counter = 1;
-        while (counter <= middle) {
-            ++counter;
-            head = head.next;
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return head;
+        return slow;
     }
 
     @Override
