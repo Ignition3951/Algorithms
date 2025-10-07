@@ -1,7 +1,5 @@
 package com.utk.linkedlist.model;
 
-import java.util.Stack;
-
 public class Node {
 
     private int data;
@@ -75,25 +73,21 @@ public class Node {
     }
 
     public Node reverseList(Node head) {
-        if(head==null){
+        if (head == null) {
             return null;
         }
-        if(head.next==null){
+        if (head.next == null) {
             return head;
         }
-        Stack<Integer> nodeValues = new Stack<>();
+        Node prev = null;
         Node temp = head;
-        while (temp.next != null) {
-            nodeValues.push(temp.data);
-            temp = temp.next;
+        while (temp != null) {
+            Node front = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp = front;
         }
-        nodeValues.push(temp.data);
-        temp = head;
-        while (!nodeValues.isEmpty()) {
-            temp.data = nodeValues.pop();
-            temp = temp.next;
-        }
-        return head;
+        return prev;
     }
 
     @Override
