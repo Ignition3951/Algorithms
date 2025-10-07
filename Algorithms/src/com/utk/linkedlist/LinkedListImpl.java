@@ -24,7 +24,7 @@ public class LinkedListImpl {
         int[] middleTarget = {1,2,3,4,5,6};
         Node middleNode=new Node();
         middleNode=middleNode.convertArrayToLL(middleTarget);
-//        middleNode=middleNode.middleNode(middleNode);
+        middleNode=middleNode.middleNode(middleNode);
         middleNode=middleNode.reverseList(middleNode);
         LOGGER.log(Level.INFO, "Middle of the Node is : {0}", middleNode.toString());
 

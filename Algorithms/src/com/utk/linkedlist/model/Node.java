@@ -73,21 +73,14 @@ public class Node {
     }
 
     public Node reverseList(Node head) {
-        if (head == null) {
-            return null;
-        }
-        if (head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
-        Node prev = null;
-        Node temp = head;
-        while (temp != null) {
-            Node front = temp.next;
-            temp.next = prev;
-            prev = temp;
-            temp = front;
-        }
-        return prev;
+        Node newHead = reverseList(head.next);
+        Node front = head.next;
+        front.next = head;
+        head.next = null;
+        return newHead;
     }
 
     @Override
