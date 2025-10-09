@@ -28,5 +28,9 @@ public class LinkedListImpl {
         middleNode=middleNode.reverseList(middleNode);
         LOGGER.log(Level.INFO, "Middle of the Node is : {0}", middleNode.toString());
 
+        int[] hasLoop = {1,2,3,4,5,6};
+        Node hasLoopNode=new Node();
+        middleNode=hasLoopNode.convertArrayToLL(hasLoop);
+
     }
 }
