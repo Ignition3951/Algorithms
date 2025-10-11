@@ -28,10 +28,12 @@ public class LinkedListImpl {
         middleNode = middleNode.reverseList(middleNode);
         LOGGER.log(Level.INFO, "Middle of the Node is : {0}", middleNode.toString());
 
-        int[] isPalidrome = {1, 2, 3, 2, 1,7};
+        int[] isPalidrome = {1, 2, 3, 4, 5,6};
         Node isPalidromeNode = new Node();
         isPalidromeNode = isPalidromeNode.convertArrayToLL(isPalidrome);
         LOGGER.log(Level.INFO, "Is the given LinkedList palindrome: {0}", isPalidromeNode.isPalindrome(isPalidromeNode));
+        isPalidromeNode = isPalidromeNode.oddEvenLinkedList(isPalidromeNode);
+        LOGGER.log(Level.INFO, "Odd even linked list is  : {0}", isPalidromeNode.toString());
 
     }
 }

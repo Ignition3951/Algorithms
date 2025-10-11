@@ -142,6 +142,37 @@ public class Node {
         return true;
     }
 
+    public Node oddEvenLinkedList(Node head) {
+        if (head == null || head.next == null || head.next.next == null) {
+            return head;
+        }
+        Node oddHead = head;
+        Node evenHead = head.next;
+        Node temp = head;
+        Node tempSecond=evenHead;
+        int counter=0;
+        while (head.next != null) {
+            ++counter;
+            head=head.next;
+            if(counter%2!=0){
+                if(evenHead.next==null){
+                    oddHead.next=tempSecond;
+                    break;
+                }
+                oddHead.next=evenHead.next;
+                oddHead=oddHead.next;
+            }else{
+                evenHead.next=oddHead.next;
+                evenHead=evenHead.next;
+                if(oddHead.next==null){
+                    oddHead.next=tempSecond;
+                    break;
+                }
+            }
+        }
+        return temp;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
