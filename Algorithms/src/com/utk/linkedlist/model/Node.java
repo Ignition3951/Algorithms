@@ -2,7 +2,7 @@ package com.utk.linkedlist.model;
 
 public class Node {
 
-    private int data;
+    private final int data;
     private Node next;
 
     public Node() {
@@ -116,6 +116,30 @@ public class Node {
             }
         }
         return null;
+    }
+
+    public boolean isPalindrome(Node head) {
+        if (head == null) return false;
+        if (head.next == null) return true;
+        Node slow = head;
+        Node fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node tail = reverseList(slow.next);
+        Node first = head;
+        Node second = tail;
+        while (second != null) {
+            if (first.data != second.data) {
+                reverseList(tail);
+                return false;
+            }
+            first = first.next;
+            second = second.next;
+        }
+        reverseList(tail);
+        return true;
     }
 
     @Override

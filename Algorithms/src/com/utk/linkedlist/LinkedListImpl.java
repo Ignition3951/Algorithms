@@ -17,20 +17,21 @@ public class LinkedListImpl {
         int searchItem = 8;
         LOGGER.log(Level.INFO, "Is the element present in the linked list : {0}", head.searchAnElement(head, searchItem));
         LOGGER.log(Level.INFO, "The length of the linked list is : {0}", head.lengthOfLinkedList(head));
-        Node deleteNode= new Node(45);
+        Node deleteNode = new Node(45);
         head.deleteNode(deleteNode);
         LOGGER.log(Level.INFO, "HEAD is : {0}", head.toString());
 
-        int[] middleTarget = {1,2,3,4,5,6};
-        Node middleNode=new Node();
-        middleNode=middleNode.convertArrayToLL(middleTarget);
-        middleNode=middleNode.middleNode(middleNode);
-        middleNode=middleNode.reverseList(middleNode);
+        int[] middleTarget = {1, 2, 3, 4, 5, 6};
+        Node middleNode = new Node();
+        middleNode = middleNode.convertArrayToLL(middleTarget);
+        middleNode = middleNode.middleNode(middleNode);
+        middleNode = middleNode.reverseList(middleNode);
         LOGGER.log(Level.INFO, "Middle of the Node is : {0}", middleNode.toString());
 
-        int[] hasLoop = {1,2,3,4,5,6};
-        Node hasLoopNode=new Node();
-        middleNode=hasLoopNode.convertArrayToLL(hasLoop);
+        int[] isPalidrome = {1, 2, 3, 2, 1,7};
+        Node isPalidromeNode = new Node();
+        isPalidromeNode = isPalidromeNode.convertArrayToLL(isPalidrome);
+        LOGGER.log(Level.INFO, "Is the given LinkedList palindrome: {0}", isPalidromeNode.isPalindrome(isPalidromeNode));
 
     }
 }
