@@ -1,8 +1,5 @@
 package com.utk.linkedlist.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Node {
 
     private final int data;
@@ -86,6 +83,7 @@ public class Node {
         return newHead;
     }
 
+    @SuppressWarnings("unused")
     public boolean hasCycle(Node head) {
         if (head == null || head.next == null) {
             return false;
@@ -100,6 +98,7 @@ public class Node {
         return false;
     }
 
+    @SuppressWarnings("unused")
     public Node detectCycle(Node head) {
         if (head == null || head.next == null) {
             return null;
@@ -167,28 +166,20 @@ public class Node {
         if (head == null || head.next == null) {
             return null;
         }
-        Map<Integer, Node> values = new HashMap<>();
-        int counter = 0;
-        Node temp = head;
-        while (head.next != null) {
-            values.put(counter++, head);
-            head = head.next;
+        Node slow = head;
+        Node fast = head;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
         }
-        values.put(counter++, head);
-        int nodeIndex = counter - n;
-        Node nodeToBeRemoved = values.get(nodeIndex);
-        if (nodeToBeRemoved.next != null && nodeToBeRemoved != temp) {
-            Node prev = values.get(nodeIndex - 1);
-            prev.next = values.get(nodeIndex + 1);
-        } else if (nodeToBeRemoved == temp) {
-            temp=temp.next;
-        }else {
-            Node prev = values.get(nodeIndex - 1);
-            prev.next = nodeToBeRemoved.next;
+        if (fast == null) {
+            return head.next;
         }
-
-
-        return temp;
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
+        return head;
     }
 
     @Override
