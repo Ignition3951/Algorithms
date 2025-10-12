@@ -148,29 +148,16 @@ public class Node {
         }
         Node oddHead = head;
         Node evenHead = head.next;
-        Node temp = head;
         Node tempSecond=evenHead;
-        int counter=0;
-        while (head.next != null) {
-            ++counter;
-            head=head.next;
-            if(counter%2!=0){
-                if(evenHead.next==null){
-                    oddHead.next=tempSecond;
-                    break;
-                }
-                oddHead.next=evenHead.next;
-                oddHead=oddHead.next;
-            }else{
-                evenHead.next=oddHead.next;
-                evenHead=evenHead.next;
-                if(oddHead.next==null){
-                    oddHead.next=tempSecond;
-                    break;
-                }
-            }
+        while (evenHead != null && evenHead.next!=null) {
+            oddHead.next=oddHead.next.next;
+            evenHead.next=evenHead.next.next;
+
+            oddHead=oddHead.next;
+            evenHead=evenHead.next;
         }
-        return temp;
+        oddHead.next=tempSecond;
+        return head;
     }
 
     @Override
