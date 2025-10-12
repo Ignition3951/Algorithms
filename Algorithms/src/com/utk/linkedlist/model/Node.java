@@ -1,5 +1,8 @@
 package com.utk.linkedlist.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Node {
 
     private final int data;
@@ -148,16 +151,44 @@ public class Node {
         }
         Node oddHead = head;
         Node evenHead = head.next;
-        Node tempSecond=evenHead;
-        while (evenHead != null && evenHead.next!=null) {
-            oddHead.next=oddHead.next.next;
-            evenHead.next=evenHead.next.next;
+        Node tempSecond = evenHead;
+        while (evenHead != null && evenHead.next != null) {
+            oddHead.next = oddHead.next.next;
+            evenHead.next = evenHead.next.next;
 
-            oddHead=oddHead.next;
-            evenHead=evenHead.next;
+            oddHead = oddHead.next;
+            evenHead = evenHead.next;
         }
-        oddHead.next=tempSecond;
+        oddHead.next = tempSecond;
         return head;
+    }
+
+    public Node removeNthFromEnd(Node head, int n) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        Map<Integer, Node> values = new HashMap<>();
+        int counter = 0;
+        Node temp = head;
+        while (head.next != null) {
+            values.put(counter++, head);
+            head = head.next;
+        }
+        values.put(counter++, head);
+        int nodeIndex = counter - n;
+        Node nodeToBeRemoved = values.get(nodeIndex);
+        if (nodeToBeRemoved.next != null && nodeToBeRemoved != temp) {
+            Node prev = values.get(nodeIndex - 1);
+            prev.next = values.get(nodeIndex + 1);
+        } else if (nodeToBeRemoved == temp) {
+            temp=temp.next;
+        }else {
+            Node prev = values.get(nodeIndex - 1);
+            prev.next = nodeToBeRemoved.next;
+        }
+
+
+        return temp;
     }
 
     @Override
