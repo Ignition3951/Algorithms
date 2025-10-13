@@ -37,17 +37,23 @@ public class LinkedListImpl {
         isPalidromeNode = isPalidromeNode.removeNthFromEnd(isPalidromeNode, 1);
         LOGGER.log(Level.INFO, "The modified node after removal is : {0}", isPalidromeNode.toString());
 
-        int[] deleteMiddle = {2,1};
+        int[] deleteMiddle = {2, 1};
         Node deleteMiddleNode = new Node();
         deleteMiddleNode = deleteMiddleNode.convertArrayToLL(deleteMiddle);
         deleteMiddleNode = deleteNode.deleteMiddleNode(deleteMiddleNode);
         LOGGER.log(Level.INFO, "The Linked List after deleting the middle node is : {0}", deleteMiddleNode.toString());
 
-        int[] sortLinkedList = {4,2,1,3};
+        int[] sortLinkedList = {4, 2, 1, 3};
         Node sortLinkedListNode = new Node();
         sortLinkedListNode = sortLinkedListNode.convertArrayToLL(sortLinkedList);
         sortLinkedListNode = sortLinkedListNode.sortLinkedList(sortLinkedListNode);
         LOGGER.log(Level.INFO, "The Sorted Linked List is : {0}", sortLinkedListNode.toString());
+
+        int[] sortLinkedList0And1 = {2, 2, 1, 2};
+        Node sortLinkedList0And1Node = new Node();
+        sortLinkedList0And1Node = sortLinkedList0And1Node.convertArrayToLL(sortLinkedList0And1);
+        sortLinkedList0And1Node = sortLinkedList0And1Node.sortListOf0And1(sortLinkedList0And1Node);
+        LOGGER.log(Level.INFO, "The Sorted Linked List of 0,1 and 2 is : {0}", sortLinkedList0And1Node.toString());
 
     }
 }

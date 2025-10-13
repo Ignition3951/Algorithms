@@ -197,47 +197,74 @@ public class Node {
         return head;
     }
 
-    public Node sortLinkedList(Node head){
+    public Node sortLinkedList(Node head) {
         if (head == null || head.next == null) {
             return head;
         }
-        Node slow=head;
-        Node fast=head.next;
+        Node slow = head;
+        Node fast = head.next;
         Node leftHead;
         Node rightHead;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        rightHead=slow.next;
-        slow.next=null;
-        leftHead=sortLinkedList(head);
-        rightHead=sortLinkedList(rightHead);
+        rightHead = slow.next;
+        slow.next = null;
+        leftHead = sortLinkedList(head);
+        rightHead = sortLinkedList(rightHead);
 
-        return mergeLinkedList(leftHead,rightHead);
+        return mergeLinkedList(leftHead, rightHead);
     }
 
-    public Node mergeLinkedList(Node leftHead,Node rightHead){
-        Node dummyHead=new Node(-1);
-        Node temp=dummyHead;
+    public Node mergeLinkedList(Node leftHead, Node rightHead) {
+        Node dummyHead = new Node(-1);
+        Node temp = dummyHead;
 
-        while(leftHead!=null && rightHead!=null){
-            if(leftHead.data<=rightHead.data){
-                dummyHead.next=leftHead;
-                dummyHead=leftHead;
-                leftHead=leftHead.next;
-            }else{
-                dummyHead.next=rightHead;
-                dummyHead=rightHead;
-                rightHead=rightHead.next;
+        while (leftHead != null && rightHead != null) {
+            if (leftHead.data <= rightHead.data) {
+                dummyHead.next = leftHead;
+                dummyHead = leftHead;
+                leftHead = leftHead.next;
+            } else {
+                dummyHead.next = rightHead;
+                dummyHead = rightHead;
+                rightHead = rightHead.next;
             }
         }
 
-        if(leftHead!=null) dummyHead.next=leftHead;
-        else dummyHead.next=rightHead;
+        if (leftHead != null) dummyHead.next = leftHead;
+        else dummyHead.next = rightHead;
 
         return temp.next;
     }
+
+    public Node sortListOf0And1(Node head) {
+        Node zero = new Node(0);
+        Node tempZero = zero;
+        Node one = new Node(1);
+        Node tempOne = one;
+        Node two = new Node(2);
+        Node tempTwo = two;
+        while (head != null) {//1 0 2 0 1
+            if (head.data == 0) {
+                zero.next = head;
+                zero = head;
+            } else if (head.data == 1) {
+                one.next = head;
+                one = head;
+            } else {
+                two.next = head;
+                two = head;
+            }
+            head = head.next;
+        }
+        zero.next = ((tempOne.next == null) ? tempTwo.next : tempOne.next);
+        one.next = tempTwo.next;
+        two.next = null;
+        return tempZero.next;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
