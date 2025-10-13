@@ -37,5 +37,11 @@ public class LinkedListImpl {
         isPalidromeNode = isPalidromeNode.removeNthFromEnd(isPalidromeNode, 1);
         LOGGER.log(Level.INFO, "The modified node after removal is : {0}", isPalidromeNode.toString());
 
+        int[] deleteMiddle = {2,1};
+        Node deleteMiddleNode = new Node();
+        deleteMiddleNode = deleteMiddleNode.convertArrayToLL(deleteMiddle);
+        deleteMiddleNode = deleteNode.deleteMiddleNode(deleteMiddleNode);
+        LOGGER.log(Level.INFO, "The Linked List after deleting the middle node is : {0}", deleteMiddleNode.toString());
+
     }
 }
