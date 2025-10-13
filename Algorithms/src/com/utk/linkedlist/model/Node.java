@@ -197,6 +197,47 @@ public class Node {
         return head;
     }
 
+    public Node sortLinkedList(Node head){
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node slow=head;
+        Node fast=head.next;
+        Node leftHead;
+        Node rightHead;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        rightHead=slow.next;
+        slow.next=null;
+        leftHead=sortLinkedList(head);
+        rightHead=sortLinkedList(rightHead);
+
+        return mergeLinkedList(leftHead,rightHead);
+    }
+
+    public Node mergeLinkedList(Node leftHead,Node rightHead){
+        Node dummyHead=new Node(-1);
+        Node temp=dummyHead;
+
+        while(leftHead!=null && rightHead!=null){
+            if(leftHead.data<=rightHead.data){
+                dummyHead.next=leftHead;
+                dummyHead=leftHead;
+                leftHead=leftHead.next;
+            }else{
+                dummyHead.next=rightHead;
+                dummyHead=rightHead;
+                rightHead=rightHead.next;
+            }
+        }
+
+        if(leftHead!=null) dummyHead.next=leftHead;
+        else dummyHead.next=rightHead;
+
+        return temp.next;
+    }
     @Override
     public String toString() {
         return "Node{" +

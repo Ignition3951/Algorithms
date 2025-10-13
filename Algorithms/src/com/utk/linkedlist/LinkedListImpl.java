@@ -43,5 +43,11 @@ public class LinkedListImpl {
         deleteMiddleNode = deleteNode.deleteMiddleNode(deleteMiddleNode);
         LOGGER.log(Level.INFO, "The Linked List after deleting the middle node is : {0}", deleteMiddleNode.toString());
 
+        int[] sortLinkedList = {4,2,1,3};
+        Node sortLinkedListNode = new Node();
+        sortLinkedListNode = sortLinkedListNode.convertArrayToLL(sortLinkedList);
+        sortLinkedListNode = sortLinkedListNode.sortLinkedList(sortLinkedListNode);
+        LOGGER.log(Level.INFO, "The Sorted Linked List is : {0}", sortLinkedListNode.toString());
+
     }
 }
