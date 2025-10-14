@@ -125,15 +125,39 @@ public class DoubleNode {
         DoubleNode newHead = head;
         while (counter >= 0) {
             --counter;
-            swapPositions(head,head.next, head.back);
-            head=head.next;
+            swapPositions(head, head.next, head.back);
+            head = head.next;
         }
         return newHead;
     }
 
-    public void swapPositions(DoubleNode head,DoubleNode front, DoubleNode back) {
-        head.next=back;
-        head.back=front;
+    public void swapPositions(DoubleNode head, DoubleNode front, DoubleNode back) {
+        head.next = back;
+        head.back = front;
+    }
+
+    public DoubleNode deleteAllOccurrence(DoubleNode head, int target) {
+        DoubleNode temp = head;
+        while (head != null) {
+            if (head.data == target) {
+                DoubleNode prevNode = head.back;
+                DoubleNode nextNode = head.next;
+                if (prevNode == null && nextNode == null) {
+                    return null;
+                }
+                if(prevNode==null){
+                    temp=temp.next;
+                    temp.back=null;
+                }else if(nextNode==null){
+                    prevNode.next=null;
+                }else{
+                    prevNode.next=nextNode;
+                    nextNode.back=prevNode;
+                }
+            }
+            head = head.next;
+        }
+        return temp;
     }
 
     @Override

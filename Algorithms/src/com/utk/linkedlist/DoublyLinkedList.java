@@ -16,8 +16,15 @@ public class DoublyLinkedList {
         head = head.deleteHead(head);
         head = head.deleteTail(head);
         head.deleteNode(head.getNext().getNext());
-        head=head.insertBeforeHead(head,45);
-        head=head.reverseDLL(head);
+        head = head.insertBeforeHead(head, 45);
+        head = head.reverseDLL(head);
         LOGGER.log(Level.INFO, "{0}", head.toString());
+
+        int[] deleteAllOccurrence = {7,7,7,7};
+        int deleteElement = 7;
+        DoubleNode deleteAllOccNode = new DoubleNode().convertToDoublyLinkedList(deleteAllOccurrence);
+        deleteAllOccNode = deleteAllOccNode.deleteAllOccurrence(deleteAllOccNode, deleteElement);
+        LOGGER.log(Level.INFO, "Doubly linked list after deleting all the elements is :{0}", deleteAllOccNode.toString());
+
     }
 }
