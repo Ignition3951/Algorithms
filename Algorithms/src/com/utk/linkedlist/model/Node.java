@@ -265,6 +265,46 @@ public class Node {
         return tempZero.next;
     }
 
+    @SuppressWarnings({"unused", "ReassignedVariable"})
+    public Node getIntersectionNode(Node headA,Node headB){
+        int counterA=0;
+        int counterB=0;
+        Node slow;
+        Node fast;
+        Node tempA=headA;
+        Node tempB=headB;
+        while(tempA!=null){
+            ++counterA;
+            tempA=tempA.next;
+        }
+        while(tempB!=null){
+            ++counterB;
+            tempB=tempB.next;
+        }
+        int diff;
+        if(counterA>counterB){
+            fast=headA;
+            slow=headB;
+            diff=counterA-counterB;
+        }else{
+            fast=headB;
+            slow=headA;
+            diff=counterB-counterA;
+        }
+        while(diff>0 && fast!=null){
+            --diff;
+            fast=fast.next;
+        }
+        while(slow!=null && fast!=null){
+            if(slow==fast){
+                return slow;
+            }
+            slow=slow.next;
+            fast=fast.next;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
