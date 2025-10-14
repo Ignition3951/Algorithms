@@ -328,6 +328,43 @@ public class Node {
         return resultNode;
     }
 
+    public Node addTwoNumbers(Node l1, Node l2) {
+        Node result = new Node(-1);
+        Node temp = result;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int value;
+            if (l1 == null) {
+                value = l2.data + carry;
+            } else if (l2 == null) {
+                value = l1.data + carry;
+            } else {
+                value = l1.data + l2.data + carry;
+            }
+
+            if (value > 9) {
+                Node nextNode = new Node(value % 10);
+                result.next = nextNode;
+                result = nextNode;
+                carry = 1;
+            } else {
+                Node nextNode = new Node(value);
+                result.next = nextNode;
+                result = nextNode;
+                carry = 0;
+            }
+            l1 = ((l1 == null) ? l1 : l1.next);
+            l2 = ((l2 == null) ? l2 : l2.next);
+        }
+        Node answer = reverseList(temp.next);
+        if (carry == 1) {
+            Node newHeadNode = new Node(1);
+            newHeadNode.next = answer;
+            return reverseList(newHeadNode);
+        }
+        return reverseList(answer);
+    }
+
     @Override
     public String toString() {
         return "Node{" +

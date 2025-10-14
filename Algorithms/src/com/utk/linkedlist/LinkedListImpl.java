@@ -61,5 +61,15 @@ public class LinkedListImpl {
         addValueNode = addValueNode.addOne(addValueNode);
         LOGGER.log(Level.INFO, "The Linked List after adding 1 is : {0}", addValueNode.toString());
 
+        int[] list1 = {9,9,9,9,9,9,9};
+        int[] list2 = {9,9,9,9};
+        Node list1Node = new Node();
+        Node list2Node = new Node();
+        Node addedNode = new Node();
+        list1Node = list1Node.convertArrayToLL(list1);
+        list2Node = list2Node.convertArrayToLL(list2);
+        addedNode = addedNode.addTwoNumbers(list1Node, list2Node);
+        LOGGER.log(Level.INFO, "The added linked list is : {0}", addedNode.toString());
+
     }
 }
