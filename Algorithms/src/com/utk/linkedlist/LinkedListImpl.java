@@ -55,5 +55,11 @@ public class LinkedListImpl {
         sortLinkedList0And1Node = sortLinkedList0And1Node.sortListOf0And1(sortLinkedList0And1Node);
         LOGGER.log(Level.INFO, "The Sorted Linked List of 0,1 and 2 is : {0}", sortLinkedList0And1Node.toString());
 
+        int[] addValue = {9};
+        Node addValueNode = new Node();
+        addValueNode = addValueNode.convertArrayToLL(addValue);
+        addValueNode = addValueNode.addOne(addValueNode);
+        LOGGER.log(Level.INFO, "The Linked List after adding 1 is : {0}", addValueNode.toString());
+
     }
 }

@@ -2,7 +2,7 @@ package com.utk.linkedlist.model;
 
 public class Node {
 
-    private final int data;
+    private int data;
     private Node next;
 
     public Node() {
@@ -266,43 +266,66 @@ public class Node {
     }
 
     @SuppressWarnings({"unused", "ReassignedVariable"})
-    public Node getIntersectionNode(Node headA,Node headB){
-        int counterA=0;
-        int counterB=0;
+    public Node getIntersectionNode(Node headA, Node headB) {
+        int counterA = 0;
+        int counterB = 0;
         Node slow;
         Node fast;
-        Node tempA=headA;
-        Node tempB=headB;
-        while(tempA!=null){
+        Node tempA = headA;
+        Node tempB = headB;
+        while (tempA != null) {
             ++counterA;
-            tempA=tempA.next;
+            tempA = tempA.next;
         }
-        while(tempB!=null){
+        while (tempB != null) {
             ++counterB;
-            tempB=tempB.next;
+            tempB = tempB.next;
         }
         int diff;
-        if(counterA>counterB){
-            fast=headA;
-            slow=headB;
-            diff=counterA-counterB;
-        }else{
-            fast=headB;
-            slow=headA;
-            diff=counterB-counterA;
+        if (counterA > counterB) {
+            fast = headA;
+            slow = headB;
+            diff = counterA - counterB;
+        } else {
+            fast = headB;
+            slow = headA;
+            diff = counterB - counterA;
         }
-        while(diff>0 && fast!=null){
+        while (diff > 0 && fast != null) {
             --diff;
-            fast=fast.next;
+            fast = fast.next;
         }
-        while(slow!=null && fast!=null){
-            if(slow==fast){
+        while (slow != null && fast != null) {
+            if (slow == fast) {
                 return slow;
             }
-            slow=slow.next;
-            fast=fast.next;
+            slow = slow.next;
+            fast = fast.next;
         }
         return null;
+    }
+
+    public Node addOne(Node head) {
+        Node tail = reverseList(head);
+        Node temp = tail;
+        int carry = 1;
+        while (tail != null) {
+            if (tail.data + carry > 9) {
+                tail.data = 0;
+            } else {
+                tail.data = tail.data + carry;
+                carry = 0;
+                break;
+            }
+            tail = tail.next;
+        }
+        Node resultNode = reverseList(temp);
+        if (carry == 1) {
+            Node newHeadNode = new Node(1);
+            newHeadNode.next = resultNode;
+            return newHeadNode;
+        }
+        return resultNode;
     }
 
     @Override
