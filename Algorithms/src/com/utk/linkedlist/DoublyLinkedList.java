@@ -20,11 +20,16 @@ public class DoublyLinkedList {
         head = head.reverseDLL(head);
         LOGGER.log(Level.INFO, "{0}", head.toString());
 
-        int[] deleteAllOccurrence = {7,7,7,7};
+        int[] deleteAllOccurrence = {7, 7, 7, 1};
         int deleteElement = 7;
         DoubleNode deleteAllOccNode = new DoubleNode().convertToDoublyLinkedList(deleteAllOccurrence);
         deleteAllOccNode = deleteAllOccNode.deleteAllOccurrence(deleteAllOccNode, deleteElement);
         LOGGER.log(Level.INFO, "Doubly linked list after deleting all the elements is :{0}", deleteAllOccNode.toString());
+
+        int[] findPairsOfSum = {2,3,5,9};
+        int targetSum = 12;
+        DoubleNode pairsOfSum = new DoubleNode().convertToDoublyLinkedList(findPairsOfSum);
+        LOGGER.log(Level.INFO, "The pairs are :{0}", pairsOfSum.findPairsWithGivenSum(pairsOfSum, targetSum));
 
     }
 }

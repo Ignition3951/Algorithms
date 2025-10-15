@@ -1,5 +1,8 @@
 package com.utk.linkedlist.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DoubleNode {
 
     int data;
@@ -145,19 +148,45 @@ public class DoubleNode {
                 if (prevNode == null && nextNode == null) {
                     return null;
                 }
-                if(prevNode==null){
-                    temp=temp.next;
-                    temp.back=null;
-                }else if(nextNode==null){
-                    prevNode.next=null;
-                }else{
-                    prevNode.next=nextNode;
-                    nextNode.back=prevNode;
+                if (prevNode == null) {
+                    temp = temp.next;
+                    temp.back = null;
+                } else if (nextNode == null) {
+                    prevNode.next = null;
+                } else {
+                    prevNode.next = nextNode;
+                    nextNode.back = prevNode;
                 }
             }
             head = head.next;
         }
         return temp;
+    }
+
+    public List<List<Integer>> findPairsWithGivenSum(DoubleNode head, int target) {
+        DoubleNode low = head;
+        DoubleNode high = head.next;
+        int value = 0;
+        List<List<Integer>> results = new ArrayList<>();
+        while (high.next != null) {
+            high = high.next;
+        }
+        while (low.data <= high.data) {
+            List<Integer> result = new ArrayList<>();
+            value = low.data + high.data;
+            if (value == target) {
+                result.add(low.data);
+                result.add(high.data);
+                results.add(result);
+                low = low.next;
+            } else if (value < target) {
+                low = low.next;
+            } else {
+                high = high.back;
+            }
+        }
+
+        return results;
     }
 
     @Override
