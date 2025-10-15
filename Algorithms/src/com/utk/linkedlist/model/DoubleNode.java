@@ -189,6 +189,21 @@ public class DoubleNode {
         return results;
     }
 
+    public DoubleNode removeDuplicates(DoubleNode head){
+        DoubleNode temp=head.next;
+        DoubleNode result=head;
+        while(temp!=null){
+            while(temp.data==head.data){
+                temp=temp.next;
+            }
+            head.next=temp;
+            temp.back=head;
+            head=head.next;
+            temp=head.next;
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         return "DoubleNode{" +

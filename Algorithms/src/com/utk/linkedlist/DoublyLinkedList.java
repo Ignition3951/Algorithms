@@ -26,10 +26,14 @@ public class DoublyLinkedList {
         deleteAllOccNode = deleteAllOccNode.deleteAllOccurrence(deleteAllOccNode, deleteElement);
         LOGGER.log(Level.INFO, "Doubly linked list after deleting all the elements is :{0}", deleteAllOccNode.toString());
 
-        int[] findPairsOfSum = {2,3,5,9};
+        int[] findPairsOfSum = {2, 3, 5, 9};
         int targetSum = 12;
         DoubleNode pairsOfSum = new DoubleNode().convertToDoublyLinkedList(findPairsOfSum);
         LOGGER.log(Level.INFO, "The pairs are :{0}", pairsOfSum.findPairsWithGivenSum(pairsOfSum, targetSum));
+
+        int[] removeDuplicates = {1, 2,3};
+        DoubleNode removeDuplicatesNode = new DoubleNode().convertToDoublyLinkedList(removeDuplicates);
+        LOGGER.log(Level.INFO, "The Linked List after removing duplicates is :{0}", removeDuplicatesNode.removeDuplicates(removeDuplicatesNode));
 
     }
 }
