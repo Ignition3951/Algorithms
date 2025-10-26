@@ -365,6 +365,48 @@ public class Node {
         return reverseList(answer);
     }
 
+    public Node reverseKGroup(Node head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node prevNode = null;
+        Node nextNode;
+        Node temp = head;
+        Node tail;
+        Node kthNode;
+        while (temp != null) {
+            kthNode = findKthNode(temp, k);
+            if (kthNode == null) {
+                prevNode.next=temp;
+                break;
+            }
+            nextNode = kthNode.next;
+            kthNode.next = null;
+            tail = reverseList(temp);
+            if (temp == head) {
+                head = kthNode;
+            }
+            if (prevNode == null) {
+                prevNode = temp;
+            } else {
+                prevNode.next = tail;
+                prevNode = temp;
+            }
+            temp = nextNode;
+        }
+        return head;
+    }
+
+    public Node findKthNode(Node head, int k) {
+        Node temp = head;
+        int counter = k;
+        while (temp != null && counter > 1) {
+            counter--;
+            temp = temp.next;
+        }
+        return temp;
+    }
+
     @Override
     public String toString() {
         return "Node{" +
