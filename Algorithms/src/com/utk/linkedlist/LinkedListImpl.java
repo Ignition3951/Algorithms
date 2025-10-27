@@ -77,5 +77,11 @@ public class LinkedListImpl {
         reverseKGroupNode = reverseKGroupNode.reverseKGroup(reverseKGroupNode, reverseGroup);
         LOGGER.log(Level.INFO, "The reversed linked list in groups is : {0}", reverseKGroupNode.toString());
 
+        int[] rotateRight = {1,2};
+        Node rotateRightNode = new Node().convertArrayToLL(rotateRight);
+        int rotateValue = 1;
+        rotateRightNode = rotateRightNode.rotateRight(rotateRightNode, rotateValue);
+        LOGGER.log(Level.INFO, "The rotated linked list is : {0}", rotateRightNode.toString());
+
     }
 }

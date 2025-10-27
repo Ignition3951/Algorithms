@@ -377,7 +377,7 @@ public class Node {
         while (temp != null) {
             kthNode = findKthNode(temp, k);
             if (kthNode == null) {
-                prevNode.next=temp;
+                prevNode.next = temp;
                 break;
             }
             nextNode = kthNode.next;
@@ -405,6 +405,35 @@ public class Node {
             temp = temp.next;
         }
         return temp;
+    }
+
+    public Node rotateRight(Node head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node temp;
+        temp = head;
+        Node result;
+        int length = lengthOfLinkedList(head);
+        k = k % length;
+        if (k == 0) {
+            return head;
+        }
+        Node slow = head;
+        Node fast = head;
+        int counter = 0;
+        while (counter != k) {
+            counter++;
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        result = slow.next;
+        slow.next = null;
+        fast.next = temp;
+        return result;
     }
 
     @Override
