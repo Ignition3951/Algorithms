@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static java.util.logging.Level.INFO;
+
 public class Utility {
 
     private static final Logger LOGGER = Logger.getLogger(Utility.class.getName());
@@ -13,7 +15,7 @@ public class Utility {
     }
 
     public static int findFirstOrSecondLargestElement(int[] arr, int n) {
-        LOGGER.log(Level.INFO, "Inside findLargestElement method to find {0} largest element in the array", n);
+        LOGGER.log(INFO, "Inside findLargestElement method to find {0} largest element in the array", n);
         int largest = Integer.MIN_VALUE;
         int secondLargest = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length - 1; i++) {//8, 8, 7, 6, 5
@@ -42,7 +44,7 @@ public class Utility {
                 break;
             }
         }
-        LOGGER.log(Level.INFO, "The value of counter is {0}", counter);
+        LOGGER.log(INFO, "The value of counter is {0}", counter);
         return (counter == arr.length - 1);
     }
 
@@ -53,7 +55,7 @@ public class Utility {
                 nums[++uniqueIndex] = nums[i];
             }
         }
-        LOGGER.log(Level.INFO, "The unique array is: {0}", Arrays.toString(nums));
+        LOGGER.log(INFO, "The unique array is: {0}", Arrays.toString(nums));
         return uniqueIndex + 1;
     }
 
@@ -69,7 +71,7 @@ public class Utility {
                 rotatedArray[nums.length - (d - i)] = nums[i];
             }
         }
-        LOGGER.log(Level.INFO, "Array after rotation to the left : {0}", Arrays.toString(rotatedArray));
+        LOGGER.log(INFO, "Array after rotation to the left : {0}", Arrays.toString(rotatedArray));
     }
 
     public static void moveZeroesToLast(int[] nums) {
@@ -82,7 +84,7 @@ public class Utility {
         while (j < nums.length) {
             nums[j++] = 0;
         }
-        LOGGER.log(Level.INFO, "Array after moving zeroes to the last: {0}", Arrays.toString(nums));
+        LOGGER.log(INFO, "Array after moving zeroes to the last: {0}", Arrays.toString(nums));
     }
 
     public static int[] unionOfSortedArrays(int[] arr1, int[] arr2) {
@@ -293,7 +295,7 @@ public class Utility {
                 sum = 0;
             }
         }
-        LOGGER.log(Level.INFO, "The index of the largest sub array is from {0} to {1}", new Object[]{start, end});
+        LOGGER.log(INFO, "The index of the largest sub array is from {0} to {1}", new Object[]{start, end});
         return maximum;
     }
 
@@ -384,7 +386,7 @@ public class Utility {
         for (int num : nums) {
             numset.add(num);
         }
-        LOGGER.log(Level.INFO, "The hashset is : {0}", numset);
+        LOGGER.log(INFO, "The hashset is : {0}", numset);
         for (int num : numset) {
             if (numset.contains(num - 1)) {
                 continue;
@@ -401,7 +403,7 @@ public class Utility {
     public static void setZeroes(int[][] matrix) {
         int[] rows = new int[matrix.length];
         int[] columns = new int[matrix[0].length];
-        LOGGER.log(Level.INFO, "Rows : {0} Columns : {1}", new Object[]{matrix.length, matrix[0].length});
+        LOGGER.log(INFO, "Rows : {0} Columns : {1}", new Object[]{matrix.length, matrix[0].length});
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (matrix[i][j] == 0) {
@@ -410,7 +412,7 @@ public class Utility {
                 }
             }
         }
-        LOGGER.log(Level.INFO, "The rows matrix is : {0} The column matrix is : {1}", new Object[]{Arrays.toString(rows), Arrays.toString(columns)});
+        LOGGER.log(INFO, "The rows matrix is : {0} The column matrix is : {1}", new Object[]{Arrays.toString(rows), Arrays.toString(columns)});
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (rows[i] == -1) {
@@ -513,7 +515,7 @@ public class Utility {
             }
             outerList.add(innerList);
         }
-        LOGGER.log(Level.INFO, "The returned triangle is : {0}", outerList.toString());
+        LOGGER.log(INFO, "The returned triangle is : {0}", outerList.toString());
         return outerList;
     }
 
@@ -656,7 +658,7 @@ public class Utility {
         int end = intervals[0][1];
         outerList[0][0] = intervals[0][0];
         outerList[0][1] = intervals[0][1];
-        LOGGER.log(Level.INFO, "LOG VAlUE : {0}", Arrays.deepToString(intervals));
+        LOGGER.log(INFO, "LOG VAlUE : {0}", Arrays.deepToString(intervals));
         for (int i = 1; i < intervals.length; i++) {
             startingIndex = intervals[i][0];
             endingIndex = intervals[i][1];
@@ -712,7 +714,7 @@ public class Utility {
         while (pointer2 >= 0) {
             nums1[counter--] = nums2[pointer2--];
         }
-        LOGGER.log(Level.INFO, "The merge sorted in place array is : {0}", Arrays.toString(nums1));
+        LOGGER.log(INFO, "The merge sorted in place array is : {0}", Arrays.toString(nums1));
     }
 
     public static int[] findMissingRepeatingNumbers(int[] nums) {
@@ -754,12 +756,12 @@ public class Utility {
         int low = 0;
         int high = nums.length - 1;
         count += mergeSort(nums, low, high);
-        LOGGER.log(Level.INFO, "The merge sorted array is : {0}", Arrays.toString(nums));
+        LOGGER.log(INFO, "The merge sorted array is : {0}", Arrays.toString(nums));
         return count;
     }
 
     public static int mergeSort(int[] nums, int low, int high) {
-        LOGGER.log(Level.INFO, "MergeSort low: {0} high: {1}", new Object[]{low, high});
+        LOGGER.log(INFO, "MergeSort low: {0} high: {1}", new Object[]{low, high});
         int count = 0;
         if (low >= high) return count;
         int mid = (low + high) / 2;
@@ -798,7 +800,7 @@ public class Utility {
         while (j < right) {
             nums[k++] = rightArray[j++];
         }
-        LOGGER.log(Level.INFO, "Return Count for mergeArray : {0}", count);
+        LOGGER.log(INFO, "Return Count for mergeArray : {0}", count);
         return count;
     }
 
@@ -829,5 +831,26 @@ public class Utility {
             maxProduct=Math.max(maxProduct,Math.max(prefix,suffix));
         }
         return maxProduct;
+    }
+
+    public static void rotateRightByDSpaces(int[] arr,int k){
+        reverseArray(arr,0,arr.length-1);
+        reverseArray(arr,0,k-1);
+        reverseArray(arr,k,arr.length-1);
+        LOGGER.log(INFO,"The right rotated array is : {0}", Arrays.toString(arr));
+    }
+
+    public static void reverseArray(int[] arr,int start,int end){
+        if(start==end){
+            return;
+        }
+        int temp;
+        while(start<end){
+            temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
     }
 }
