@@ -12,31 +12,21 @@ public class Problem42 {
 
     public static int trap(int[] height) {
         int total = 0;
-        int[] leftMax = prefixMax(height);
-        int[] rightMax = postfixMax(height);
-        for(int i=0; i<height.length; i++){
-            total += Math.min(leftMax[i], rightMax[i]) - height[i];
+        int left = 0;
+        int right = height.length - 1;
+        int leftMax = 0;
+        int rightMax = 0;
+        while (left < right) {
+            if (height[left] <= height[right]) {
+                leftMax = Math.max(leftMax, height[left]);
+                total += leftMax - height[left++];
+            } else {
+                rightMax = Math.max(rightMax, height[right]);
+                total += rightMax - height[right--];
+            }
         }
         return total;
     }
 
-    public static int[] prefixMax(int[] height) {
-        int[] result = new int[height.length];
-        result[0] = height[0];
-        for (int i = 1; i < height.length; i++) {
-            int maxValue = Math.max(height[i], result[i - 1]);
-            result[i] = maxValue;
-        }
-        return result;
-    }
 
-    public static int[] postfixMax(int[] height){
-        int[] result = new int[height.length];
-        result[height.length-1] = height[height.length-1];
-        for (int i = height.length-2; i >= 0; i--) {
-            int maxValue = Math.max(height[i], result[i + 1]);
-            result[i] = maxValue;
-        }
-        return result;
-    }
 }
