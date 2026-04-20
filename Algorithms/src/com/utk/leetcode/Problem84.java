@@ -6,45 +6,31 @@ import java.util.Stack;
 public class Problem84 {
 
     static void main() {
-        System.out.println(largestRectangleArea(new int[]{1,1}));
+        System.out.println(largestRectangleArea(new int[]{2, 1, 5, 6, 2, 3}));
     }
 
     public static int largestRectangleArea(int[] heights) {
         int maxArea = 0;
-        int[] pse = preSmallerElement(heights);
-        int[] nse = nextSmallerElement(heights);
+        int nse;
+        int element;
+        int pse;
+        Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < heights.length; i++) {
-            int rectangleArea = heights[i] * (nse[i] - (pse[i] + 1));
-            maxArea = Math.max(maxArea, rectangleArea);
+            nse = i;
+            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
+                element = stack.pop();
+                pse = stack.isEmpty() ? -1 : stack.peek();
+                maxArea = Math.max(maxArea, heights[element] * (nse - (pse + 1)));
+            }
+            stack.push(i);
+        }
+
+        while (!stack.isEmpty()) {
+            nse = heights.length;
+            element = stack.pop();
+            pse = stack.isEmpty() ? -1 : stack.peek();
+            maxArea = Math.max(maxArea, heights[element] * (nse - (pse + 1)));
         }
         return maxArea;
-    }
-
-    public static int[] preSmallerElement(int[] heights) {
-        int[] pse = new int[heights.length];
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i < heights.length; i++) {
-            while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
-                stack.pop();
-            }
-
-            pse[i] = stack.isEmpty() ? -1 : stack.peek();
-            stack.push(i);
-        }
-        return pse;
-    }
-
-    public static int[] nextSmallerElement(int[] heights) {
-        int[] nse = new int[heights.length];
-        Stack<Integer> stack = new Stack<>();
-        for (int i =heights.length-1; i >= 0; i--) {
-            while (!stack.isEmpty() && heights[stack.peek()] > heights[i]) {
-                stack.pop();
-            }
-
-            nse[i] = stack.isEmpty() ? heights.length : stack.peek();
-            stack.push(i);
-        }
-        return nse;
     }
 }
