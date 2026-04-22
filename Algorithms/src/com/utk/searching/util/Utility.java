@@ -462,4 +462,228 @@ public class Utility {
         }
         return counter >= cows;
     }
+
+    public static int findPages(int[] arr, int m) {
+        int low = findMaxElement(arr);
+        int high = findSumOfArray(arr);
+        int countStudents;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            countStudents = countStudents(arr, mid);
+            if (countStudents > m) low = mid + 1;
+            else high = mid - 1;
+        }
+        return low;
+    }
+
+    public static int countStudents(int[] arr, int pages) {
+        int sum = 0;
+        int students = 1;
+        for (int num : arr) {
+            if (sum + num <= pages) {
+                sum += num;
+            } else {
+                sum = num;
+                students++;
+            }
+        }
+        return students;
+    }
+
+    public static double minMaxDistance(int[] arr, int k) {
+        int[] gasStations = new int[arr.length - 1];
+        int distance;
+        double improvedLength;
+        double length = -1;
+        int index = 0;
+        double maximumDistance = Double.MIN_VALUE;
+        double gasStationsDistance;
+        for (int i = 1; i <= k; i++) {
+            for (int j = 0; j < arr.length - 1; j++) {
+                distance = arr[j + 1] - arr[j];
+                improvedLength = (double) distance / (gasStations[j] + 1);
+                if (improvedLength >= length) {
+                    length = improvedLength;
+                    index = j;
+                }
+            }
+            gasStations[index]++;
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            distance = arr[i + 1] - arr[i];
+            gasStationsDistance = (double) distance / (gasStations[i] + 1);
+            maximumDistance = Double.max(maximumDistance, gasStationsDistance);
+        }
+        return maximumDistance;
+    }
+
+    public static double findMedianSortedArrays(int[] num1, int[] num2) {
+        int[] sortedArray = new int[num1.length + num2.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        double median;
+        while (i < num1.length && j < num2.length) {
+            if (num1[i] <= num2[j]) {
+                sortedArray[k++] = num1[i++];
+            } else {
+                sortedArray[k++] = num2[j++];
+
+            }
+        }
+        while (i < num1.length) {
+            sortedArray[k++] = num1[i++];
+        }
+        while (j < num2.length) {
+            sortedArray[k++] = num2[j++];
+        }
+        if (sortedArray.length % 2 == 0) {
+            int medianIndex = sortedArray.length / 2;
+            median = (double) (sortedArray[medianIndex] + sortedArray[medianIndex - 1]) / 2;
+        } else {
+            median = sortedArray[sortedArray.length / 2];
+        }
+        return median;
+    }
+
+    public static int rowWithMax1s(int[][] mat) {
+        int max1s = Integer.MIN_VALUE;
+        int rows = mat.length;
+        int columns = mat[0].length;
+        int counter = -1;
+        int row = -1;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (mat[i][j] == 1) {
+                    counter = columns - j;
+                    break;
+                }
+            }
+            if (counter > 0 && counter > max1s) {
+                row = i;
+                max1s = counter;
+                counter = 0;
+            }
+        }
+        return row;
+    }
+
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        boolean result = false;
+        int columns = matrix[0].length;
+        for (int[] ints : matrix) {
+            if (target > ints[columns - 1]) continue;
+            for (int j = 0; j < columns; j++) {
+                if (ints[j] == target)
+                    return true;
+            }
+        }
+        return result;
+    }
+
+    public static boolean searchMatrix240(int[][] matrix, int target) {
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int size = rows * columns;
+        int low = 0;
+        int high = size - 1;
+        int mid;
+        int element;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            element = matrix[mid / columns][mid % columns];
+            if (element == target) return true;
+            if (element < target) low = mid + 1;
+            else high = mid - 1;
+        }
+        return false;
+    }
+
+    public static int[] findPeakGrid(int[][] mat) {
+        int rows = mat.length;
+        int columns = mat[0].length;
+        int low = 0;
+        int high = columns - 1;
+        int mid;
+        int maxRow;
+        int left;
+        int right;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            maxRow = fetchMaxRow(mat, mid, rows);
+            left = mid - 1 >= 0 ? mat[maxRow][mid - 1] : -1;
+            right = mid + 1 < columns ? mat[maxRow][mid + 1] : -1;
+            if (mat[maxRow][mid] > right && mat[maxRow][mid] > left) return new int[]{maxRow, mid};
+            if (mat[maxRow][mid] > right && mat[maxRow][mid] < left) high = mid - 1;
+            else low = mid + 1;
+        }
+        return new int[]{-1, -1};
+    }
+
+    public static int fetchMaxRow(int[][] mat, int column, int rows) {
+        int maxElementRow = Integer.MIN_VALUE;
+        int row = 0;
+        for (int i = 0; i < rows; i++) {
+            if (mat[i][column] > maxElementRow) {
+                maxElementRow = mat[i][column];
+                row = i;
+            }
+        }
+        return row;
+    }
+
+    public static int findMedian(int[][] matrix) {
+        int low = findLowestInTheColumn(matrix);
+        int high = findMaxInTheColumn(matrix);
+        int mid;
+        int rows = matrix.length;
+        int columns = matrix[0].length;
+        int req = (rows * columns) / 2;
+        int numbers;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            numbers = getNumberOfElementsLessThanTarget(matrix, mid);
+            if (numbers <= req) low = mid + 1;
+            else high = mid - 1;
+        }
+        return low;
+    }
+
+    private static int findMaxInTheColumn(int[][] matrix) {
+        int column = matrix[0].length - 1;
+        int highest = Integer.MIN_VALUE;
+        for (int[] ints : matrix) {
+            highest = Math.max(highest, ints[column]);
+        }
+        return highest;
+    }
+
+    private static int findLowestInTheColumn(int[][] matrix) {
+        int lowest = Integer.MAX_VALUE;
+        for (int[] ints : matrix) {
+            lowest = Math.min(lowest, ints[0]);
+        }
+        return lowest;
+    }
+
+    private static int getNumberOfElementsLessThanTarget(int[][] matrix, int target) {
+        int count = 0;
+        for (int[] row : matrix) {
+            count += upperBound(row, target);
+        }
+        return count;
+    }
+
+    private static int upperBound(int[] matrix, int target) {
+        int low = 0;
+        int high = matrix.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (matrix[mid] > target) high = mid - 1;
+            else low = mid + 1;
+        }
+        return low;
+    }
 }

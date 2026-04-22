@@ -133,5 +133,9 @@ public class ArrayUtilityImpl {
         int[] maxProductSubArray = {-2,0,-1};
         LOGGER.log(Level.INFO, "The max product sub-array is : {0}", Utility.maxProduct(maxProductSubArray));
 
+        int[] rotateRight = {1,2,3,4,5,6,7,8};
+        int spaces=3;
+        Utility.rotateRightByDSpaces(rotateRight, spaces);
+
     }
 }

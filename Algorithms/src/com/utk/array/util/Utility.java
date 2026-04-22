@@ -1,8 +1,9 @@
 package com.utk.array.util;
 
 import java.util.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static java.util.logging.Level.INFO;
 
 public class Utility {
 
@@ -13,7 +14,7 @@ public class Utility {
     }
 
     public static int findFirstOrSecondLargestElement(int[] arr, int n) {
-        LOGGER.log(Level.INFO, "Inside findLargestElement method to find {0} largest element in the array", n);
+        LOGGER.log(INFO, "Inside findLargestElement method to find {0} largest element in the array", n);
         int largest = Integer.MIN_VALUE;
         int secondLargest = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length - 1; i++) {//8, 8, 7, 6, 5
@@ -42,47 +43,47 @@ public class Utility {
                 break;
             }
         }
-        LOGGER.log(Level.INFO, "The value of counter is {0}", counter);
+        LOGGER.log(INFO, "The value of counter is {0}", counter);
         return (counter == arr.length - 1);
     }
 
-    public static int removeDuplicatesFromSortedArray(int[] nums) {
+    public static int removeDuplicatesFromSortedArray(int[] arr) {
         int uniqueIndex = 0;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] != nums[uniqueIndex]) {
-                nums[++uniqueIndex] = nums[i];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[uniqueIndex]) {
+                arr[++uniqueIndex] = arr[i];
             }
         }
-        LOGGER.log(Level.INFO, "The unique array is: {0}", Arrays.toString(nums));
+        LOGGER.log(INFO, "The unique array is: {0}", Arrays.toString(arr));
         return uniqueIndex + 1;
     }
 
-    public static void rotateArrayLeftByDSpaces(int[] nums, int d) {
-        int[] rotatedArray = new int[nums.length];
-        if (d > nums.length) {
-            d = d % nums.length; // Handle cases where d is greater than the array length
+    public static void rotateArrayLeftByDSpaces(int[] arr, int d) {
+        int[] rotatedArray = new int[arr.length];
+        if (d > arr.length) {
+            d = d % arr.length; // Handle cases where d is greater than the array length
         }
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if ((i - d) >= 0) {
-                rotatedArray[i - d] = nums[i];
+                rotatedArray[i - d] = arr[i];
             } else {
-                rotatedArray[nums.length - (d - i)] = nums[i];
+                rotatedArray[arr.length - (d - i)] = arr[i];
             }
         }
-        LOGGER.log(Level.INFO, "Array after rotation to the left : {0}", Arrays.toString(rotatedArray));
+        LOGGER.log(INFO, "Array after rotation to the left : {0}", Arrays.toString(rotatedArray));
     }
 
-    public static void moveZeroesToLast(int[] nums) {
+    public static void moveZeroesToLast(int[] arr) {
         int j = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                nums[j++] = nums[i];
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                arr[j++] = arr[i];
             }
         }
-        while (j < nums.length) {
-            nums[j++] = 0;
+        while (j < arr.length) {
+            arr[j++] = 0;
         }
-        LOGGER.log(Level.INFO, "Array after moving zeroes to the last: {0}", Arrays.toString(nums));
+        LOGGER.log(INFO, "Array after moving zeroes to the last: {0}", Arrays.toString(arr));
     }
 
     public static int[] unionOfSortedArrays(int[] arr1, int[] arr2) {
@@ -123,16 +124,14 @@ public class Utility {
             j++;
         }
         int[] result = new int[k];
-        for (int a = 0; a < k; a++) {
-            result[a] = unionArray[a];
-        }
+        System.arraycopy(unionArray, 0, result, 0, k);
         return result;
     }
 
-    public static int findMissingNumber(int[] nums) {
-        int size = nums.length + 1;
+    public static int findMissingNumber(int[] arr) {
+        int size = arr.length + 1;
         boolean[] numbersFound = new boolean[size];
-        for (int num : nums) {
+        for (int num : arr) {
             numbersFound[num] = true;
         }
         for (int i = 0; i < size; i++) {
@@ -143,10 +142,10 @@ public class Utility {
         return -1;
     }
 
-    public static int maximumConsecutiveOnes(int[] nums) {
+    public static int maximumConsecutiveOnes(int[] arr) {
         int counter = 0;
         int lastCount = 0;
-        for (int number : nums) {//1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1
+        for (int number : arr) {//1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1
             if (number == 1) {
                 ++counter;
             } else {
@@ -156,25 +155,26 @@ public class Utility {
                 counter = 0;
             }
         }
-        return lastCount > counter ? lastCount : counter;
+        return Math.max(lastCount, counter);
     }
 
     public static int singleNumber(int[] arr) {
         int XOR = 0;//same numbers when XOR return zero
-        for (int i = 0; i < arr.length; i++) {
-            XOR = XOR ^ arr[i]; // zero xor any number is the number itself
+        for (int j : arr) {
+            XOR = XOR ^ j; // zero xor any number is the number itself
         }
         return XOR;
     }
 
-    public static int longestSubArrayV1(int[] nums, int k) {
+    @Deprecated
+    public static int longestSubArrayV1(int[] arr, int k) {
         int length = 0;
         int result = 0;
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             int total = k;
             int j = i;
-            while (total > 0 && j < nums.length) {
-                total -= nums[j++];
+            while (total > 0 && j < arr.length) {
+                total -= arr[j++];
                 length++;
             }
             if (total == 0 && length > result) {
@@ -185,12 +185,13 @@ public class Utility {
         return result;
     }
 
-    public static int longestSubArrayV2(int[] nums, int k) {
+    @Deprecated
+    public static int longestSubArrayV2(int[] arr, int k) {
         HashMap<Integer, Integer> sumMap = new HashMap<>();
         int sum = 0;
         int longestSubArrLength = 0;
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
             sumMap.put(sum, i);
             if ((sum - k) >= 0 && sumMap.containsKey((sum - k))) {
                 longestSubArrLength = Math.max(longestSubArrLength,
@@ -200,30 +201,30 @@ public class Utility {
         return longestSubArrLength;
     }
 
-    public static int longestSubArrayV3(int[] nums, int k) {
+    public static int longestSubArrayV3(int[] arr, int k) {
         int i = 0;
         int j = 0;
-        int sum = nums[0];
+        int sum = arr[0];
         int length = 0;
-        while (i < nums.length && j < nums.length - 1) {
+        while (i < arr.length && j < arr.length - 1) {
             if (sum > k) {
-                sum -= nums[i++];
+                sum -= arr[i++];
             } else if (sum < k) {
-                sum += nums[++j];
+                sum += arr[++j];
             } else {
                 length = Math.max(length, j - i + 1);
-                sum += nums[++j];
+                sum += arr[++j];
             }
 
         }
         return length;
     }
 
-    public static int[] twoSum(int[] nums, int target) {
+    public static int[] twoSum(int[] arr, int target) {
         int counter = 0;
         int[] result = new int[2];
         Map<Integer, Integer> map = new HashMap<>();//1, 3, 5, -7, 6, -3
-        for (int num : nums) {
+        for (int num : arr) {
             if (map.containsKey(target - num)) {
                 result[0] = map.get(target - num);
                 result[1] = counter;
@@ -260,31 +261,31 @@ public class Utility {
         arr[initialLocation] = temp;
     }
 
-    public static int majorityElement(int[] nums) {
+    public static int majorityElement(int[] arr) {
         int counter = 0;
-        int element = nums[0];
-        for (int i = 0; i < nums.length; i++) {
-            if (element == nums[i]) {
+        int element = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            if (element == arr[i]) {
                 counter++;
             } else {
                 counter--;
             }
-            if (counter == 0 && i < nums.length - 1) {
-                element = nums[i + 1];
+            if (counter == 0 && i < arr.length - 1) {
+                element = arr[i + 1];
             }
         }
         return element;
     }
 
-    public static int maxSubArraySum(int[] nums) {
+    public static int maxSubArraySum(int[] arr) {
         int sum = 0;
         int maximum = Integer.MIN_VALUE;
         int start = -1;
         int end = -1;
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (sum == 0)
                 start = i;
-            sum += nums[i];
+            sum += arr[i];
             if (sum > maximum) {
                 maximum = sum;
                 end = i;
@@ -293,7 +294,7 @@ public class Utility {
                 sum = 0;
             }
         }
-        LOGGER.log(Level.INFO, "The index of the largest sub array is from {0} to {1}", new Object[]{start, end});
+        LOGGER.log(INFO, "The index of the largest sub array is from {0} to {1}", new Object[]{start, end});
         return maximum;
     }
 
@@ -308,11 +309,11 @@ public class Utility {
         return profit;
     }
 
-    public static int[] rearrangeArray(int[] nums) {
-        int[] rearrangedArray = new int[nums.length];
+    public static int[] rearrangeArray(int[] arr) {
+        int[] rearrangedArray = new int[arr.length];
         int positiveCounter = 0;
         int negativeCounter = 1;
-        for (int num : nums) {
+        for (int num : arr) {
             if (num > 0) {
                 rearrangedArray[positiveCounter] = num;
                 positiveCounter += 2;
@@ -324,14 +325,14 @@ public class Utility {
         return rearrangedArray;
     }
 
-    public static void nextPermutation(int[] nums) {
+    public static void nextPermutation(int[] arr) {
         int breakpoint = -1;
         int reverseSize = 0;
         int counter = 0;
         int swapIndex = 0;
         int lowest = Integer.MAX_VALUE;
-        for (int i = nums.length - 1; i > 0; i--) {
-            if (nums[i] > nums[i - 1]) {
+        for (int i = arr.length - 1; i > 0; i--) {
+            if (arr[i] > arr[i - 1]) {
                 breakpoint = i - 1;
                 break;
             }
@@ -339,52 +340,52 @@ public class Utility {
         }
         int[] reverseArray = new int[reverseSize + 1];
         if (breakpoint == -1) {
-            for (int k = nums.length - 1; k > breakpoint; k--) {
-                reverseArray[counter++] = nums[k];
+            for (int k = arr.length - 1; k > breakpoint; k--) {
+                reverseArray[counter++] = arr[k];
             }
             counter = 0;
-            for (int l = breakpoint + 1; l < nums.length; l++) {
-                nums[l] = reverseArray[counter++];
+            for (int l = 0; l < arr.length; l++) {
+                arr[l] = reverseArray[counter++];
             }
             return;
         }
-        for (int j = breakpoint + 1; j < nums.length; j++) {
-            if (nums[breakpoint] < nums[j] && nums[j] <= lowest) {
-                lowest = nums[j];
+        for (int j = breakpoint + 1; j < arr.length; j++) {
+            if (arr[breakpoint] < arr[j] && arr[j] <= lowest) {
+                lowest = arr[j];
                 swapIndex = j;
             }
         }
-        swap(nums, breakpoint, swapIndex);
-        for (int k = nums.length - 1; k > breakpoint; k--) {
-            reverseArray[counter++] = nums[k];
+        swap(arr, breakpoint, swapIndex);
+        for (int k = arr.length - 1; k > breakpoint; k--) {
+            reverseArray[counter++] = arr[k];
         }
         counter = 0;
-        for (int l = breakpoint + 1; l < nums.length; l++) {
-            nums[l] = reverseArray[counter++];
+        for (int l = breakpoint + 1; l < arr.length; l++) {
+            arr[l] = reverseArray[counter++];
         }
     }
 
-    public static List<Integer> leaders(int[] nums) {
+    public static List<Integer> leaders(int[] arr) {
         ArrayList<Integer> leaders = new ArrayList<>();
-        int maxElement = nums[nums.length - 1];
+        int maxElement = arr[arr.length - 1];
         leaders.addFirst(maxElement);
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] >= maxElement) {
-                leaders.addFirst(nums[i]);
-                maxElement = nums[i];
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] >= maxElement) {
+                leaders.addFirst(arr[i]);
+                maxElement = arr[i];
             }
         }
         return leaders;
     }
 
-    public static int longestConsecutive(int[] nums) {
+    public static int longestConsecutive(int[] arr) {
         Set<Integer> numset = new HashSet<>();
         int maximumLength = 0;
         int counter = 1;
-        for (int num : nums) {
+        for (int num : arr) {
             numset.add(num);
         }
-        LOGGER.log(Level.INFO, "The hashset is : {0}", numset);
+        LOGGER.log(INFO, "The hashset is : {0}", numset);
         for (int num : numset) {
             if (numset.contains(num - 1)) {
                 continue;
@@ -401,7 +402,7 @@ public class Utility {
     public static void setZeroes(int[][] matrix) {
         int[] rows = new int[matrix.length];
         int[] columns = new int[matrix[0].length];
-        LOGGER.log(Level.INFO, "Rows : {0} Columns : {1}", new Object[]{matrix.length, matrix[0].length});
+        LOGGER.log(INFO, "Rows : {0} Columns : {1}", new Object[]{matrix.length, matrix[0].length});
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (matrix[i][j] == 0) {
@@ -410,7 +411,7 @@ public class Utility {
                 }
             }
         }
-        LOGGER.log(Level.INFO, "The rows matrix is : {0} The column matrix is : {1}", new Object[]{Arrays.toString(rows), Arrays.toString(columns)});
+        LOGGER.log(INFO, "The rows matrix is : {0} The column matrix is : {1}", new Object[]{Arrays.toString(rows), Arrays.toString(columns)});
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (rows[i] == -1) {
@@ -443,7 +444,7 @@ public class Utility {
             loopCounter = 0;
         }
     }
-
+    
     public static List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> spiralList = new ArrayList<>();
         int rows = matrix.length;
@@ -480,12 +481,12 @@ public class Utility {
         return spiralList;
     }
 
-    public static int subArraySum(int[] nums, int k) {
+    public static int subArraySum(int[] arr, int k) {
         Map<Integer, Integer> prefixSums = new HashMap<>();
         int count = 0;
         int sum = 0;
         prefixSums.put(0, 1);
-        for (int num : nums) {
+        for (int num : arr) {
             sum += num;
             if (prefixSums.containsKey(sum - k)) {
                 count += prefixSums.get(sum - k);
@@ -496,14 +497,13 @@ public class Utility {
         return count;
     }
 
-    public static List<List<Integer>> generatePascalTriangle(int rows) {
+    public static void generatePascalTriangle(int rows) {
         List<List<Integer>> outerList = new ArrayList<>();
         List<Integer> innerList;
-        int sum = 0;
+        int sum;
         for (int i = 0; i < rows; i++) {
             innerList = new ArrayList<>();
             for (int j = 0; j <= i; j++) {
-                sum = 0;
                 if (j == 0 || j == i) {
                     innerList.addLast(1);
                     continue;
@@ -513,18 +513,17 @@ public class Utility {
             }
             outerList.add(innerList);
         }
-        LOGGER.log(Level.INFO, "The returned triangle is : {0}", outerList.toString());
-        return outerList;
+        LOGGER.log(INFO, "The returned triangle is : {0}", outerList.toString());
     }
 
-    public static List<Integer> majorityElementTwo(int[] nums) {
-        int thresholdValue = nums.length / 3;
+    public static List<Integer> majorityElementTwo(int[] arr) {
+        int thresholdValue = arr.length / 3;
         int counter1 = 0;
         int element1 = Integer.MIN_VALUE;
         int counter2 = 0;
         int element2 = Integer.MIN_VALUE;
         List<Integer> majorityElementList = new ArrayList<>();
-        for (int num : nums) {//2,1,1,3,1,4,5,6
+        for (int num : arr) {//2,1,1,3,1,4,5,6
             if (counter1 == 0 && num != element2) {
                 ++counter1;
                 element1 = num;//2
@@ -542,7 +541,7 @@ public class Utility {
         }
         counter1 = 0;
         counter2 = 0;
-        for (int num : nums) {
+        for (int num : arr) {
             if (element1 == num)
                 counter1++;
             if (element2 == num)
@@ -555,35 +554,34 @@ public class Utility {
         return majorityElementList;
     }
 
-    public static List<List<Integer>> threeSum(int[] nums) {
+    public static List<List<Integer>> threeSum(int[] arr) {
         List<List<Integer>> outerList = new ArrayList<>();
         List<Integer> innerList;
-        int i = 0;
-        int j = 0;
-        int k = 0;
-        Arrays.sort(nums);
-        for (i = 0; i < nums.length; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
+        int i;
+        int j;
+        int k;
+        Arrays.sort(arr);
+        for (i = 0; i < arr.length; i++) {
+            if (i > 0 && arr[i] == arr[i - 1]) continue;
             j = i + 1;
-            k = nums.length - 1;
+            k = arr.length - 1;
             while (j < k) {
                 innerList = new ArrayList<>();
-                if ((nums[i] + nums[j] + nums[k]) == 0) {
-                    innerList.add(nums[i]);
-                    innerList.add(nums[j]);
-                    innerList.add(nums[k]);
+                if ((arr[i] + arr[j] + arr[k]) == 0) {
+                    innerList.add(arr[i]);
+                    innerList.add(arr[j]);
+                    innerList.add(arr[k]);
                     outerList.add(innerList);
                     k--;
-                    j++;
-                    while (j < k && nums[j] == nums[j - 1]) {
+                    do {
                         j++;
-                    }
-                    while (j < k && nums[k] == nums[k + 1]) {
+                    } while (j < k && arr[j] == arr[j - 1]);
+                    while (j < k && arr[k] == arr[k + 1]) {
                         k--;
                     }
-                } else if ((nums[i] + nums[j] + nums[k]) < 0) {
+                } else if ((arr[i] + arr[j] + arr[k]) < 0) {
                     j++;
-                } else if ((nums[i] + nums[j] + nums[k]) > 0) {
+                } else if ((arr[i] + arr[j] + arr[k]) > 0) {
                     k--;
                 }
             }
@@ -591,34 +589,34 @@ public class Utility {
         return outerList;
     }
 
-    public static List<List<Integer>> fourSum(int[] nums, int target) {
+    public static List<List<Integer>> fourSum(int[] arr, int target) {
         List<List<Integer>> outerList = new ArrayList<>();
         List<Integer> innerList;
-        Arrays.sort(nums);
+        Arrays.sort(arr);
         int k;
         int l;
-        if (target >= Integer.MAX_VALUE || target <= Integer.MIN_VALUE) {
+        if (target == Integer.MAX_VALUE || target == Integer.MIN_VALUE) {
             return outerList;
         }
-        for (int i = 0; i < nums.length - 3; i++) {
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
-            for (int j = i + 1; j < nums.length - 2; j++) {
-                if (j > (i + 1) && nums[j] == nums[j - 1]) continue;
+        for (int i = 0; i < arr.length - 3; i++) {
+            if (i > 0 && arr[i] == arr[i - 1]) continue;
+            for (int j = i + 1; j < arr.length - 2; j++) {
+                if (j > (i + 1) && arr[j] == arr[j - 1]) continue;
                 k = j + 1;
-                l = nums.length - 1;
+                l = arr.length - 1;
                 while (k < l) {//-294967296
                     innerList = new ArrayList<>();
-                    long sum = nums[i] + nums[j] + nums[k] + nums[l];
+                    long sum = arr[i] + arr[j] + arr[k] + arr[l];
                     if (sum == -294967296) {
                         return outerList;
                     }
                     if (sum == target) {
-                        innerList.addAll(Arrays.asList(nums[i], nums[j], nums[k], nums[l]));
+                        innerList.addAll(Arrays.asList(arr[i], arr[j], arr[k], arr[l]));
                         outerList.add(innerList);
                         k++;
                         l--;
-                        while (k < l && nums[k] == nums[k - 1]) k++;
-                        while (k < l && nums[l] == nums[l + 1]) l--;
+                        while (k < l && arr[k] == arr[k - 1]) k++;
+                        while (k < l && arr[l] == arr[l + 1]) l--;
                     } else if (sum < target) {
                         k++;
                     } else if (sum > target) {
@@ -647,16 +645,16 @@ public class Utility {
     public static int[][] mergeOverlap(int[][] intervals) {
         Arrays.sort(intervals, Comparator.comparingInt(arr -> arr[0]));
         int[][] outerList = new int[intervals.length][2];
-        int startingIndex = 0;
-        int endingIndex = 0;
-        int minimum = 0;
-        int maximum = 0;
+        int startingIndex;
+        int endingIndex;
+        int minimum;
+        int maximum;
         int mergedRows = 0;
         int start = intervals[0][0];
         int end = intervals[0][1];
         outerList[0][0] = intervals[0][0];
         outerList[0][1] = intervals[0][1];
-        LOGGER.log(Level.INFO, "LOG VAlUE : {0}", Arrays.deepToString(intervals));
+        LOGGER.log(INFO, "LOG Value : {0}", Arrays.deepToString(intervals));
         for (int i = 1; i < intervals.length; i++) {
             startingIndex = intervals[i][0];
             endingIndex = intervals[i][1];
@@ -693,36 +691,36 @@ public class Utility {
         return outerList;
     }
 
-    public static void merge(int[] nums1, int m, int[] nums2, int n) {
+    public static void merge(int[] arr1, int m, int[] arr2, int n) {
         int pointer1 = m - 1;
         int pointer2 = n - 1;
         int counter = m + n - 1;
         while (pointer1 >= 0 && pointer2 >= 0) {
-            if (nums2[pointer2] > nums1[pointer1]) {
-                nums1[counter--] = nums2[pointer2--];
-            } else if (nums2[pointer2] < nums1[pointer1]) {
-                nums1[counter--] = nums1[pointer1--];
+            if (arr2[pointer2] > arr1[pointer1]) {
+                arr1[counter--] = arr2[pointer2--];
+            } else if (arr2[pointer2] < arr1[pointer1]) {
+                arr1[counter--] = arr1[pointer1--];
             } else {
-                nums1[counter--] = nums1[pointer1--];
+                arr1[counter--] = arr1[pointer1--];
             }
         }
         while (pointer1 >= 0) {
-            nums1[counter--] = nums1[pointer1--];
+            arr1[counter--] = arr1[pointer1--];
         }
         while (pointer2 >= 0) {
-            nums1[counter--] = nums2[pointer2--];
+            arr1[counter--] = arr2[pointer2--];
         }
-        LOGGER.log(Level.INFO, "The merge sorted in place array is : {0}", Arrays.toString(nums1));
+        LOGGER.log(INFO, "The merge sorted in place array is : {0}", Arrays.toString(arr1));
     }
 
-    public static int[] findMissingRepeatingNumbers(int[] nums) {
+    public static int[] findMissingRepeatingNumbers(int[] arr) {
         int[] result = new int[2];
-        int n = nums.length;
+        int n = arr.length;
         int sumOfn = n * (n + 1) / 2;
         int sumOfN2 = n * (n + 1) * (2 * n + 1) / 6;
         int sumOfValue = 0;
         int sumOfValue2 = 0;
-        for (int num : nums) {
+        for (int num : arr) {
             sumOfValue += num;
             sumOfValue2 += num * num;
         }
@@ -735,12 +733,12 @@ public class Utility {
         return result;
     }
 
-    public static long numberOfInversions(int[] nums) {
+    public static long numberOfInversions(int[] arr) {
         long numberOfInversions = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i; j < nums.length; j++) {
-                if (nums[i] > nums[j]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
                     numberOfInversions++;
                 }
             }
@@ -749,65 +747,62 @@ public class Utility {
         return numberOfInversions;
     }
 
-    public static int reversePairs(int[] nums) {
+    public static int reversePairs(int[] arr) {
         int count = 0;
         int low = 0;
-        int high = nums.length - 1;
-        count += mergeSort(nums, low, high);
-        LOGGER.log(Level.INFO, "The merge sorted array is : {0}", Arrays.toString(nums));
+        int high = arr.length - 1;
+        count += mergeSort(arr, low, high);
+        LOGGER.log(INFO, "The merge sorted array is : {0}", Arrays.toString(arr));
         return count;
     }
 
-    public static int mergeSort(int[] nums, int low, int high) {
-        LOGGER.log(Level.INFO, "MergeSort low: {0} high: {1}", new Object[]{low, high});
+    public static int mergeSort(int[] arr, int low, int high) {
+        LOGGER.log(INFO, "MergeSort low: {0} high: {1}", new Object[]{low, high});
         int count = 0;
         if (low >= high) return count;
         int mid = (low + high) / 2;
-        count = mergeSort(nums, low, mid);
-        count = mergeSort(nums, mid + 1, high);
-        count += countReversePairs(nums, low, mid, high);
-        mergeArray(nums, low, mid, high);
+        mergeSort(arr, low, mid);
+        count = mergeSort(arr, mid + 1, high);
+        count += countReversePairs(arr, low, mid, high);
+        mergeArray(arr, low, mid, high);
         return count;
     }
 
-    public static int mergeArray(int[] nums, int low, int mid, int high) {
+    public static void mergeArray(int[] arr, int low, int mid, int high) {
         int count = 0;
         int left = mid - low + 1;
         int right = high - mid;
         int[] leftArray = new int[left];
         int[] rightArray = new int[right];
-        for (int i = 0; i < left; i++) {
-            leftArray[i] = nums[low + i];
-        }
+        System.arraycopy(arr, low, leftArray, 0, left);
         for (int j = 0; j < right; j++) {
-            rightArray[j] = nums[mid + 1 + j];
+            rightArray[j] = arr[mid + 1 + j];
         }
         int i = 0;
         int j = 0;
         int k = low;
         while (i < left && j < right) {
             if (leftArray[i] <= rightArray[j]) {
-                nums[k++] = leftArray[i++];
+                arr[k++] = leftArray[i++];
             } else {
-                nums[k++] = rightArray[j++];
+                arr[k++] = rightArray[j++];
             }
         }
         while (i < left) {
-            nums[k++] = leftArray[i++];
+            arr[k++] = leftArray[i++];
         }
         while (j < right) {
-            nums[k++] = rightArray[j++];
+            arr[k++] = rightArray[j++];
         }
-        LOGGER.log(Level.INFO, "Return Count for mergeArray : {0}", count);
-        return count;
+        LOGGER.log(INFO, "Return Count for mergeArray : {0}", count);
     }
 
-    public static int countReversePairs(int[] nums, int low, int mid, int high) {
+    public static int countReversePairs(int[] arr, int low, int mid, int high) {
         int count = 0;
         int right = mid + 1;
         for (int i = low; i <= mid; i++) {
-            while (right <= high && nums[i] > 2 * nums[right]) {
-                if (nums[i] >= Integer.MAX_VALUE || nums[i] <= Integer.MIN_VALUE || (2 * nums[right]) >= Integer.MAX_VALUE || (2 * nums[right]) <= Integer.MIN_VALUE) {
+            while (right <= high && arr[i] > 2 * arr[right]) {
+                if (arr[i] == Integer.MAX_VALUE || arr[i] == Integer.MIN_VALUE || 2 * arr[right] == Integer.MIN_VALUE) {
                     return 0;
                 }
                 right++;
@@ -817,17 +812,38 @@ public class Utility {
         return count;
     }
 
-    public static int maxProduct(int[] nums) {
+    public static int maxProduct(int[] arr) {
         int prefix = 1;
         int suffix = 1;
         int maxProduct = Integer.MIN_VALUE;
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if(prefix==0) prefix=1;
             if(suffix==0) suffix=1;
-            prefix*=nums[i];
-            suffix*=nums[nums.length-1-i];
+            prefix*=arr[i];
+            suffix*=arr[arr.length-1-i];
             maxProduct=Math.max(maxProduct,Math.max(prefix,suffix));
         }
         return maxProduct;
+    }
+
+    public static void rotateRightByDSpaces(int[] arr,int k){
+        reverseArray(arr,0,arr.length-1);
+        reverseArray(arr,0,k-1);
+        reverseArray(arr,k,arr.length-1);
+        LOGGER.log(INFO,"The right rotated array is : {0}", Arrays.toString(arr));
+    }
+
+    public static void reverseArray(int[] arr,int start,int end){
+        if(start==end){
+            return;
+        }
+        int temp;
+        while(start<end){
+            temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
     }
 }

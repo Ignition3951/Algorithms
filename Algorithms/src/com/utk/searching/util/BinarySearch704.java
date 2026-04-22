@@ -83,5 +83,33 @@ public class BinarySearch704 {
         int aggressiveCows = 2;
         LOGGER.log(Level.INFO, "The minimum distance to place the cows in stalls is : {0}", Utility.aggressiveCows(stalls, aggressiveCows));
 
+        int[] pages = {7, 2, 5, 10, 8};
+        int students = 2;
+        LOGGER.log(Level.INFO, "The minimum number of pages that can be distributed among the students are: {0}", Utility.findPages(pages, students));
+
+        int[] gasArray = {1, 7};
+        int gasStations = 2;
+        LOGGER.log(Level.INFO, "The minimized gas station distance is : {0}", Utility.minMaxDistance(gasArray, gasStations));
+
+        int[] num1 = {1, 2};
+        int[] num2 = {3, 4};
+        LOGGER.log(Level.INFO, "The median of the sorted array is : {0}", Utility.findMedianSortedArrays(num1, num2));
+
+        int[][] max1s = {{0, 0, 1}, {0, 1, 1}, {0, 1, 1}};
+        LOGGER.log(Level.INFO, "The maximum number of 1s in one row are : {0}", Utility.rowWithMax1s(max1s));
+
+        int[][] searchMatrix = {{1, 3}};
+        int searchTargetInMatrix = 3;
+        LOGGER.log(Level.INFO, "Is the target found in the matrix : {0}", Utility.searchMatrix(searchMatrix, searchTargetInMatrix));
+
+        int[][] searchMatrix240 = {{-5}};
+        int searchTarget240 = -10;
+        LOGGER.log(Level.INFO, "Is the element found in the 2D array : {0}", Utility.searchMatrix240(searchMatrix240, searchTarget240));
+
+        int[][] searchGridForPeak = {{1, 4}, {3, 2}};
+        LOGGER.log(Level.INFO, "The peak element location is : {0}", Arrays.toString(Utility.findPeakGrid(searchGridForPeak)));
+
+        int[][] findMedian = {{1, 3, 8}, {2, 3, 4}, {1, 2, 5}};
+        LOGGER.log(Level.INFO, "The median of the 2D array is : {0}", Utility.findMedian(findMedian));
     }
 }
