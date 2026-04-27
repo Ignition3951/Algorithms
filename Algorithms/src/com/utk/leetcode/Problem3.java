@@ -5,27 +5,22 @@ import java.util.*;
 public class Problem3 {
 
     static void main() {
-        String str = "aabaab!bb";
+        String str = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(str));
     }
 
     public static int lengthOfLongestSubstring(String s) {
-        if (s.length() <= 1) {
-            return s.length();
-        }
-        int counter = 0;
-        Deque<Character> stack = new LinkedList<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (stack.contains(s.charAt(i))) {
-                counter = Math.max(counter, stack.size());
-                while (!stack.isEmpty() && stack.peekLast() != s.charAt(i)) {
-                    stack.pollLast();
-                }
-                stack.pollLast();
+        Map<Character, Integer> map = new HashMap<>();
+        int max = 0;
+        int left=0;
+        int right=0;
+        while(right<s.length()){
+            if(map.containsKey(s.charAt(right)) && map.get(s.charAt(right)) >= left){
+                left = map.get(s.charAt(right))+1;
             }
-            stack.push(s.charAt(i));
+            max = Math.max(max, right-left+1);
+            map.put(s.charAt(right), right++);
         }
-        counter = Math.max(counter, stack.size());
-        return counter;
+        return max;
     }
 }
