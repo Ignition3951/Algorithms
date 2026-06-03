@@ -1,8 +1,8 @@
 package com.utk.leetcode;
 
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Problem239 {
 
@@ -13,32 +13,25 @@ public class Problem239 {
     }
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
-        int i=0;
+        Deque<Integer> queue = new LinkedList<>();
+        int[] res = new int[nums.length - k + 1];
         int counter=0;
-        Queue<Integer> queue = new LinkedList<>();
-        int max = Integer.MIN_VALUE;
-        while(i<k){
-            max = Math.max(max,nums[i]);
-            queue.offer(nums[i++]);
-        }
-        int size = nums.length-k+1;
-        int[] res = new int[size];
-        res[counter++] = max;
-        while(i<nums.length){
-            queue.remove();
-            queue.offer(nums[i++]);
-            max = maxElementInQueue(new LinkedList<>(queue));
-            res[counter++] = max;
+        for (int i = 0; i < nums.length; i++) {
+            while (!queue.isEmpty() && nums[queue.peekFirst()] < nums[i]) {
+                queue.pollFirst();
+            }
+            queue.offerFirst(i);
+            if(!queue.isEmpty() && queue.peekLast() < i-k+1){
+                queue.pollLast();
+            }
+            if(i>=k-1){
+               res[counter++]=nums[queue.peekLast()];
+            }
+
         }
         return res;
     }
 
-    public static int maxElementInQueue(Queue<Integer> queue) {
-        int max = Integer.MIN_VALUE;
-        while(!queue.isEmpty()){
-            max = Math.max(max,queue.poll());
-        }
-        return max;
-    }
+
 }
 
