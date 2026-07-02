@@ -4,34 +4,30 @@ public class Problem678 {
 
     static void main() {
 
-        String str = "(*))";
-//        String str = "(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())";
-        //(((((*(*********((*(((((****          (*))
+        String str = "(*)";
         System.out.println(checkValidString(str));
     }
 
     public static boolean checkValidString(String s) {
-        return helperCheckValidString(s, 0, 0);
+        int minOpen = 0;
+        int maxOpen = 0;
+
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                minOpen++;
+                maxOpen++;
+            } else if (ch == ')') {
+                minOpen--;
+                maxOpen--;
+            } else {
+                minOpen--;
+                maxOpen++;
+            }
+
+            if (minOpen < 0) minOpen = 0;
+            if (maxOpen < 0) return false;
+        }
+        return true;
     }
 
-    public static boolean helperCheckValidString(String s, int index, int counter) {
-
-        if (counter < 0) {
-            return false;
-        }
-        if (index == s.length()) return counter == 0;
-
-        if (s.charAt(index) == '(') {
-            counter++;
-            return helperCheckValidString(s, index + 1, counter);
-        } else if (s.charAt(index) == ')') {
-            counter--;
-            return helperCheckValidString(s, index + 1, counter);
-        } else {
-            return helperCheckValidString(s, index + 1, counter)
-                    || helperCheckValidString(s, index + 1, counter + 1)
-                    || helperCheckValidString(s, index + 1, counter - 1);
-        }
-
-    }
 }
